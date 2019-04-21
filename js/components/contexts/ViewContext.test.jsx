@@ -1,6 +1,6 @@
 /* global afterEach beforeEach describe expect jest test */
 import React from 'react'
-import { act, cleanup, render } from 'react-testing-library'
+import { act, cleanup, fireEvent, render } from 'react-testing-library'
 import { ThemeProvider } from '@material-ui/styles'
 
 import { ViewContext, useViewInfo } from './ViewContext'
@@ -106,5 +106,77 @@ describe('ViewContext', () => {
       </ThemeProvider>
     )
     expect(viewInfo.x).toBe(1200)
+  })
+
+  test("does not re-render when size changes within breakpoint", () => {
+    window.innerWidth = 1200
+    let renderCount = 0
+    let viewInfo
+    const callback = (info) => {
+      renderCount += 1
+      viewInfo = info
+    }
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <ViewContext>
+          <ViewListener callback={callback} />
+        </ViewContext>
+      </ThemeProvider>
+    )
+    expect(renderCount).toBe(1)
+    act(() => {
+      window.innerWidth = 1205
+      window.dispatchEvent(new Event('resize'))
+    })
+    expect(renderCount).toBe(1)
+  })
+
+  test("re-renders when size changes breakpoint", () => {
+    window.innerWidth = 1200
+    let renderCount = 0
+    let viewInfo
+    const callback = (info) => {
+      renderCount += 1
+      viewInfo = info
+    }
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <ViewContext>
+          <ViewListener callback={callback} />
+        </ViewContext>
+      </ThemeProvider>
+    )
+    expect(renderCount).toBe(1)
+    act(() => {
+      window.innerWidth = 600
+      window.dispatchEvent(new Event('resize'))
+    })
+    expect(viewInfo.breakpoint).toBe('sm')
+    expect(renderCount).toBe(2)
+  })
+
+  test("rerenders when size changes within breakpoint and 'provideX={true}'", () => {
+    window.innerWidth = 1200
+    let renderCount = 0
+    let viewInfo
+    const callback = (info) => {
+      renderCount += 1
+      viewInfo = info
+    }
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <ViewContext provideX>
+          <ViewListener callback={callback} />
+        </ViewContext>
+      </ThemeProvider>
+    )
+    expect(renderCount).toBe(1)
+    act(() => {
+      window.innerWidth = 1205
+      window.dispatchEvent(new Event('resize'))
+    })
+    expect(viewInfo.breakpoint).toBe('md')
+    expect(viewInfo.x).toBe(1205)
+    expect(renderCount).toBe(2)
   })
 })

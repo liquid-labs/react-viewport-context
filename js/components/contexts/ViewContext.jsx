@@ -11,34 +11,40 @@ const INITIAL_STATE = {
   /* x : <number> */
 }
 
-const ViewContext = ({provideX=false, children}) => {
-  const [viewInfo, setViewInfo] = useState(INITIAL_STATE)
-  const theme = useTheme()
+const onResize = (theme, provideX, prevInfo) => {
+  const viewWidth = window.innerWidth
+  const { keys, values } = theme.breakpoints
+  const newInfo = {...prevInfo}
+  let update = false
+  const newBreakpoint = keys.slice(0).reverse().find((breakpoint, i) =>
+    viewWidth >= values[breakpoint])
+  if (newBreakpoint !== prevInfo.breakpoint) {
+    newInfo.breakpoint = newBreakpoint
+    update = true
+  }
+  if (provideX && viewWidth !== prevInfo.x) {
+    newInfo.x = viewWidth
+    update = true
+  }
+  return [update, newInfo]
+}
 
-  const onResize = useCallback(() => {
-    const viewWidth = window.innerWidth
-    const { keys, values } = theme.breakpoints
-    const newInfo = {...viewInfo}
-    let update = false
-    const newBreakpoint = keys.slice(0).reverse().find((breakpoint, i) =>
-      viewWidth >= values[breakpoint])
-    if (newBreakpoint !== viewInfo.breakpoint) {
-      newInfo.breakpoint = newBreakpoint
-      update = true
-    }
-    if (provideX && viewWidth !== viewInfo.x) {
-      newInfo.x = viewWidth
-      update = true
-    }
-    if (update) setViewInfo(newInfo)
-  }, [ provideX, setViewInfo ])
+const ViewContext = ({provideX=false, children}) => {
+  const theme = useTheme()
+  const [viewInfo, setViewInfo] = useState(INITIAL_STATE)
+  if (viewInfo === INITIAL_STATE) {
+  const [ update, newInfo ] = onResize(theme, provideX, viewInfo)
+  if (update) setViewInfo(newInfo)
+}
 
   useEffect(() => {
-    const resizeListener = window.addEventListener('resize', onResize)
-    onResize()
+    const resizeListener = window.addEventListener('resize', () => {
+      const [ update, newInfo ] = onResize(theme, provideX, viewInfo)
+      if (update) setViewInfo(newInfo)
+    })
 
     return () => window.removeEventListener('resize', resizeListener)
-  }, [])
+  })
 
   return <MyContext.Provider value={viewInfo}>
     {children}
