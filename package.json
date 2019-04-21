@@ -1,0 +1,65 @@
+{
+  "name": "@liquid-labs/react-view-context",
+  "version": "1.0.0-prototype.0",
+  "description": "Subscribe code to view info via React context Provider.",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "prebuild": "rm -rf ./dist/* && mkdir -p ./dist",
+    "build": "catalyst-scripts build",
+    "prepare": "npm run build",
+    "pretest": "TEST_TYPES=unit catalyst-scripts pretest",
+    "test": "TEST_TYPES=unit catalyst-scripts test",
+    "postversion": "git push && git push --tags",
+    "lint": "catalyst-scripts lint",
+    "lint-fix": "catalyst-scripts lint-fix",
+    "watch": "catalyst-scripts watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Liquid-Labs/react-view-context.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Zane Rockenbaugh <zane@liquid-labs.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Liquid-Labs/react-view-context/issues"
+  },
+  "homepage": "https://github.com/Liquid-Labs/react-view-context#readme",
+  "devDependencies": {
+    "@liquid-labs/catalyst-scripts": "^1.0.0-alpha.21",
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/styles": "^3.0.0-alpha.10",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "react-testing-library": "^5.8.0"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^3.9.3",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "prop-types": "^15.7.2"
+  },
+  "catalyst": {
+    "rollupConfig": {
+      "commonjsConfig": {
+        "namedExports": {
+          "node_modules/react/index.js": [
+            "useEffect",
+            "useState"
+          ]
+        }
+      }
+    },
+    "jestConfig": {
+      "testEnvironment": "jsdom"
+    }
+  },
+  "dependencies": {}
+}
