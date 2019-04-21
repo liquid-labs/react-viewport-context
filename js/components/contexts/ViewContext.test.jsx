@@ -27,9 +27,25 @@ describe('ViewContext', () => {
     cleanup()
   })
 
-  test.each(subBoundaryTests.concat(boundaryTests).concat(superBoundaryTests))
-  ("selects '%s' at boundary %d", (breakpoint, boundary) => {
-    window.innerWidth = boundary
+  describe("using default theme", () => {
+    test.each(subBoundaryTests.concat(boundaryTests).concat(superBoundaryTests))
+    ("selects '%s' at boundary %d", (breakpoint, boundary) => {
+      window.innerWidth = boundary
+      let viewInfo
+      const callback = (info) => viewInfo = info
+      render(
+        <ThemeProvider theme={defaultTheme}>
+          <ViewContext>
+            <ViewListener callback={callback} />
+          </ViewContext>
+        </ThemeProvider>
+      )
+      expect(viewInfo.breakpoint).toBe(breakpoint)
+    })
+  })
+
+  test("does not provide 'x' by default", () => {
+    window.innerWidth = 1200
     let viewInfo
     const callback = (info) => viewInfo = info
     render(
@@ -39,6 +55,6 @@ describe('ViewContext', () => {
         </ViewContext>
       </ThemeProvider>
     )
-    expect(viewInfo.breakpoint).toBe(breakpoint)
+    expect(viewInfo.x).toBeUndefined()
   })
 })
