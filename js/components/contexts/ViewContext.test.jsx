@@ -68,4 +68,18 @@ describe('ViewContext', () => {
     )
     expect(viewInfo.x).toBeUndefined()
   })
+
+  test("provides 'viewInfo.x' when requested", () => {
+    window.innerWidth = 1200
+    let viewInfo
+    const callback = (info) => viewInfo = info
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <ViewContext provideX>
+          <ViewListener callback={callback} />
+        </ViewContext>
+      </ThemeProvider>
+    )
+    expect(viewInfo.x).toBe(1200)
+  })
 })
