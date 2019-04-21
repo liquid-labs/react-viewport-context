@@ -27,7 +27,6 @@ describe('ViewContext', () => {
     cleanup()
   })
 
-  //test.each(subBoundaryTests.concat(boundaryTests).concat(superBoundaryTests))
   test.each(subBoundaryTests.concat(boundaryTests).concat(superBoundaryTests))
   ("selects '%s' at boundary %d", (breakpoint, boundary) => {
     window.innerWidth = boundary
