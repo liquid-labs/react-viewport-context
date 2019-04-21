@@ -1,12 +1,23 @@
 /* global afterEach beforeEach describe expect jest test */
 import React from 'react'
 import { act, cleanup, render } from 'react-testing-library'
-import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
 
 import { ViewContext, useViewInfo } from './ViewContext'
 
-const defaultTheme = createMuiTheme()
+// following Material UI default theme 3.9.3
+const defaultTheme = {
+  breakpoints : {
+    keys : ['xs', 'sm', 'md', 'lg', 'xl'],
+    values : {
+      'xs' : 0,
+      'sm' : 600,
+      'md' : 960,
+      'lg' : 1280,
+      'xl' : 1920,
+    }
+  }
+}
 
 const breakpoints = defaultTheme.breakpoints.keys
 const boundaryTests = Object.entries(defaultTheme.breakpoints.values)
