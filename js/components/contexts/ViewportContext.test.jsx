@@ -8,7 +8,7 @@ import { ViewportContext, useViewportInfo } from './ViewportContext'
 // following Material UI default theme 3.9.3
 const defaultTheme = {
   breakpoints : {
-    keys : ['xs', 'sm', 'md', 'lg', 'xl'],
+    keys   : ['xs', 'sm', 'md', 'lg', 'xl'],
     values : {
       'xs' : 0,
       'sm' : 600,
@@ -21,7 +21,7 @@ const defaultTheme = {
 
 const weirdTheme = {
   breakpoints : {
-    keys : ['foo', 'bar', 'baz'],
+    keys   : ['foo', 'bar', 'baz'],
     values : {
       'foo' : 0,
       'bar' : 82,
@@ -48,7 +48,7 @@ const ViewListener = ({callback}) => {
   const viewInfo = useViewportInfo()
   callback(viewInfo)
 
-  return <div></div>
+  return <div />
 }
 
 const breakpointTestFor = (theme) => (breakpoint, boundary) => {

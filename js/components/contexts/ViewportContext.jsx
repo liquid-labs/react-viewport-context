@@ -29,7 +29,7 @@ const onResize = (theme, provideX, prevInfo) => {
   return [update, newInfo]
 }
 
-let count = 0
+const count = 0
 
 const ViewportContext = ({provideX=false, children}) => {
   const theme = useTheme()
