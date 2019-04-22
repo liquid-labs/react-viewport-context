@@ -4,7 +4,7 @@ import { useTheme } from '@material-ui/styles'
 
 const MyContext = createContext()
 
-const useViewInfo = () => useContext(MyContext)
+const useViewportInfo = () => useContext(MyContext)
 
 const INITIAL_STATE = {
   breakpoint : 'xl',
@@ -31,7 +31,7 @@ const onResize = (theme, provideX, prevInfo) => {
 
 let count = 0
 
-const ViewPortContext = ({provideX=false, children}) => {
+const ViewportContext = ({provideX=false, children}) => {
   const theme = useTheme()
   const [viewInfo, setViewInfo] = useState(INITIAL_STATE)
   if (viewInfo === INITIAL_STATE) {
@@ -55,10 +55,10 @@ const ViewPortContext = ({provideX=false, children}) => {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  ViewPortContext.propTypes = {
+  ViewportContext.propTypes = {
     children : PropTypes.node.isRequired,
     provideX : PropTypes.bool,
   }
 }
 
-export { ViewPortContext, useViewInfo }
+export { ViewportContext, useViewportInfo }

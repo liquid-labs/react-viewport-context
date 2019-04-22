@@ -3,7 +3,7 @@ import React from 'react'
 import { act, cleanup, fireEvent, render } from 'react-testing-library'
 import { ThemeProvider } from '@material-ui/styles'
 
-import { ViewPortContext, useViewInfo } from './ViewPortContext'
+import { ViewportContext, useViewportInfo } from './ViewportContext'
 
 // following Material UI default theme 3.9.3
 const defaultTheme = {
@@ -45,7 +45,7 @@ const defaultTestData = generateTestData(defaultTheme)
 const weirdTestData = generateTestData(weirdTheme)
 
 const ViewListener = ({callback}) => {
-  const viewInfo = useViewInfo()
+  const viewInfo = useViewportInfo()
   callback(viewInfo)
 
   return <div></div>
@@ -57,15 +57,15 @@ const breakpointTestFor = (theme) => (breakpoint, boundary) => {
   const callback = (info) => viewInfo = info
   render(
     <ThemeProvider theme={theme}>
-      <ViewPortContext>
+      <ViewportContext>
         <ViewListener callback={callback} />
-      </ViewPortContext>
+      </ViewportContext>
     </ThemeProvider>
   )
   expect(viewInfo.breakpoint).toBe(breakpoint)
 }
 
-describe('ViewPortContext', () => {
+describe('ViewportContext', () => {
   afterEach(cleanup)
 
   describe("using default theme", () => {
@@ -84,9 +84,9 @@ describe('ViewPortContext', () => {
     const callback = (info) => viewInfo = info
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewPortContext>
+        <ViewportContext>
           <ViewListener callback={callback} />
-        </ViewPortContext>
+        </ViewportContext>
       </ThemeProvider>
     )
     expect(viewInfo.x).toBeUndefined()
@@ -98,9 +98,9 @@ describe('ViewPortContext', () => {
     const callback = (info) => viewInfo = info
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewPortContext provideX>
+        <ViewportContext provideX>
           <ViewListener callback={callback} />
-        </ViewPortContext>
+        </ViewportContext>
       </ThemeProvider>
     )
     expect(viewInfo.x).toBe(1200)
@@ -116,9 +116,9 @@ describe('ViewPortContext', () => {
     }
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewPortContext>
+        <ViewportContext>
           <ViewListener callback={callback} />
-        </ViewPortContext>
+        </ViewportContext>
       </ThemeProvider>
     )
     expect(renderCount).toBe(1)
@@ -139,9 +139,9 @@ describe('ViewPortContext', () => {
     }
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewPortContext>
+        <ViewportContext>
           <ViewListener callback={callback} />
-        </ViewPortContext>
+        </ViewportContext>
       </ThemeProvider>
     )
     expect(renderCount).toBe(1)
@@ -163,9 +163,9 @@ describe('ViewPortContext', () => {
     }
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewPortContext provideX>
+        <ViewportContext provideX>
           <ViewListener callback={callback} />
-        </ViewPortContext>
+        </ViewportContext>
       </ThemeProvider>
     )
     expect(renderCount).toBe(1)
@@ -188,9 +188,9 @@ describe('ViewPortContext', () => {
     }
     const { unmount } = render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewPortContext provideX>
+        <ViewportContext provideX>
           <ViewListener callback={callback} />
-        </ViewPortContext>
+        </ViewportContext>
       </ThemeProvider>
     )
     expect(renderCount).toBe(1)
