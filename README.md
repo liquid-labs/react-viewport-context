@@ -75,7 +75,7 @@ the theme.
 `ViewportContext` takes an optional array of plugins which. Each plugin is a
 a function with the signature:
 
-    function (prevInfo, newInfo)
+    function (prevInfo, newInfo, prevTheme, theme)
 
 which returns `true` if `newInfo` is modified by the plugin, and `false`
 otherwise. See [`widthPlugin`](https://github.com/Liquid-Labs/react-viewport-context/blob/master/js/components/contexts/widthPlugin.js)
@@ -87,4 +87,8 @@ recalculating the same data.
 
 The following plugins are provided as part of the package:
 
-* `widthPlugin` : adds `width` defining the width o the viewport.
+* [`widthPlugin`](https://github.com/Liquid-Labs/react-viewport-context/blob/master/js/components/contexts/widthPlugin.js) :
+  adds `width` defining the width o the viewport.
+* [`mainPaddingPlugin`]((https://github.com/Liquid-Labs/react-viewport-context/blob/master/js/components/contexts/mainPaddingPlugin.js)) :
+  adds `mainPaddingSpec` and `mainPaddingStyle`, which define top, side, and
+  bottom offsets to be used at each breakpoint.

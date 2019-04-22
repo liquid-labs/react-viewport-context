@@ -4,53 +4,31 @@ import React from 'react'
 import { ThemeProvider } from '@material-ui/styles'
 import { ViewportContext } from './ViewportContext'
 
-import { widthPlugin } from './widthPlugin'
+import { mainPaddingPlugin } from './mainPaddingPlugin'
 
 import { act, cleanup, render } from 'react-testing-library'
-import { ViewListener, defaultTheme } from './testlib'
+import { ViewListener, defaultTheme, weirdTheme } from './testlib'
 
-describe('widthPlugin', () => {
-  test("provides 'width' when included", () => {
+describe('mainPaddingPlugin', () => {
+  test("provides 'mainPaddingSpec' and 'mainPaddingSytle' when included", () => {
     window.innerWidth = 1200
     let viewInfo
     const callback = (info) => viewInfo = info
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewportContext plugins={[widthPlugin]}>
+        <ViewportContext plugins={[mainPaddingPlugin]}>
           <ViewListener callback={callback} />
         </ViewportContext>
       </ThemeProvider>
     )
-    expect(viewInfo.width).toBe(1200)
+    expect(viewInfo.mainPaddingSpec).toBeTruthy()
+    expect(viewInfo.mainPaddingStyle).toBeTruthy()
+    expect(typeof viewInfo.mainPaddingStyle).toBe('function')
+    expect(viewInfo.mainPaddingSpec.xs.top).toBe(0)
+    expect(viewInfo.mainPaddingSpec.lg.side).toBe(8)
   })
 
-  test("does not re-render when width does not change", () => {
-    window.innerWidth = 1200
-    window.innerHeigh = 900
-    let renderCount = 0
-    let viewInfo
-    const callback = (info) => {
-      renderCount += 1
-      viewInfo = info
-    }
-    render(
-      <ThemeProvider theme={defaultTheme}>
-        <ViewportContext plugins={[widthPlugin]}>
-          <ViewListener callback={callback} />
-        </ViewportContext>
-      </ThemeProvider>
-    )
-    expect(renderCount).toBe(1)
-    act(() => {
-      window.innerHeight = 800
-      window.dispatchEvent(new Event('resize'))
-    })
-    expect(viewInfo.breakpoint).toBe('md')
-    expect(viewInfo.width).toBe(1200)
-    expect(renderCount).toBe(1)
-  })
-
-  test("triggers rerender when width changes", () => {
+  test("does not trigger re-render when theme unchanged", () => {
     window.innerWidth = 1200
     let renderCount = 0
     let viewInfo
@@ -60,7 +38,7 @@ describe('widthPlugin', () => {
     }
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewportContext plugins={[widthPlugin]}>
+        <ViewportContext plugins={[mainPaddingPlugin]}>
           <ViewListener callback={callback} />
         </ViewportContext>
       </ThemeProvider>
@@ -70,8 +48,32 @@ describe('widthPlugin', () => {
       window.innerWidth = 1205
       window.dispatchEvent(new Event('resize'))
     })
-    expect(viewInfo.breakpoint).toBe('md')
-    expect(viewInfo.width).toBe(1205)
+    expect(renderCount).toBe(1)
+  })
+
+  test("rerenders when theme changes", () => {
+    window.innerWidth = 1200
+    let renderCount = 0
+    let viewInfo
+    const callback = (info) => {
+      renderCount += 1
+      viewInfo = info
+    }
+    const { rerender } = render(
+      <ThemeProvider theme={defaultTheme}>
+        <ViewportContext plugins={[mainPaddingPlugin]}>
+          <ViewListener callback={callback} />
+        </ViewportContext>
+      </ThemeProvider>
+    )
+    expect(renderCount).toBe(1)
+    rerender(
+      <ThemeProvider theme={weirdTheme}>
+        <ViewportContext plugins={[mainPaddingPlugin]}>
+          <ViewListener callback={callback} />
+        </ViewportContext>
+      </ThemeProvider>
+    )
     expect(renderCount).toBe(2)
   })
 })

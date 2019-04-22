@@ -14,7 +14,37 @@ const defaultTheme = {
       'lg' : 1280,
       'xl' : 1920,
     }
-  }
+  },
+  spacing : { unit : 8 },
+  layout : {
+    mainPadding : {
+      'xs' : {
+        top: 0,
+        side: 0,
+        bottom: 0,
+      },
+      'sm' : {
+        top: 0.5,
+        side: 0.25,
+        bottom: 0.5,
+      },
+      'md' : {
+        top: 0.5,
+        side: 1,
+        bottom: 1,
+      },
+      'lg' : {
+        top: 1,
+        side: 1,
+        bottom: 1,
+      },
+      'xl' : {
+        top: 1,
+        side: 1,
+        bottom: 1,
+      },
+    }
+  },
 }
 
 const weirdTheme = {
@@ -25,7 +55,37 @@ const weirdTheme = {
       'bar' : 82,
       'baz' : 105,
     }
-  }
+  },
+  spacing : { unit : 5 },
+  layout : {
+    mainPadding : {
+      'xs' : {
+        top: 0.3,
+        side: 0.1,
+        bottom: 4,
+      },
+      'sm' : {
+        top: 0.5,
+        side: 0.25,
+        bottom: 0.5,
+      },
+      'md' : {
+        top: 0.5,
+        side: 1,
+        bottom: 1,
+      },
+      'lg' : {
+        top: 1,
+        side: 1,
+        bottom: 1,
+      },
+      'xl' : {
+        top: 1,
+        side: 1,
+        bottom: 1,
+      },
+    }
+  },
 }
 
 const ViewListener = ({callback}) => {

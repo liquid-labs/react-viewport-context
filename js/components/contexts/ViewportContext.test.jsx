@@ -62,7 +62,7 @@ describe('ViewportContext', () => {
     expect(viewInfo.x).toBeUndefined()
   })
 
-  test("does not re-render when size changes within breakpoint", () => {
+  test("does not re-render when size changes, but breakpoint does not", () => {
     window.innerWidth = 1200
     let renderCount = 0
     const callback = (info) => renderCount += 1
