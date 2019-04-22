@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '@material-ui/styles'
 
@@ -28,8 +28,6 @@ const onResize = (theme, provideX, prevInfo) => {
   }
   return [update, newInfo]
 }
-
-const count = 0
 
 const ViewportContext = ({provideX=false, children}) => {
   const theme = useTheme()

@@ -1,9 +1,11 @@
-/* global afterEach beforeEach describe expect jest test */
+/* global afterEach describe Event expect test */
 import React from 'react'
-import { act, cleanup, fireEvent, render } from 'react-testing-library'
-import { ThemeProvider } from '@material-ui/styles'
+import PropTypes from 'prop-types'
 
+import { ThemeProvider } from '@material-ui/styles'
 import { ViewportContext, useViewportInfo } from './ViewportContext'
+
+import { act, cleanup, render } from 'react-testing-library'
 
 // following Material UI default theme 3.9.3
 const defaultTheme = {
@@ -36,7 +38,7 @@ const generateTestData = (theme) => {
   const subBoundaryTests = boundaryTests.map(([breakpoint, boundary], i) =>
     i === 0 ? null : [ breakpoints[ i - 1 ], boundary - 1 ]).filter(e => e)
   const superBoundaryTests = boundaryTests.map(([breakpoint, boundary], i) =>
-    [ breakpoints[ i ], boundary + 1])
+    [ breakpoints[ i ], boundary + 1 ])
 
   return subBoundaryTests.concat(boundaryTests).concat(superBoundaryTests)
 }
@@ -49,6 +51,10 @@ const ViewListener = ({callback}) => {
   callback(viewInfo)
 
   return <div />
+}
+
+ViewListener.propTypes = {
+  callback : PropTypes.func.isRequired
 }
 
 const breakpointTestFor = (theme) => (breakpoint, boundary) => {
@@ -69,13 +75,13 @@ describe('ViewportContext', () => {
   afterEach(cleanup)
 
   describe("using default theme", () => {
-    test.each(defaultTestData)
-    ("selects '%s' at boundary %d", breakpointTestFor(defaultTheme))
+    test.each(defaultTestData)("selects '%s' at boundary %d",
+      breakpointTestFor(defaultTheme))
   })
 
   describe("using weird theme", () => {
-    test.each(weirdTestData)
-    ("selects '%s' at boundary %d", breakpointTestFor(weirdTheme))
+    test.each(weirdTestData)("selects '%s' at boundary %d",
+      breakpointTestFor(weirdTheme))
   })
 
   test("does not provide 'x' by default", () => {
@@ -109,11 +115,8 @@ describe('ViewportContext', () => {
   test("does not re-render when size changes within breakpoint", () => {
     window.innerWidth = 1200
     let renderCount = 0
-    let viewInfo
-    const callback = (info) => {
-      renderCount += 1
-      viewInfo = info
-    }
+    const callback = (info) => renderCount += 1
+
     render(
       <ThemeProvider theme={defaultTheme}>
         <ViewportContext>
@@ -181,11 +184,8 @@ describe('ViewportContext', () => {
   test("listeners cleaned up after unmount()", () => {
     window.innerWidth = 1200
     let renderCount = 0
-    let viewInfo
-    const callback = (info) => {
-      renderCount += 1
-      viewInfo = info
-    }
+    const callback = (info) => renderCount += 1
+    
     const { unmount } = render(
       <ThemeProvider theme={defaultTheme}>
         <ViewportContext provideX>
