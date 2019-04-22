@@ -59,7 +59,7 @@ describe('ViewportContext', () => {
         </ViewportContext>
       </ThemeProvider>
     )
-    expect(viewInfo.x).toBeUndefined()
+    expect(viewInfo.width).toBeUndefined()
   })
 
   test("does not re-render when size changes, but breakpoint does not", () => {
