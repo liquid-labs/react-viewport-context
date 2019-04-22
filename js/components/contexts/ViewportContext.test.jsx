@@ -3,7 +3,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { ThemeProvider } from '@material-ui/styles'
-import { ViewportContext, useViewportInfo } from './ViewportContext'
+import { ViewportContext } from './ViewportContext'
+
+import { useViewportInfo } from '../hooks/useViewportInfo'
 
 import { act, cleanup, render } from 'react-testing-library'
 
@@ -185,7 +187,7 @@ describe('ViewportContext', () => {
     window.innerWidth = 1200
     let renderCount = 0
     const callback = (info) => renderCount += 1
-    
+
     const { unmount } = render(
       <ThemeProvider theme={defaultTheme}>
         <ViewportContext provideX>

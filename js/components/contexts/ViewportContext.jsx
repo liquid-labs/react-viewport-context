@@ -1,10 +1,8 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '@material-ui/styles'
 
-const MyContext = createContext()
-
-const useViewportInfo = () => useContext(MyContext)
+const ViewportReactContext = createContext()
 
 const INITIAL_STATE = {
   breakpoint : 'xl',
@@ -47,9 +45,9 @@ const ViewportContext = ({provideX=false, children}) => {
     return () => window.removeEventListener('resize', listener)
   })
 
-  return <MyContext.Provider value={viewInfo}>
+  return <ViewportReactContext.Provider value={viewInfo}>
     {children}
-  </MyContext.Provider>
+  </ViewportReactContext.Provider>
 }
 
 if (process.env.NODE_ENV !== 'production') {
@@ -59,4 +57,4 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-export { ViewportContext, useViewportInfo }
+export { ViewportContext, ViewportReactContext }

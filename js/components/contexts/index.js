@@ -1,1 +1,1 @@
-export * from './ViewportContext'
+export { ViewportContext } from './ViewportContext'
