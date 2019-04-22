@@ -66,9 +66,7 @@ const breakpointTestFor = (theme) => (breakpoint, boundary) => {
 }
 
 describe('ViewContext', () => {
-  afterEach(() => {
-    cleanup()
-  })
+  afterEach(cleanup)
 
   describe("using default theme", () => {
     test.each(defaultTestData)
@@ -177,6 +175,35 @@ describe('ViewContext', () => {
     })
     expect(viewInfo.breakpoint).toBe('md')
     expect(viewInfo.x).toBe(1205)
+    expect(renderCount).toBe(2)
+  })
+
+  test("listeners cleaned up after unmount()", () => {
+    window.innerWidth = 1200
+    let renderCount = 0
+    let viewInfo
+    const callback = (info) => {
+      renderCount += 1
+      viewInfo = info
+    }
+    const { unmount } = render(
+      <ThemeProvider theme={defaultTheme}>
+        <ViewContext provideX>
+          <ViewListener callback={callback} />
+        </ViewContext>
+      </ThemeProvider>
+    )
+    expect(renderCount).toBe(1)
+    act(() => {
+      window.innerWidth = 1205
+      window.dispatchEvent(new Event('resize'))
+    })
+    expect(renderCount).toBe(2)
+    unmount()
+    act(() => {
+      window.innerWidth = 1210
+      window.dispatchEvent(new Event('resize'))
+    })
     expect(renderCount).toBe(2)
   })
 })

@@ -29,21 +29,24 @@ const onResize = (theme, provideX, prevInfo) => {
   return [update, newInfo]
 }
 
+let count = 0
+
 const ViewContext = ({provideX=false, children}) => {
   const theme = useTheme()
   const [viewInfo, setViewInfo] = useState(INITIAL_STATE)
   if (viewInfo === INITIAL_STATE) {
-  const [ update, newInfo ] = onResize(theme, provideX, viewInfo)
-  if (update) setViewInfo(newInfo)
-}
+    const [ update, newInfo ] = onResize(theme, provideX, viewInfo)
+    if (update) setViewInfo(newInfo)
+  }
 
   useEffect(() => {
-    const resizeListener = window.addEventListener('resize', () => {
+    const listener = () => {
       const [ update, newInfo ] = onResize(theme, provideX, viewInfo)
       if (update) setViewInfo(newInfo)
-    })
+    }
+    window.addEventListener('resize', listener)
 
-    return () => window.removeEventListener('resize', resizeListener)
+    return () => window.removeEventListener('resize', listener)
   })
 
   return <MyContext.Provider value={viewInfo}>
