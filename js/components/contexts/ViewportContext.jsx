@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+
 import { useTheme } from '@material-ui/styles'
 
 const ViewportReactContext = createContext()
@@ -9,7 +10,7 @@ const INITIAL_STATE = {
   /* x : <number> */
 }
 
-const onResize = (theme, provideX, prevInfo) => {
+const onResize = (theme, prevInfo, plugins) => {
   const viewWidth = window.innerWidth
   const { keys, values } = theme.breakpoints
   const newInfo = {...prevInfo}
@@ -20,24 +21,24 @@ const onResize = (theme, provideX, prevInfo) => {
     newInfo.breakpoint = newBreakpoint
     update = true
   }
-  if (provideX && viewWidth !== prevInfo.x) {
-    newInfo.x = viewWidth
-    update = true
-  }
+  plugins.forEach((plugin) => {
+    update = plugin(prevInfo, newInfo) || update
+  })
+
   return [update, newInfo]
 }
 
-const ViewportContext = ({provideX=false, children}) => {
+const ViewportContext = ({plugins=[], children}) => {
   const theme = useTheme()
   const [viewInfo, setViewInfo] = useState(INITIAL_STATE)
   if (viewInfo === INITIAL_STATE) {
-    const [ update, newInfo ] = onResize(theme, provideX, viewInfo)
+    const [ update, newInfo ] = onResize(theme, viewInfo, plugins)
     if (update) setViewInfo(newInfo)
   }
 
   useEffect(() => {
     const listener = () => {
-      const [ update, newInfo ] = onResize(theme, provideX, viewInfo)
+      const [ update, newInfo ] = onResize(theme, viewInfo, plugins)
       if (update) setViewInfo(newInfo)
     }
     window.addEventListener('resize', listener)
@@ -53,7 +54,7 @@ const ViewportContext = ({provideX=false, children}) => {
 if (process.env.NODE_ENV !== 'production') {
   ViewportContext.propTypes = {
     children : PropTypes.node.isRequired,
-    provideX : PropTypes.bool,
+    plugins : PropTypes.arrayOf(PropTypes.func),
   }
 }
 

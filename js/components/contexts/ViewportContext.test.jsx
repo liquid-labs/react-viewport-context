@@ -1,38 +1,11 @@
 /* global afterEach describe Event expect test */
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import { ThemeProvider } from '@material-ui/styles'
 import { ViewportContext } from './ViewportContext'
 
-import { useViewportInfo } from '../hooks/useViewportInfo'
-
 import { act, cleanup, render } from 'react-testing-library'
-
-// following Material UI default theme 3.9.3
-const defaultTheme = {
-  breakpoints : {
-    keys   : ['xs', 'sm', 'md', 'lg', 'xl'],
-    values : {
-      'xs' : 0,
-      'sm' : 600,
-      'md' : 960,
-      'lg' : 1280,
-      'xl' : 1920,
-    }
-  }
-}
-
-const weirdTheme = {
-  breakpoints : {
-    keys   : ['foo', 'bar', 'baz'],
-    values : {
-      'foo' : 0,
-      'bar' : 82,
-      'baz' : 105,
-    }
-  }
-}
+import { ViewListener, defaultTheme, weirdTheme } from './testlib'
 
 const generateTestData = (theme) => {
   const breakpoints = theme.breakpoints.keys
@@ -47,17 +20,6 @@ const generateTestData = (theme) => {
 
 const defaultTestData = generateTestData(defaultTheme)
 const weirdTestData = generateTestData(weirdTheme)
-
-const ViewListener = ({callback}) => {
-  const viewInfo = useViewportInfo()
-  callback(viewInfo)
-
-  return <div />
-}
-
-ViewListener.propTypes = {
-  callback : PropTypes.func.isRequired
-}
 
 const breakpointTestFor = (theme) => (breakpoint, boundary) => {
   window.innerWidth = boundary
@@ -98,20 +60,6 @@ describe('ViewportContext', () => {
       </ThemeProvider>
     )
     expect(viewInfo.x).toBeUndefined()
-  })
-
-  test("provides 'viewInfo.x' when requested", () => {
-    window.innerWidth = 1200
-    let viewInfo
-    const callback = (info) => viewInfo = info
-    render(
-      <ThemeProvider theme={defaultTheme}>
-        <ViewportContext provideX>
-          <ViewListener callback={callback} />
-        </ViewportContext>
-      </ThemeProvider>
-    )
-    expect(viewInfo.x).toBe(1200)
   })
 
   test("does not re-render when size changes within breakpoint", () => {
@@ -158,54 +106,43 @@ describe('ViewportContext', () => {
     expect(renderCount).toBe(2)
   })
 
-  test("rerenders when size changes within breakpoint and 'provideX={true}'", () => {
-    window.innerWidth = 1200
-    let renderCount = 0
-    let viewInfo
-    const callback = (info) => {
-      renderCount += 1
-      viewInfo = info
-    }
-    render(
-      <ThemeProvider theme={defaultTheme}>
-        <ViewportContext provideX>
-          <ViewListener callback={callback} />
-        </ViewportContext>
-      </ThemeProvider>
-    )
-    expect(renderCount).toBe(1)
-    act(() => {
-      window.innerWidth = 1205
-      window.dispatchEvent(new Event('resize'))
-    })
-    expect(viewInfo.breakpoint).toBe('md')
-    expect(viewInfo.x).toBe(1205)
-    expect(renderCount).toBe(2)
-  })
-
   test("listeners cleaned up after unmount()", () => {
+    const currListeners = {}
+    const realAddEventListener = window.addEventListener
+    window.addEventListener = (eventType, listener) => {
+      realAddEventListener(eventType, listener)
+      if (currListeners[eventType] === undefined) {
+        currListeners[eventType] = []
+      }
+      currListeners[eventType].push(listener)
+    }
+    const realRemoveEventListener = window.removeEventListener
+    window.removeEventListener = (eventType, listener) => {
+      realRemoveEventListener(eventType, listener)
+      const eventListeners = currListeners[eventType]
+      if (eventListeners) {
+        const listenerIndex = eventListeners.indexOf(listener)
+        if (listenerIndex !== -1) {
+          eventListeners.splice(listener, 1)
+          if (eventListeners.length === 0) delete currListeners[eventType]
+        }
+      }
+    }
     window.innerWidth = 1200
     let renderCount = 0
     const callback = (info) => renderCount += 1
 
     const { unmount } = render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewportContext provideX>
+        <ViewportContext>
           <ViewListener callback={callback} />
         </ViewportContext>
       </ThemeProvider>
     )
-    expect(renderCount).toBe(1)
-    act(() => {
-      window.innerWidth = 1205
-      window.dispatchEvent(new Event('resize'))
-    })
-    expect(renderCount).toBe(2)
+    expect(currListeners.resize.length).toBe(1)
+
     unmount()
-    act(() => {
-      window.innerWidth = 1210
-      window.dispatchEvent(new Event('resize'))
-    })
-    expect(renderCount).toBe(2)
+
+    expect(currListeners.resize).toBeUndefined()
   })
 })
