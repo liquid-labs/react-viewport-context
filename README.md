@@ -1,6 +1,6 @@
 # react-view-context
 
-Subscribe code to view info via React context Provider.
+A react Provider with hook to get viewport info and subscribe to changes.
 
 ## Install
 

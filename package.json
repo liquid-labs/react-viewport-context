@@ -1,7 +1,7 @@
 {
   "name": "@liquid-labs/react-viewport-context",
   "version": "1.0.0-prototype.0",
-  "description": "Subscribe code to view info via React context Provider.",
+  "description": "A react Provider with hook to get viewport info and subscribe to changes.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "files": [
