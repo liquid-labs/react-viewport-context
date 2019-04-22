@@ -50,8 +50,8 @@ breakpoints : {
 }
 ```
 **Properties**:
-* `provideX` : if true, then `useViewportInfo` will provide the current viewport
-width on field `x`.
+* `plugins` : provides an array of [plugins](#plugins) which add additional
+information.
 
 ### `useViewportInfo`
 
@@ -63,10 +63,28 @@ width on field `x`.
 ```
 {
   breakpoint : <current breakpoint>,
-  x : /*optional*/ <number>
+  /* plus fields provide by plugins */
 }
 ```
 Where:
 * `breakpoint` is derived from the `breakpoints` specification provided from
 the theme.
-* `x` is the current viewport width.
+
+### Plugins
+
+`ViewportContext` takes an optional array of plugins which. Each plugin is a
+a function with the signature:
+
+    function (prevInfo, newInfo)
+
+which returns `true` if `newInfo` is modified by the plugin, and `false`
+otherwise. See [`widthPlugin`](https://github.com/Liquid-Labs/react-viewport-context/blob/master/js/components/contexts/widthPlugin.js)
+for a simple example.
+
+We use plugins rather than properties to optimize bundle size. Plugins are
+executed in order and some plugins may rely on previous plugins to avoid
+recalculating the same data.
+
+The following plugins are provided as part of the package:
+
+* `widthPlugin` : adds `width` defining the width o the viewport.
