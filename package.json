@@ -1,5 +1,5 @@
 {
-  "name": "@liquid-labs/react-view-context",
+  "name": "@liquid-labs/react-viewport-context",
   "version": "1.0.0-prototype.0",
   "description": "Subscribe code to view info via React context Provider.",
   "main": "dist/index.js",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/Liquid-Labs/react-view-context.git"
+    "url": "git+ssh://git@github.com/Liquid-Labs/react-viewport-context.git"
   },
   "keywords": [
     "react"
@@ -28,9 +28,9 @@
   "author": "Zane Rockenbaugh <zane@liquid-labs.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Liquid-Labs/react-view-context/issues"
+    "url": "https://github.com/Liquid-Labs/react-viewport-context/issues"
   },
-  "homepage": "https://github.com/Liquid-Labs/react-view-context#readme",
+  "homepage": "https://github.com/Liquid-Labs/react-viewport-context#readme",
   "devDependencies": {
     "@liquid-labs/catalyst-scripts": "^1.0.0-alpha.21",
     "@material-ui/styles": "^3.0.0-alpha.10",

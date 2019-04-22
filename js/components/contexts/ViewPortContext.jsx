@@ -31,7 +31,7 @@ const onResize = (theme, provideX, prevInfo) => {
 
 let count = 0
 
-const ViewContext = ({provideX=false, children}) => {
+const ViewPortContext = ({provideX=false, children}) => {
   const theme = useTheme()
   const [viewInfo, setViewInfo] = useState(INITIAL_STATE)
   if (viewInfo === INITIAL_STATE) {
@@ -55,10 +55,10 @@ const ViewContext = ({provideX=false, children}) => {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  ViewContext.propTypes = {
+  ViewPortContext.propTypes = {
     children : PropTypes.node.isRequired,
     provideX : PropTypes.bool,
   }
 }
 
-export { ViewContext, useViewInfo }
+export { ViewPortContext, useViewInfo }
