@@ -5,7 +5,7 @@ import { ThemeProvider } from '@material-ui/styles'
 import { ViewportContext } from './ViewportContext'
 
 import { act, cleanup, render } from 'react-testing-library'
-import { ViewListener, defaultTheme, weirdTheme } from './testlib'
+import { ViewListener, defaultTheme, weirdTheme } from '../../testlib'
 
 const generateTestData = (theme) => {
   const breakpoints = theme.breakpoints.keys

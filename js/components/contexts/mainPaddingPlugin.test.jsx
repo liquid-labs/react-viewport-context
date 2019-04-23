@@ -7,12 +7,12 @@ import { ViewportContext } from './ViewportContext'
 import { mainPaddingPlugin } from './mainPaddingPlugin'
 
 import { act, cleanup, render } from 'react-testing-library'
-import { ViewListener, defaultTheme, weirdTheme } from './testlib'
+import { ViewListener, defaultTheme, weirdTheme } from '../../testlib'
 
 // TODO https://github.com/Liquid-Labs/react-viewport-context/issues/2
 
 describe('mainPaddingPlugin', () => {
-  test("provides 'mainPaddingSpec' and 'mainPaddingSytle' when included", () => {
+  test("provides 'mainPaddingSpec' when included", () => {
     window.innerWidth = 1200
     let viewInfo
     const callback = (info) => viewInfo = info
@@ -23,9 +23,8 @@ describe('mainPaddingPlugin', () => {
         </ViewportContext>
       </ThemeProvider>
     )
+
     expect(viewInfo.mainPaddingSpec).toBeTruthy()
-    expect(viewInfo.mainPaddingStyle).toBeTruthy()
-    expect(typeof viewInfo.mainPaddingStyle).toBe('function')
     expect(viewInfo.mainPaddingSpec.xs.top).toBe(0)
     expect(viewInfo.mainPaddingSpec.lg.side).toBe(8)
   })

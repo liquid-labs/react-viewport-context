@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useViewportInfo } from '../hooks/useViewportInfo'
+import { useViewportInfo } from '../components/hooks/useViewportInfo'
 
 // following Material UI default theme 3.9.3
 const defaultTheme = {
@@ -16,6 +16,7 @@ const defaultTheme = {
     }
   },
   spacing : { unit : 8 },
+  typography : { useNextVariants : true },
   layout : {
     mainPadding : {
       'xs' : {
@@ -25,7 +26,7 @@ const defaultTheme = {
       },
       'sm' : {
         top: 0.5,
-        side: 0.25,
+        side: 0.5,
         bottom: 0.5,
       },
       'md' : {
@@ -57,6 +58,7 @@ const weirdTheme = {
     }
   },
   spacing : { unit : 5 },
+  typography : { useNextVariants : true },
   layout : {
     mainPadding : {
       'xs' : {

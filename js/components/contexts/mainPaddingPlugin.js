@@ -1,10 +1,4 @@
-import { useMemo } from 'react'
-
-const paddingSpec = (spacingUnit, relSpec) => ({
-  top    : Math.ceil(relSpec.top * spacingUnit),
-  side   : Math.ceil(relSpec.side * spacingUnit),
-  bottom : Math.ceil(relSpec.bottom * spacingUnit),
-})
+import { getMainPaddingSpec } from '../../utils/mainPadding'
 
 const mainPaddingPlugin = (prevInfo, newInfo, prevTheme, theme) => {
   if (prevTheme === theme) return false
@@ -19,41 +13,10 @@ const mainPaddingPlugin = (prevInfo, newInfo, prevTheme, theme) => {
       console.error("Provided 'theme' does not define 'layout.mainPadding'.")
   }
 
-  const breakpointKeys = theme.breakpoints.keys
-  const spacingUnit = theme.spacing.unit // a number in pixels
-  const themeSpec = theme.layout.mainPadding // specifies relative to unit for each breakpoint
+  // TODO: it's possible nothing has changed; do a deep comparison.
+  newInfo.mainPaddingSpec = getMainPaddingSpec(theme)
 
-  const mainPaddingSpec = breakpointKeys.reduce((acc, key) =>
-      (acc[key] = paddingSpec(spacingUnit, themeSpec[key]))
-        && acc,
-    {}
-  )
-  const mainPaddingStyle = (theme) => ({
-    mainPaddingSides : breakpointKeys.reduce((acc, key) =>
-      acc[theme.breakpoints.up(key)] = {
-        paddingLeft  : `${mainPaddingSpec[key]['side']}px`,
-        paddingRight : `${mainPaddingSpec[key]['side']}px`,
-      } && acc,
-    {}),
-    mainPaddingTop : breakpointKeys.reduce((acc, key) =>
-      acc[theme.breakpoints.up(key)] = {
-        paddingTop  : `${mainPaddingSpec[key]['top']}px`,
-      } && acc,
-    {}),
-    mainPaddingBottom : breakpointKeys.reduce((acc, key) =>
-      acc[theme.breakpoints.up(key)] = {
-        paddingBottom  : `${mainPaddingSpec[key]['bottom']}px`,
-      } && acc,
-    {})
-  })
-
-  if (prevInfo.mainPaddingSpec !== mainPaddingSpec
-      || prevInfo.mainPaddingStyle !== mainPaddingStyle) {
-    newInfo.mainPaddingSpec = mainPaddingSpec
-    newInfo.mainPaddingStyle = mainPaddingStyle
-    return true
-  }
-  else return false
+  return true
 }
 
 export { mainPaddingPlugin }
