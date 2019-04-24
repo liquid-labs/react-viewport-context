@@ -30,6 +30,9 @@ const onResize = (theme, prevTheme, prevInfo, plugins) => {
 
 const ViewportContext = ({plugins=[], children}) => {
   const theme = useTheme()
+  if (!theme) {
+    throw new Error("No theme available to 'ViewportContext'. Ensure that 'ViewportContext' is in a 'ThemeProvider' context, and 'ThemeProvider' is initialized with a valid theme.")
+  }
   const prevThemeRef = useRef(null)
   const [viewInfo, setViewInfo] = useState(INITIAL_STATE)
   if (viewInfo === INITIAL_STATE) {
