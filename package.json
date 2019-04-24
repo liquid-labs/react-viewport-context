@@ -1,6 +1,6 @@
 {
   "name": "@liquid-labs/react-viewport-context",
-  "version": "1.0.0-prototype.3",
+  "version": "1.0.0-prototype.4",
   "description": "A react Provider with hook to get viewport info and subscribe to changes.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -48,8 +48,7 @@
     "jss": "^10.0.0-alpha.16",
     "prop-types": "^15.7.2",
     "react": "^16.8.1",
-    "react-dom": "^16.8.1",
-    "prop-types": "^15.7.2"
+    "react-dom": "^16.8.1"
   },
   "catalyst": {
     "rollupConfig": {
