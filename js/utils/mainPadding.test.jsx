@@ -9,8 +9,8 @@ import { defaultTheme } from '../testlib'
 
 import { SheetsRegistry } from 'jss'
 
-import { createTheme } from '@mui/material/styles'
-import { makeStyles, StylesProvider, ThemeProvider } from '@mui/styles'
+import { createTheme, StyledEngineProvider, ThemeProvider } from '@mui/material/styles'
+import { makeStyles, StylesProvider } from '@mui/styles'
 
 const useMainPaddingStyles = makeStyles(mainPaddingStyles)
 
@@ -33,11 +33,13 @@ describe("mainPaddingStyles", () => {
     const sheets = new SheetsRegistry()
 
     const { getByTestId } = render(
-      <StylesProvider sheetsRegistry={sheets}>
-        <ThemeProvider theme={defaultMuiTheme}>
-            <TestMain data-testid='main'/>
-        </ThemeProvider>
-      </StylesProvider>
+      <StyledEngineProvider injectFirst>
+        <StylesProvider sheetsRegistry={sheets}>
+          <ThemeProvider theme={defaultMuiTheme}>
+              <TestMain data-testid='main'/>
+          </ThemeProvider>
+        </StylesProvider>
+      </StyledEngineProvider>
     )
 
     expect(sheets.toString()).toMatchSnapshot()
