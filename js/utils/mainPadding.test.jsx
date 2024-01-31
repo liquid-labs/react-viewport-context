@@ -2,8 +2,6 @@
 import React from 'react'
 import classNames from 'classnames'
 
-import { ThemeProvider } from '@material-ui/styles'
-
 import { mainPaddingStyles } from './mainPadding'
 
 import { cleanup, render } from 'react-testing-library'
@@ -11,8 +9,7 @@ import { defaultTheme } from '../testlib'
 
 import { SheetsRegistry } from 'jss'
 
-import { StylesProvider, makeStyles } from '@material-ui/styles'
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createTheme, makeStyles, StylesProvider, ThemeProvider } from '@material-ui/core/styles'
 
 const useMainPaddingStyles = makeStyles(mainPaddingStyles)
 
@@ -26,7 +23,7 @@ const TestMain = (props) => {
   return <div className={className} {...props}>Hi!</div>
 }
 
-const defaultMuiTheme = createMuiTheme(defaultTheme)
+const defaultMuiTheme = createTheme(defaultTheme)
 
 describe("mainPaddingStyles", () => {
   afterEach(cleanup)

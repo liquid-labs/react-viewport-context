@@ -1,16 +1,23 @@
-const paddingSpec = (spacingUnit, relSpec) => ({
-  top    : Math.ceil(relSpec.top * spacingUnit),
-  side   : Math.ceil(relSpec.side * spacingUnit),
-  bottom : Math.ceil(relSpec.bottom * spacingUnit),
-})
+const paddingSpec = (spacing, relSpec) => {
+  return typeof spacing === 'number'
+    ? {
+        top    : Math.ceil(spacing * relSpec.top),
+        side   : Math.ceil(spacing * relSpec.side),
+        bottom : Math.ceil(spacing * relSpec.bottom),
+      }
+    : {
+        top    : Math.ceil(spacing(relSpec.top)),
+        side   : Math.ceil(spacing(relSpec.side)),
+        bottom : Math.ceil(spacing(relSpec.bottom)),
+      }
+}
 
 const getMainPaddingSpec = (theme) => {
   const breakpointKeys = theme.breakpoints.keys
-  const spacingUnit = theme.spacing.unit // a number in pixels
   const themeSpec = theme.layout.mainPadding // specifies relative to unit for each breakpoint
 
   return breakpointKeys.reduce((acc, key) =>
-      (acc[key] = paddingSpec(spacingUnit, themeSpec[key]))
+      (acc[key] = paddingSpec(theme.spacing, themeSpec[key]))
         && acc,
     {}
   )

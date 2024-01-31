@@ -15,7 +15,7 @@ const defaultTheme = {
       'xl' : 1920,
     }
   },
-  spacing : { unit : 8 },
+  spacing : 8,
   typography : { useNextVariants : true },
   layout : {
     mainPadding : {
@@ -57,7 +57,7 @@ const weirdTheme = {
       'baz' : 105,
     }
   },
-  spacing : { unit : 5 },
+  spacing : 5,
   typography : { useNextVariants : true },
   layout : {
     mainPadding : {
