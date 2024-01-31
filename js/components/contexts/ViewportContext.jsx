@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { useTheme } from '@material-ui/core/styles'
+import { useTheme } from '@mui/styles'
 
 const ViewportReactContext = createContext()
 

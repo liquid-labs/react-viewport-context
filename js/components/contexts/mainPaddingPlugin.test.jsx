@@ -1,7 +1,7 @@
 /* global afterEach describe Event expect test */
 import React from 'react'
 
-import { ThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider } from '@mui/styles'
 import { ViewportContext } from './ViewportContext'
 
 import { mainPaddingPlugin } from './mainPaddingPlugin'
@@ -25,8 +25,8 @@ describe('mainPaddingPlugin', () => {
     )
 
     expect(viewInfo.mainPaddingSpec).toBeTruthy()
-    expect(viewInfo.mainPaddingSpec.xs.top).toBe(0)
-    expect(viewInfo.mainPaddingSpec.lg.side).toBe(8)
+    expect(viewInfo.mainPaddingSpec.xs.top).toBe('0px')
+    expect(viewInfo.mainPaddingSpec.lg.side).toBe('8px')
   })
 
   test("does not trigger re-render when theme unchanged", () => {

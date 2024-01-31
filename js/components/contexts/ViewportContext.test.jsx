@@ -1,7 +1,7 @@
 /* global afterEach describe Event expect test */
 import React from 'react'
 
-import { ThemeProvider } from '@material-ui/styles'
+import { ThemeProvider } from '@mui/styles'
 import { ViewportContext } from './ViewportContext'
 
 import { act, cleanup, render } from 'react-testing-library'

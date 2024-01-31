@@ -9,7 +9,8 @@ import { defaultTheme } from '../testlib'
 
 import { SheetsRegistry } from 'jss'
 
-import { createTheme, makeStyles, StylesProvider, ThemeProvider } from '@material-ui/core/styles'
+import { createTheme } from '@mui/material/styles'
+import { makeStyles, StylesProvider, ThemeProvider } from '@mui/styles'
 
 const useMainPaddingStyles = makeStyles(mainPaddingStyles)
 

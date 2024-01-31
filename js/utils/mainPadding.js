@@ -1,14 +1,14 @@
 const paddingSpec = (spacing, relSpec) => {
   return typeof spacing === 'number'
     ? {
-        top    : Math.ceil(spacing * relSpec.top),
-        side   : Math.ceil(spacing * relSpec.side),
-        bottom : Math.ceil(spacing * relSpec.bottom),
+        top    : Math.ceil(spacing * relSpec.top) + 'px',
+        side   : Math.ceil(spacing * relSpec.side) + 'px',
+        bottom : Math.ceil(spacing * relSpec.bottom) + 'px',
       }
     : {
-        top    : Math.ceil(spacing(relSpec.top)),
-        side   : Math.ceil(spacing(relSpec.side)),
-        bottom : Math.ceil(spacing(relSpec.bottom)),
+        top    : spacing(relSpec.top),
+        side   : spacing(relSpec.side),
+        bottom : spacing(relSpec.bottom),
       }
 }
 
@@ -51,18 +51,18 @@ const mainPaddingStyles = (theme) => {
   return {
     mainPaddingSides : breakpointKeys.reduce((acc, key) =>
       (acc[theme.breakpoints.up(key)] = {
-        paddingLeft  : `${mainPaddingSpec[key]['side']}px`,
-        paddingRight : `${mainPaddingSpec[key]['side']}px`,
+        paddingLeft  : mainPaddingSpec[key]['side'],
+        paddingRight : mainPaddingSpec[key]['side'],
       }) && acc,
     {}),
     mainPaddingTop : breakpointKeys.reduce((acc, key) =>
       (acc[theme.breakpoints.up(key)] = {
-        paddingTop  : `${mainPaddingSpec[key]['top']}px`,
+        paddingTop  : mainPaddingSpec[key]['top'],
       }) && acc,
     {}),
     mainPaddingBottom : breakpointKeys.reduce((acc, key) =>
       (acc[theme.breakpoints.up(key)] = {
-        paddingBottom  : `${mainPaddingSpec[key]['bottom']}px`,
+        paddingBottom  : mainPaddingSpec[key]['bottom'],
       }) && acc,
     {})
   }
