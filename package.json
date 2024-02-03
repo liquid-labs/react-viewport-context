@@ -8,15 +8,13 @@
     "dist/"
   ],
   "scripts": {
-    "prebuild": "rm -rf ./dist/* && mkdir -p ./dist",
-    "build": "catalyst-scripts build",
-    "prepare": "npm run build",
-    "pretest": "TEST_TYPES=unit catalyst-scripts pretest",
-    "test": "TEST_TYPES=unit catalyst-scripts test",
-    "postversion": "git push && git push --tags",
-    "lint": "catalyst-scripts lint",
-    "lint-fix": "catalyst-scripts lint-fix",
-    "watch": "catalyst-scripts watch"
+    "build": "make build",
+    "test": "make test",
+    "lint": "make lint",
+    "lint-fix": "make lint-fix",
+    "prepack": "make build",
+    "preversion": "make qa",
+    "qa": "make qa"
   },
   "repository": {
     "type": "git",
@@ -32,14 +30,21 @@
   },
   "homepage": "https://github.com/Liquid-Labs/react-viewport-context#readme",
   "devDependencies": {
-    "@liquid-labs/catalyst-scripts": "^1.0.0-alpha.22",
+    "@liquid-labs/sdlc-resource-babel-and-rollup": "file:.yalc/@liquid-labs/sdlc-resource-babel-and-rollup",
+    "@liquid-labs/sdlc-resource-eslint": "^1.0.0-alpha.2",
     "@testing-library/react": "^14.2.1",
+    "jest-environment-jsdom": "^29.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "_sdlc": {
+    "jestConfig": {
+      "testEnvironment": "jsdom"
+    }
   },
   "catalyst": {
     "rollupConfig": {
@@ -57,6 +62,7 @@
     }
   },
   "dependencies": {
+    "@liquid-labs/sdlc-resource-jest": "^1.0.0-alpha.5",
     "@mui/material": "^5.15.7",
     "prop-types": "^15.8.1"
   }

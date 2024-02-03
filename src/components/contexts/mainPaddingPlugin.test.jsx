@@ -1,12 +1,12 @@
-/* global afterEach describe Event expect test */
+/* global afterEach describe Event expect test window */
 import React from 'react'
 
+// import { window } from 'jsdom'
 import { ThemeProvider } from '@mui/material/styles'
-import { ViewportContext } from './ViewportContext'
+import { act, cleanup, render } from '@testing-library/react'
 
 import { mainPaddingPlugin } from './mainPaddingPlugin'
-
-import { act, cleanup, render } from '@testing-library/react'
+import { ViewportContext } from './ViewportContext'
 import { ViewListener, defaultTheme, weirdTheme } from '../../testlib'
 
 // TODO https://github.com/Liquid-Labs/react-viewport-context/issues/2
