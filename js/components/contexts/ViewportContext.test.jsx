@@ -4,7 +4,7 @@ import React from 'react'
 import { ThemeProvider } from '@mui/material/styles'
 import { ViewportContext } from './ViewportContext'
 
-import { act, cleanup, render } from 'react-testing-library'
+import { act, cleanup, render } from '@testing-library/react'
 import { ViewListener, defaultTheme, weirdTheme } from '../../testlib'
 
 const generateTestData = (theme) => {

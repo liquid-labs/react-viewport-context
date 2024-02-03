@@ -33,12 +33,9 @@
   "homepage": "https://github.com/Liquid-Labs/react-viewport-context#readme",
   "devDependencies": {
     "@liquid-labs/catalyst-scripts": "^1.0.0-alpha.22",
-    "classnames": "^2.2.6",
-    "jss": "^10.0.0-alpha.16",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-testing-library": "^5.8.0"
+    "@testing-library/react": "^14.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
@@ -60,9 +57,7 @@
     }
   },
   "dependencies": {
-    "@emotion/react": "^11.11.3",
-    "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.7",
-    "@mui/styles": "^5.15.7"
+    "prop-types": "^15.8.1"
   }
 }

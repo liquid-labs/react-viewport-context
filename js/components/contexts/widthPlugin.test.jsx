@@ -6,7 +6,7 @@ import { ViewportContext } from './ViewportContext'
 
 import { widthPlugin } from './widthPlugin'
 
-import { act, cleanup, render } from 'react-testing-library'
+import { act, cleanup, render } from '@testing-library/react'
 import { ViewListener, defaultTheme } from '../../testlib'
 
 describe('widthPlugin', () => {

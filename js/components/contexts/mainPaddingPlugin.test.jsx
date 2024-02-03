@@ -6,7 +6,7 @@ import { ViewportContext } from './ViewportContext'
 
 import { mainPaddingPlugin } from './mainPaddingPlugin'
 
-import { act, cleanup, render } from 'react-testing-library'
+import { act, cleanup, render } from '@testing-library/react'
 import { ViewListener, defaultTheme, weirdTheme } from '../../testlib'
 
 // TODO https://github.com/Liquid-Labs/react-viewport-context/issues/2
