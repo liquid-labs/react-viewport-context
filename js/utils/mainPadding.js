@@ -23,7 +23,7 @@ const getMainPaddingSpec = (theme) => {
   )
 }
 
-const mainPaddingStyles = (theme) => {
+const mainPaddingStyles = (theme, classes) => {
   const mainPaddingSpec = getMainPaddingSpec(theme)
   const breakpointKeys = theme.breakpoints.keys
 /*
@@ -49,18 +49,18 @@ const mainPaddingStyles = (theme) => {
   }
 */
   return {
-    mainPaddingSides : breakpointKeys.reduce((acc, key) =>
+    [classes.mainPaddingSides] : breakpointKeys.reduce((acc, key) =>
       (acc[theme.breakpoints.up(key)] = {
         paddingLeft  : mainPaddingSpec[key]['side'],
         paddingRight : mainPaddingSpec[key]['side'],
       }) && acc,
     {}),
-    mainPaddingTop : breakpointKeys.reduce((acc, key) =>
+    [classes.mainPaddingTop] : breakpointKeys.reduce((acc, key) =>
       (acc[theme.breakpoints.up(key)] = {
         paddingTop  : mainPaddingSpec[key]['top'],
       }) && acc,
     {}),
-    mainPaddingBottom : breakpointKeys.reduce((acc, key) =>
+    [classes.mainPaddingBottom] : breakpointKeys.reduce((acc, key) =>
       (acc[theme.breakpoints.up(key)] = {
         paddingBottom  : mainPaddingSpec[key]['bottom'],
       }) && acc,

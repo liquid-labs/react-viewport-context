@@ -1,47 +1,47 @@
 /* global afterEach describe Event expect test */
-import React from 'react'
-import classNames from 'classnames'
-
 import { mainPaddingStyles } from './mainPadding'
 
-import { cleanup, render } from 'react-testing-library'
 import { defaultTheme } from '../testlib'
 
-import { SheetsRegistry } from 'jss'
+import { createTheme } from '@mui/material/styles'
 
-import { createTheme, StyledEngineProvider, ThemeProvider } from '@mui/material/styles'
-import { makeStyles, StylesProvider } from '@mui/styles'
-
-const useMainPaddingStyles = makeStyles(mainPaddingStyles)
-
-const TestMain = (props) => {
-  const classes = useMainPaddingStyles()
-  const className = classNames(
-    classes.mainPaddingTop,
-    classes.mainPaddingSides,
-    classes.mainPaddingBottom)
-
-  return <div className={className} {...props}>Hi!</div>
+const expected = {
+  'Main-padding-sides': {
+    '@media (min-width:0px)': { paddingLeft: '0px', paddingRight: '0px' },
+    '@media (min-width:600px)': { paddingLeft: '4px', paddingRight: '4px' },
+    '@media (min-width:960px)': { paddingLeft: '8px', paddingRight: '8px' },
+    '@media (min-width:1280px)': { paddingLeft: '8px', paddingRight: '8px' },
+    '@media (min-width:1920px)': { paddingLeft: '8px', paddingRight: '8px' }
+  },
+  'Main-padding-top': {
+    '@media (min-width:0px)': { paddingTop: '0px' },
+    '@media (min-width:600px)': { paddingTop: '4px' },
+    '@media (min-width:960px)': { paddingTop: '4px' },
+    '@media (min-width:1280px)': { paddingTop: '8px' },
+    '@media (min-width:1920px)': { paddingTop: '8px' }
+  },
+  'Main-padding-bottom': {
+    '@media (min-width:0px)': { paddingBottom: '0px' },
+    '@media (min-width:600px)': { paddingBottom: '4px' },
+    '@media (min-width:960px)': { paddingBottom: '8px' },
+    '@media (min-width:1280px)': { paddingBottom: '8px' },
+    '@media (min-width:1920px)': { paddingBottom: '8px' }
+  }
 }
 
-const defaultMuiTheme = createTheme(defaultTheme)
+const PREFIX='Main-padding'
+const classes = {
+  mainPaddingTop: PREFIX + '-top',
+  mainPaddingSides: PREFIX + '-sides',
+  mainPaddingBottom: PREFIX + '-bottom'
+}
+
+const theme = createTheme(defaultTheme)
 
 describe("mainPaddingStyles", () => {
-  afterEach(cleanup)
-
   test("generates expected padding styles", () => {
-    const sheets = new SheetsRegistry()
+    const styles = mainPaddingStyles(theme, classes)
 
-    const { getByTestId } = render(
-      <StyledEngineProvider injectFirst>
-        <StylesProvider sheetsRegistry={sheets}>
-          <ThemeProvider theme={defaultMuiTheme}>
-              <TestMain data-testid='main'/>
-          </ThemeProvider>
-        </StylesProvider>
-      </StyledEngineProvider>
-    )
-
-    expect(sheets.toString()).toMatchSnapshot()
+    expect(styles).toEqual(expected)
   })
 })

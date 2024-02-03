@@ -10,7 +10,7 @@ A react Provider with hook to get viewport info and subscribe to changes.
 
     import React from 'react'
 
-    import { ThemeProvider } from '@mui/styles'
+    import { ThemeProvider } from '@mui/material/styles'
     import { ViewportContext, useViewportInfo } from '@liquid-labs/react-viewport-context'
 
     const SillyDemo = () => {
