@@ -1,3 +1,6 @@
+/**
+ * @file Plugin to detect when the main padding layout has changed.
+ */
 import { getMainPaddingSpec } from '../../utils/mainPadding'
 
 const mainPaddingPlugin = (prevInfo, newInfo, prevTheme, theme) => {
