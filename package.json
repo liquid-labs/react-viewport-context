@@ -30,8 +30,8 @@
   },
   "homepage": "https://github.com/Liquid-Labs/react-viewport-context#readme",
   "devDependencies": {
-    "@liquid-labs/sdlc-resource-babel-and-rollup": "file:.yalc/@liquid-labs/sdlc-resource-babel-and-rollup",
-    "@liquid-labs/sdlc-resource-eslint": "^1.0.0-alpha.2",
+    "@liquid-labs/sdlc-resource-babel-and-rollup": "^1.0.0-alpha.5",
+    "@liquid-labs/sdlc-resource-eslint": "^1.0.0-alpha.3",
     "@testing-library/react": "^14.2.1",
     "jest-environment-jsdom": "^29.7.0",
     "react": "^18.2.0",
@@ -41,29 +41,14 @@
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
-  "_sdlc": {
-    "jestConfig": {
-      "testEnvironment": "jsdom"
-    }
-  },
-  "catalyst": {
-    "rollupConfig": {
-      "commonjsConfig": {
-        "namedExports": {
-          "node_modules/react/index.js": [
-            "useEffect",
-            "useState"
-          ]
-        }
-      }
-    },
-    "jestConfig": {
-      "testEnvironment": "jsdom"
-    }
-  },
   "dependencies": {
     "@liquid-labs/sdlc-resource-jest": "^1.0.0-alpha.5",
     "@mui/material": "^5.15.7",
     "prop-types": "^15.8.1"
+  },
+  "_sdlc": {
+    "jestConfig": {
+      "testEnvironment": "jsdom"
+    }
   }
 }
