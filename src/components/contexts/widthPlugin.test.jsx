@@ -1,19 +1,18 @@
-/* global afterEach describe Event expect test */
 import React from 'react'
 
-import { ThemeProvider } from '@material-ui/styles'
-import { ViewportContext } from './ViewportContext'
+import { ThemeProvider } from '@mui/material/styles'
+import { ViewportContext } from './ViewportContext' /* eslint-disable-line node/no-missing-import */
 
 import { widthPlugin } from './widthPlugin'
 
-import { act, cleanup, render } from 'react-testing-library'
+import { act, render } from '@testing-library/react'
 import { ViewListener, defaultTheme } from '../../testlib'
 
 describe('widthPlugin', () => {
   test("provides 'width' when included", () => {
     window.innerWidth = 1200
     let viewInfo
-    const callback = (info) => viewInfo = info
+    const callback = (info) => { viewInfo = info }
     render(
       <ThemeProvider theme={defaultTheme}>
         <ViewportContext plugins={[widthPlugin]}>
@@ -24,7 +23,7 @@ describe('widthPlugin', () => {
     expect(viewInfo.width).toBe(1200)
   })
 
-  test("does not re-render when width does not change", () => {
+  test('does not re-render when width does not change', () => {
     window.innerWidth = 1200
     window.innerHeigh = 900
     let renderCount = 0
@@ -50,7 +49,7 @@ describe('widthPlugin', () => {
     expect(renderCount).toBe(1)
   })
 
-  test("triggers rerender when width changes", () => {
+  test('triggers rerender when width changes', () => {
     window.innerWidth = 1200
     let renderCount = 0
     let viewInfo

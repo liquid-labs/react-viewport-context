@@ -1,3 +1,6 @@
+/**
+ * @file Plugin to detect when the main padding layout has changed.
+ */
 import { getMainPaddingSpec } from '../../utils/mainPadding'
 
 const mainPaddingPlugin = (prevInfo, newInfo, prevTheme, theme) => {
@@ -7,8 +10,8 @@ const mainPaddingPlugin = (prevInfo, newInfo, prevTheme, theme) => {
     // verify 'theme' has everything we expect
     Array.isArray(theme?.breakpoints?.keys) ||
       console.error("Provided 'theme' does not define 'breakpoint.keys' as array.")
-    theme?.spacing?.unit ||
-      console.error("Provided 'theme' does not define 'spacing.unit'.")
+    theme?.spacing ||
+      console.error("Provided 'theme' does not define 'spacing'.")
     theme?.layout?.mainPadding ||
       console.error("Provided 'theme' does not define 'layout.mainPadding'.")
   }
