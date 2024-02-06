@@ -31,9 +31,7 @@ describe('mainPaddingPlugin', () => {
   test('does not trigger re-render when theme unchanged', () => {
     window.innerWidth = 1200
     let renderCount = 0
-    const callback = (info) => {
-      renderCount += 1
-    }
+    const callback = () => { renderCount += 1 }
     render(
       <ThemeProvider theme={defaultTheme}>
         <ViewportContext getTheme={useTheme} plugins={[mainPaddingPlugin]}>
@@ -52,9 +50,7 @@ describe('mainPaddingPlugin', () => {
   test('rerenders when theme changes', () => {
     window.innerWidth = 1200
     let renderCount = 0
-    const callback = (info) => {
-      renderCount += 1
-    }
+    const callback = () => { renderCount += 1 }
     const { rerender } = render(
       <ThemeProvider theme={defaultTheme}>
         <ViewportContext getTheme={useTheme} plugins={[mainPaddingPlugin]}>

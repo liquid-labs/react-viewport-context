@@ -16,7 +16,7 @@ const onResize = (theme, prevTheme, prevInfo, granular, plugins) => {
   const { keys, values } = theme.breakpoints
   const newInfo = { ...prevInfo }
   let update = false
-  const newBreakpoint = keys.slice(0).reverse().find((breakpoint, i) =>
+  const newBreakpoint = keys.slice(0).reverse().find((breakpoint) =>
     viewWidth >= values[breakpoint])
   if (newBreakpoint !== prevInfo.breakpoint || (granular === true && viewWidth !== prevInfo.width)) {
     newInfo.breakpoint = newBreakpoint
