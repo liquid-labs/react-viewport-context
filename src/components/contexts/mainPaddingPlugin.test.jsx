@@ -1,7 +1,7 @@
 import React from 'react'
 
 // import { window } from 'jsdom'
-import { ThemeProvider } from '@mui/material/styles'
+import { ThemeProvider, useTheme } from '@mui/material/styles'
 import { act, render } from '@testing-library/react'
 
 import { mainPaddingPlugin } from './mainPaddingPlugin'
@@ -17,7 +17,7 @@ describe('mainPaddingPlugin', () => {
     const callback = (info) => { viewInfo = info }
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewportContext plugins={[mainPaddingPlugin]}>
+        <ViewportContext getTheme={useTheme} plugins={[mainPaddingPlugin]}>
           <ViewListener callback={callback} />
         </ViewportContext>
       </ThemeProvider>
@@ -36,7 +36,7 @@ describe('mainPaddingPlugin', () => {
     }
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewportContext plugins={[mainPaddingPlugin]}>
+        <ViewportContext getTheme={useTheme} plugins={[mainPaddingPlugin]}>
           <ViewListener callback={callback} />
         </ViewportContext>
       </ThemeProvider>
@@ -57,7 +57,7 @@ describe('mainPaddingPlugin', () => {
     }
     const { rerender } = render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewportContext plugins={[mainPaddingPlugin]}>
+        <ViewportContext getTheme={useTheme} plugins={[mainPaddingPlugin]}>
           <ViewListener callback={callback} />
         </ViewportContext>
       </ThemeProvider>
@@ -65,7 +65,7 @@ describe('mainPaddingPlugin', () => {
     expect(renderCount).toBe(1)
     rerender(
       <ThemeProvider theme={weirdTheme}>
-        <ViewportContext plugins={[mainPaddingPlugin]}>
+        <ViewportContext getTheme={useTheme} plugins={[mainPaddingPlugin]}>
           <ViewListener callback={callback} />
         </ViewportContext>
       </ThemeProvider>
