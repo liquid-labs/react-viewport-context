@@ -68,9 +68,9 @@ const ViewportContext = ({
 if (process.env.NODE_ENV !== 'production') {
   ViewportContext.propTypes = {
     children : PropTypes.node.isRequired,
-    granular : PropTypes.boolean,
+    granular : PropTypes.bool,
     plugins  : PropTypes.arrayOf(PropTypes.func),
-    getTheme : PropTypes.function
+    getTheme : PropTypes.func
   }
 }
 
