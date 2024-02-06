@@ -1,0 +1,26 @@
+Test git rev: e8da8cbe97858758de140b23d9c55f70d6296924
+(node:8798) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS components/contexts/ViewportContext.test.js
+PASS components/contexts/widthPlugin.test.js
+PASS components/contexts/mainPaddingPlugin.test.js
+PASS utils/mainPadding.test.js
+-----------------------|---------|----------|---------|---------|-------------------
+File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------|---------|----------|---------|---------|-------------------
+All files              |   94.25 |    79.03 |   94.73 |   93.75 |                   
+ components/contexts   |   92.42 |       75 |    90.9 |    91.8 |                   
+  ViewportContext.jsx  |   89.58 |    74.07 |   88.88 |   88.63 | 24,38,42,46,49    
+  mainPaddingPlugin.js |     100 |       75 |     100 |     100 | 11-15             
+  widthPlugin.js       |     100 |      100 |     100 |     100 |                   
+ components/hooks      |     100 |      100 |     100 |     100 |                   
+  useViewportInfo.js   |     100 |      100 |     100 |     100 |                   
+ utils                 |     100 |      100 |     100 |     100 |                   
+  mainPadding.js       |     100 |      100 |     100 |     100 |                   
+-----------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 4 passed, 4 total
+Tests:       25 passed, 25 total
+Snapshots:   0 total
+Time:        1.423 s, estimated 2 s
+Ran all test suites.
