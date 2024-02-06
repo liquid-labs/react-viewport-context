@@ -36,6 +36,8 @@
     "@emotion/styled": "^11.11.0",
     "@liquid-labs/sdlc-resource-babel-and-rollup": "^1.0.0-alpha.5",
     "@liquid-labs/sdlc-resource-eslint": "^1.0.0-alpha.5",
+    "@liquid-labs/sdlc-resource-jest": "^1.0.0-alpha.5",
+    "@mui/material": "^5.15.7",
     "@testing-library/react": "^14.2.1",
     "jest-environment-jsdom": "^29.7.0",
     "react": "^18.2.0",
@@ -46,8 +48,6 @@
     "react-dom": "^17.0.0 || ^18.0.0"
   },
   "dependencies": {
-    "@liquid-labs/sdlc-resource-jest": "^1.0.0-alpha.5",
-    "@mui/material": "^5.15.7",
     "prop-types": "^15.8.1"
   },
   "_sdlc": {
