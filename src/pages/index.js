@@ -1,10 +1,10 @@
 /**
  * @file Demo page
  */
-import React from 'react' /* eslint-disable-line no-unused-vars */
-/*
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
-import Layout from '@theme/Layout'
+import React from 'react'
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext' /* eslint-disable-line node/no-missing-import */
+import Layout from '@theme/Layout' /* eslint-disable-line node/no-missing-import */
+/* eslint-disable-next-line node/no-missing-import */
 import { ViewportContext } from '../components/contexts/ViewportContext'
 import { useViewportInfo } from '../components/hooks/useViewportInfo'
 
@@ -37,11 +37,10 @@ export default function Home () {
       title={siteConfig.title}
       description="Liquid Labs website.">
       <main>
-        <ViewportContext getTheme={testTheme}>
+        <ViewportContext granular={true} getTheme={testTheme}>
           <ViewportInfo />
         </ViewportContext>
       </main>
     </Layout>
   )
 }
-*/

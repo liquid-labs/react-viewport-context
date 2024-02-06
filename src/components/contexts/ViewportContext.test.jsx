@@ -10,9 +10,9 @@ import { ViewListener, defaultTheme } from '../../testlib'
 const generateTestData = (theme) => {
   const breakpoints = theme.breakpoints.keys
   const boundaryTests = Object.entries(theme.breakpoints.values)
-  const subBoundaryTests = boundaryTests.map(([breakpoint, boundary], i) =>
+  const subBoundaryTests = boundaryTests.map(([, boundary], i) =>
     i === 0 ? null : [breakpoints[i - 1], boundary - 1]).filter(e => e)
-  const superBoundaryTests = boundaryTests.map(([breakpoint, boundary], i) =>
+  const superBoundaryTests = boundaryTests.map(([, boundary], i) =>
     [breakpoints[i], boundary + 1])
 
   return subBoundaryTests.concat(boundaryTests).concat(superBoundaryTests)
@@ -66,7 +66,7 @@ describe('ViewportContext', () => {
   test('does not re-render when size changes, but breakpoint does not', () => {
     window.innerWidth = 1200
     let renderCount = 0
-    const callback = (info) => { renderCount += 1 }
+    const callback = () => { renderCount += 1 }
 
     render(
       <ThemeProvider theme={defaultTheme}>

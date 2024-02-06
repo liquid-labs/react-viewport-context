@@ -16,7 +16,7 @@ const onResize = (theme, prevTheme, prevInfo, granular, plugins) => {
   const { keys, values } = theme.breakpoints
   const newInfo = { ...prevInfo }
   let update = false
-  const newBreakpoint = keys.slice(0).reverse().find((breakpoint, i) =>
+  const newBreakpoint = keys.slice(0).reverse().find((breakpoint) =>
     viewWidth >= values[breakpoint])
   if (newBreakpoint !== prevInfo.breakpoint || (granular === true && viewWidth !== prevInfo.width)) {
     newInfo.breakpoint = newBreakpoint
@@ -35,12 +35,18 @@ const onResize = (theme, prevTheme, prevInfo, granular, plugins) => {
 const ViewportContext = ({
   granular = false,
   plugins = [],
-  getTheme /* = throw new Error("Must define 'getTheme' attribute.") */,
+  getTheme = throw new Error("Must define 'getTheme' attribute."),
   children
 }) => {
+  if (getTheme === undefined) {
+    throw new Error("Required 'getTheme' not defined for 'ViewportContext'.")
+  }
   const theme = getTheme()
   if (!theme) {
-    throw new Error("No theme available to 'ViewportContext'. Ensure that 'ViewportContext' is in a 'ThemeProvider' context, and 'ThemeProvider' is initialized with a valid theme.")
+    throw new Error("'ViewportContext' 'getTheme' did not return a theme.")
+  }
+  if (theme.breakpoints?.values === undefined) {
+    throw new Error("Theme provided to 'ViewportContext' does not define required 'breakpoints.values'.")
   }
   const prevThemeRef = useRef(null)
   const [viewInfo, setViewInfo] = useState(INITIAL_STATE)
@@ -68,9 +74,9 @@ const ViewportContext = ({
 if (process.env.NODE_ENV !== 'production') {
   ViewportContext.propTypes = {
     children : PropTypes.node.isRequired,
-    granular : PropTypes.boolean,
+    granular : PropTypes.bool,
     plugins  : PropTypes.arrayOf(PropTypes.func),
-    getTheme : PropTypes.function
+    getTheme : PropTypes.func
   }
 }
 
