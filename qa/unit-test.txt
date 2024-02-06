@@ -1,0 +1,148 @@
+Test git rev: c959d0cae3194b87344c371bd7297d7fd834412f
+(node:88301) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS components/contexts/ViewportContext.test.js
+  ● Console
+
+    console.error
+      Warning: Failed prop type: ViewportContext: prop type `granular` is invalid; it must be a function, usually from the `prop-types` package, but received `undefined`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.
+          at granular (/Users/zane/playground/liquid-labs/react-viewport-context/src/components/contexts/ViewportContext.jsx:36:3)
+
+      27 |   render(
+      28 |     <ThemeProvider theme={theme}>
+    > 29 |       <ViewportContext getTheme={useTheme}>
+         |       ^
+      30 |         <ViewListener callback={callback} />
+      31 |       </ViewportContext>
+      32 |     </ThemeProvider>
+
+      at printWarning (../node_modules/react/cjs/react.development.js:209:30)
+      at error (../node_modules/react/cjs/react.development.js:183:7)
+      at checkPropTypes (../node_modules/react/cjs/react.development.js:2074:11)
+      at validatePropTypes (../node_modules/react/cjs/react.development.js:2275:7)
+      at Object.createElementWithValidation [as createElement] (../node_modules/react/cjs/react.development.js:2379:5)
+      at createElement (../src/components/contexts/ViewportContext.test.jsx:29:7)
+
+    console.error
+      Warning: Failed prop type: ViewportContext: prop type `getTheme` is invalid; it must be a function, usually from the `prop-types` package, but received `undefined`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.
+          at granular (/Users/zane/playground/liquid-labs/react-viewport-context/src/components/contexts/ViewportContext.jsx:36:3)
+
+      27 |   render(
+      28 |     <ThemeProvider theme={theme}>
+    > 29 |       <ViewportContext getTheme={useTheme}>
+         |       ^
+      30 |         <ViewListener callback={callback} />
+      31 |       </ViewportContext>
+      32 |     </ThemeProvider>
+
+      at printWarning (../node_modules/react/cjs/react.development.js:209:30)
+      at error (../node_modules/react/cjs/react.development.js:183:7)
+      at checkPropTypes (../node_modules/react/cjs/react.development.js:2074:11)
+      at validatePropTypes (../node_modules/react/cjs/react.development.js:2275:7)
+      at Object.createElementWithValidation [as createElement] (../node_modules/react/cjs/react.development.js:2379:5)
+      at createElement (../src/components/contexts/ViewportContext.test.jsx:29:7)
+
+PASS components/contexts/widthPlugin.test.js
+  ● Console
+
+    console.error
+      Warning: Failed prop type: ViewportContext: prop type `granular` is invalid; it must be a function, usually from the `prop-types` package, but received `undefined`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.
+          at granular (/Users/zane/playground/liquid-labs/react-viewport-context/src/components/contexts/ViewportContext.jsx:36:3)
+
+      16 |     render(
+      17 |       <ThemeProvider theme={defaultTheme}>
+    > 18 |         <ViewportContext getTheme={useTheme} plugins={[widthPlugin]}>
+         |         ^
+      19 |           <ViewListener callback={callback} />
+      20 |         </ViewportContext>
+      21 |       </ThemeProvider>
+
+      at printWarning (../node_modules/react/cjs/react.development.js:209:30)
+      at error (../node_modules/react/cjs/react.development.js:183:7)
+      at checkPropTypes (../node_modules/react/cjs/react.development.js:2074:11)
+      at validatePropTypes (../node_modules/react/cjs/react.development.js:2275:7)
+      at Object.createElementWithValidation [as createElement] (../node_modules/react/cjs/react.development.js:2379:5)
+      at Object.createElement (../src/components/contexts/widthPlugin.test.jsx:18:9)
+
+    console.error
+      Warning: Failed prop type: ViewportContext: prop type `getTheme` is invalid; it must be a function, usually from the `prop-types` package, but received `undefined`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.
+          at granular (/Users/zane/playground/liquid-labs/react-viewport-context/src/components/contexts/ViewportContext.jsx:36:3)
+
+      16 |     render(
+      17 |       <ThemeProvider theme={defaultTheme}>
+    > 18 |         <ViewportContext getTheme={useTheme} plugins={[widthPlugin]}>
+         |         ^
+      19 |           <ViewListener callback={callback} />
+      20 |         </ViewportContext>
+      21 |       </ThemeProvider>
+
+      at printWarning (../node_modules/react/cjs/react.development.js:209:30)
+      at error (../node_modules/react/cjs/react.development.js:183:7)
+      at checkPropTypes (../node_modules/react/cjs/react.development.js:2074:11)
+      at validatePropTypes (../node_modules/react/cjs/react.development.js:2275:7)
+      at Object.createElementWithValidation [as createElement] (../node_modules/react/cjs/react.development.js:2379:5)
+      at Object.createElement (../src/components/contexts/widthPlugin.test.jsx:18:9)
+
+PASS components/contexts/mainPaddingPlugin.test.js
+  ● Console
+
+    console.error
+      Warning: Failed prop type: ViewportContext: prop type `granular` is invalid; it must be a function, usually from the `prop-types` package, but received `undefined`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.
+          at granular (/Users/zane/playground/liquid-labs/react-viewport-context/src/components/contexts/ViewportContext.jsx:36:3)
+
+      18 |     render(
+      19 |       <ThemeProvider theme={defaultTheme}>
+    > 20 |         <ViewportContext getTheme={useTheme} plugins={[mainPaddingPlugin]}>
+         |         ^
+      21 |           <ViewListener callback={callback} />
+      22 |         </ViewportContext>
+      23 |       </ThemeProvider>
+
+      at printWarning (../node_modules/react/cjs/react.development.js:209:30)
+      at error (../node_modules/react/cjs/react.development.js:183:7)
+      at checkPropTypes (../node_modules/react/cjs/react.development.js:2074:11)
+      at validatePropTypes (../node_modules/react/cjs/react.development.js:2275:7)
+      at Object.createElementWithValidation [as createElement] (../node_modules/react/cjs/react.development.js:2379:5)
+      at Object.createElement (../src/components/contexts/mainPaddingPlugin.test.jsx:20:9)
+
+    console.error
+      Warning: Failed prop type: ViewportContext: prop type `getTheme` is invalid; it must be a function, usually from the `prop-types` package, but received `undefined`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.
+          at granular (/Users/zane/playground/liquid-labs/react-viewport-context/src/components/contexts/ViewportContext.jsx:36:3)
+
+      18 |     render(
+      19 |       <ThemeProvider theme={defaultTheme}>
+    > 20 |         <ViewportContext getTheme={useTheme} plugins={[mainPaddingPlugin]}>
+         |         ^
+      21 |           <ViewListener callback={callback} />
+      22 |         </ViewportContext>
+      23 |       </ThemeProvider>
+
+      at printWarning (../node_modules/react/cjs/react.development.js:209:30)
+      at error (../node_modules/react/cjs/react.development.js:183:7)
+      at checkPropTypes (../node_modules/react/cjs/react.development.js:2074:11)
+      at validatePropTypes (../node_modules/react/cjs/react.development.js:2275:7)
+      at Object.createElementWithValidation [as createElement] (../node_modules/react/cjs/react.development.js:2379:5)
+      at Object.createElement (../src/components/contexts/mainPaddingPlugin.test.jsx:20:9)
+
+PASS utils/mainPadding.test.js
+-----------------------|---------|----------|---------|---------|-------------------
+File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------|---------|----------|---------|---------|-------------------
+All files              |   96.38 |    83.63 |     100 |   96.05 |                   
+ components/contexts   |   96.72 |       80 |     100 |   96.42 |                   
+  ViewportContext.jsx  |   95.34 |       85 |     100 |   94.87 | 24,43             
+  mainPaddingPlugin.js |     100 |       75 |     100 |     100 | 11-15             
+  widthPlugin.js       |     100 |      100 |     100 |     100 |                   
+ components/hooks      |     100 |      100 |     100 |     100 |                   
+  useViewportInfo.js   |     100 |      100 |     100 |     100 |                   
+ pages                 |       0 |      100 |     100 |       0 |                   
+  foo.js               |       0 |      100 |     100 |       0 | 4                 
+ utils                 |     100 |      100 |     100 |     100 |                   
+  mainPadding.js       |     100 |      100 |     100 |     100 |                   
+-----------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 4 passed, 4 total
+Tests:       25 passed, 25 total
+Snapshots:   0 total
+Time:        1.519 s, estimated 2 s
+Ran all test suites.
