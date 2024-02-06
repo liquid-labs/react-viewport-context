@@ -1,8 +1,7 @@
 /* global afterEach describe Event expect test */
 import React from 'react'
 
-import { ThemeProvider } from '@mui/material/styles'
-import { useTheme } from '@mui/material/styles'
+import { ThemeProvider, useTheme } from '@mui/material/styles'
 
 import { ViewportContext } from './ViewportContext' /* eslint-disable-line node/no-missing-import */
 import { act, cleanup, render } from '@testing-library/react'

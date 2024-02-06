@@ -32,11 +32,11 @@ const onResize = (theme, prevTheme, prevInfo, granular, plugins) => {
   return [update, newInfo]
 }
 
-const ViewportContext = ({ 
+const ViewportContext = ({
   granular = false,
-  plugins = [], 
-  getTheme /*= throw new Error("Must define 'getTheme' attribute.")*/, 
-  children 
+  plugins = [],
+  getTheme /* = throw new Error("Must define 'getTheme' attribute.") */,
+  children
 }) => {
   const theme = getTheme()
   if (!theme) {
@@ -68,7 +68,9 @@ const ViewportContext = ({
 if (process.env.NODE_ENV !== 'production') {
   ViewportContext.propTypes = {
     children : PropTypes.node.isRequired,
-    plugins  : PropTypes.arrayOf(PropTypes.func)
+    granular : PropTypes.boolean,
+    plugins  : PropTypes.arrayOf(PropTypes.func),
+    getTheme : PropTypes.function
   }
 }
 

@@ -1,19 +1,22 @@
-import React from 'react'
-
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Layout from '@theme/Layout';
+/**
+ * @file Demo page
+ */
+import React from 'react' /* eslint-disable-line no-unused-vars */
+/*
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import Layout from '@theme/Layout'
 import { ViewportContext } from '../components/contexts/ViewportContext'
 import { useViewportInfo } from '../components/hooks/useViewportInfo'
 
 const testTheme = () => ({
-  breakpoints: {
-    keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-    values: {
-      'xs': 0,
-      'sm': 600,
-      'md': 900,
-      'lg': 1200,
-      'xl': 1536
+  breakpoints : {
+    keys   : ['xs', 'sm', 'md', 'lg', 'xl'],
+    values : {
+      xs : 0,
+      sm : 600,
+      md : 900,
+      lg : 1200,
+      xl : 1536
     }
   }
 })
@@ -27,8 +30,8 @@ const ViewportInfo = () => {
   )
 }
 
-export default function Home() {
-  const {siteConfig} = useDocusaurusContext();
+export default function Home () {
+  const { siteConfig } = useDocusaurusContext()
   return (
   <Layout
       title={siteConfig.title}
@@ -39,5 +42,6 @@ export default function Home() {
         </ViewportContext>
       </main>
     </Layout>
-  );
+  )
 }
+*/

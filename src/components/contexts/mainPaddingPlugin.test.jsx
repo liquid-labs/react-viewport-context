@@ -4,7 +4,6 @@ import React from 'react'
 import { ThemeProvider, useTheme } from '@mui/material/styles'
 import { act, render } from '@testing-library/react'
 
-
 import { mainPaddingPlugin } from './mainPaddingPlugin'
 import { ViewportContext } from './ViewportContext' /* eslint-disable-line node/no-missing-import */
 import { ViewListener, defaultTheme, weirdTheme } from '../../testlib'
