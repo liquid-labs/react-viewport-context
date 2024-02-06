@@ -11,16 +11,18 @@ const INITIAL_STATE = {
   /* x : <number> */
 }
 
-const onResize = (theme, prevTheme, prevInfo, plugins) => {
+const onResize = (theme, prevTheme, prevInfo, granular, plugins) => {
   const viewWidth = window.innerWidth
   const { keys, values } = theme.breakpoints
   const newInfo = { ...prevInfo }
   let update = false
   const newBreakpoint = keys.slice(0).reverse().find((breakpoint, i) =>
     viewWidth >= values[breakpoint])
-  if (newBreakpoint !== prevInfo.breakpoint) {
+  if (newBreakpoint !== prevInfo.breakpoint || (granular === true && viewWidth !== prevInfo.width)) {
     newInfo.breakpoint = newBreakpoint
-    newInfo.width = viewWidth
+    if (granular === true) {
+      newInfo.width = viewWidth
+    }
     update = true
   }
   plugins.forEach((plugin) => {
@@ -31,6 +33,7 @@ const onResize = (theme, prevTheme, prevInfo, plugins) => {
 }
 
 const ViewportContext = ({ 
+  granular = false,
   plugins = [], 
   getTheme /*= throw new Error("Must define 'getTheme' attribute.")*/, 
   children 
@@ -42,13 +45,13 @@ const ViewportContext = ({
   const prevThemeRef = useRef(null)
   const [viewInfo, setViewInfo] = useState(INITIAL_STATE)
   if (viewInfo === INITIAL_STATE) {
-    const [update, newInfo] = onResize(theme, prevThemeRef.current, viewInfo, plugins)
+    const [update, newInfo] = onResize(theme, prevThemeRef.current, viewInfo, granular, plugins)
     if (update) setViewInfo(newInfo)
   }
 
   useEffect(() => {
     const listener = () => {
-      const [update, newInfo] = onResize(theme, prevThemeRef.current, viewInfo, plugins)
+      const [update, newInfo] = onResize(theme, prevThemeRef.current, viewInfo, granular, plugins)
       if (update) setViewInfo(newInfo)
     }
     window.addEventListener('resize', listener)
