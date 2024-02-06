@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ThemeProvider } from '@mui/material/styles'
+import { ThemeProvider, useTheme } from '@mui/material/styles'
 import { ViewportContext } from './ViewportContext' /* eslint-disable-line node/no-missing-import */
 
 import { widthPlugin } from './widthPlugin'
@@ -15,7 +15,7 @@ describe('widthPlugin', () => {
     const callback = (info) => { viewInfo = info }
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewportContext plugins={[widthPlugin]}>
+        <ViewportContext getTheme={useTheme} plugins={[widthPlugin]}>
           <ViewListener callback={callback} />
         </ViewportContext>
       </ThemeProvider>
@@ -34,7 +34,7 @@ describe('widthPlugin', () => {
     }
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewportContext plugins={[widthPlugin]}>
+        <ViewportContext getTheme={useTheme} plugins={[widthPlugin]}>
           <ViewListener callback={callback} />
         </ViewportContext>
       </ThemeProvider>
@@ -59,7 +59,7 @@ describe('widthPlugin', () => {
     }
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewportContext plugins={[widthPlugin]}>
+        <ViewportContext getTheme={useTheme} plugins={[widthPlugin]}>
           <ViewListener callback={callback} />
         </ViewportContext>
       </ThemeProvider>

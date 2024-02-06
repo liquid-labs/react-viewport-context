@@ -4,8 +4,6 @@
 import React, { createContext, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { useTheme } from '@mui/material/styles'
-
 const ViewportReactContext = createContext()
 
 const INITIAL_STATE = {
@@ -22,6 +20,7 @@ const onResize = (theme, prevTheme, prevInfo, plugins) => {
     viewWidth >= values[breakpoint])
   if (newBreakpoint !== prevInfo.breakpoint) {
     newInfo.breakpoint = newBreakpoint
+    newInfo.width = viewWidth
     update = true
   }
   plugins.forEach((plugin) => {
@@ -31,8 +30,12 @@ const onResize = (theme, prevTheme, prevInfo, plugins) => {
   return [update, newInfo]
 }
 
-const ViewportContext = ({ plugins = [], children }) => {
-  const theme = useTheme()
+const ViewportContext = ({ 
+  plugins = [], 
+  getTheme /*= throw new Error("Must define 'getTheme' attribute.")*/, 
+  children 
+}) => {
+  const theme = getTheme()
   if (!theme) {
     throw new Error("No theme available to 'ViewportContext'. Ensure that 'ViewportContext' is in a 'ThemeProvider' context, and 'ThemeProvider' is initialized with a valid theme.")
   }

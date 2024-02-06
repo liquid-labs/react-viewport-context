@@ -2,8 +2,9 @@
 import React from 'react'
 
 import { ThemeProvider } from '@mui/material/styles'
-import { ViewportContext } from './ViewportContext' /* eslint-disable-line node/no-missing-import */
+import { useTheme } from '@mui/material/styles'
 
+import { ViewportContext } from './ViewportContext' /* eslint-disable-line node/no-missing-import */
 import { act, cleanup, render } from '@testing-library/react'
 import { ViewListener, defaultTheme } from '../../testlib'
 
@@ -26,7 +27,7 @@ const breakpointTestFor = (theme) => (breakpoint, boundary) => {
   const callback = (info) => { viewInfo = info }
   render(
     <ThemeProvider theme={theme}>
-      <ViewportContext>
+      <ViewportContext getTheme={useTheme}>
         <ViewListener callback={callback} />
       </ViewportContext>
     </ThemeProvider>
@@ -55,7 +56,7 @@ describe('ViewportContext', () => {
     const callback = (info) => { viewInfo = info }
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewportContext>
+        <ViewportContext getTheme={useTheme}>
           <ViewListener callback={callback} />
         </ViewportContext>
       </ThemeProvider>
@@ -70,7 +71,7 @@ describe('ViewportContext', () => {
 
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewportContext>
+        <ViewportContext getTheme={useTheme}>
           <ViewListener callback={callback} />
         </ViewportContext>
       </ThemeProvider>
@@ -93,7 +94,7 @@ describe('ViewportContext', () => {
     }
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewportContext>
+        <ViewportContext getTheme={useTheme}>
           <ViewListener callback={callback} />
         </ViewportContext>
       </ThemeProvider>
@@ -133,7 +134,7 @@ describe('ViewportContext', () => {
     const callback = () => {}
     const { unmount } = render(
       <ThemeProvider theme={defaultTheme}>
-        <ViewportContext>
+        <ViewportContext getTheme={useTheme}>
           <ViewListener callback={callback} />
         </ViewportContext>
       </ThemeProvider>
