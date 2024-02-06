@@ -39,7 +39,7 @@
     "@docusaurus/preset-classic": "^3.1.1",
     "@docusaurus/types": "^3.1.1",
     "@emotion/styled": "^11.11.0",
-    "@liquid-labs/sdlc-resource-babel-and-rollup": "^1.0.0-alpha.5",
+    "@liquid-labs/sdlc-resource-babel-and-rollup": "^1.0.0-alpha.7",
     "@liquid-labs/sdlc-resource-eslint": "^1.0.0-alpha.7",
     "@liquid-labs/sdlc-resource-jest": "^1.0.0-alpha.5",
     "@mui/material": "^5.15.7",
