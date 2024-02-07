@@ -5,7 +5,18 @@ import React from 'react'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext' /* eslint-disable-line node/no-missing-import */
 import Layout from '@theme/Layout' /* eslint-disable-line node/no-missing-import */
 /* eslint-disable-next-line node/no-missing-import */
-import { ViewportContext } from '../components/contexts/ViewportContext'
+import { 
+  breakpointPlugin, 
+  innerWidthPlugin,
+  innerHeightPlugin,
+  outerWidthPlugin,
+  outerHeightPlugin,
+  screenXPlugin,
+  screenYPlugin,
+  scrollXPlugin,
+  scrollYPlugin,
+  ViewportContext 
+} from '../components/contexts'
 import { useViewportInfo } from '../components/hooks/useViewportInfo'
 
 const testTheme = () => ({
@@ -21,12 +32,27 @@ const testTheme = () => ({
   }
 })
 
-const ViewportInfo = () => {
+const plugins = [ 
+  breakpointPlugin, 
+  innerHeightPlugin, 
+  innerWidthPlugin, 
+  outerHeightPlugin, 
+  outerWidthPlugin,
+  screenXPlugin,
+  screenYPlugin,
+  scrollXPlugin,
+  scrollYPlugin
+]
+
+const ObjectDataDisplay = () => {
   const viewportInfo = useViewportInfo()
   return (
-    <pre>
-    {JSON.stringify(viewportInfo, null, '  ')}
-    </pre>
+    <div>
+      Viewport info:
+      <ul>
+        {Object.entries(viewportInfo.window).map(([key, value], i) => (<li key={i}>{key}: {value}</li>))}
+      </ul>
+    </div>
   )
 }
 
@@ -37,8 +63,8 @@ export default function Home () {
       title={siteConfig.title}
       description="Liquid Labs website.">
       <main>
-        <ViewportContext granular={true} getTheme={testTheme}>
-          <ViewportInfo />
+        <ViewportContext getTheme={testTheme} plugins={plugins}>
+          <ObjectDataDisplay />
         </ViewportContext>
       </main>
     </Layout>

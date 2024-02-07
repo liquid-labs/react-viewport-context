@@ -30,7 +30,7 @@ const paddingSpec = (spacing, relSpec) => {
 }
 
 const getMainPaddingSpec = (theme) => {
-  const breakpointKeys = theme.breakpoints.keys
+  const breakpointKeys = Object.keys(theme.breakpoints.values)
   const themeSpec = theme.layout.mainPadding // specifies relative to unit for each breakpoint
 
   return breakpointKeys.reduce((acc, key) =>
@@ -42,7 +42,7 @@ const getMainPaddingSpec = (theme) => {
 
 const mainPaddingStyles = (theme, classes) => {
   const mainPaddingSpec = getMainPaddingSpec(theme)
-  const breakpointKeys = theme.breakpoints.keys
+  const breakpointKeys = Object.keys(theme.breakpoints.values)
   return {
     [classes.mainPaddingSides] : breakpointKeys.reduce((acc, key) =>
       (acc[theme.breakpoints.up(key)] = {
