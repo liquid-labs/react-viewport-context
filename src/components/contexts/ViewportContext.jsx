@@ -58,8 +58,8 @@ const ViewportContext = ({ plugins = [], getTheme, pollInterval = 250, children 
         const htmlNode = document.getElementsByTagName('html').item(0)
         let polling
 
-        const onLeave = (e) => { polling = setInterval(listener, pollInterval) }
-        const onEnter = (e) => clearInterval(polling)
+        const onLeave = () => { polling = setInterval(listener, pollInterval) }
+        const onEnter = () => clearInterval(polling)
 
         // tried adding the listener to 'window', but it would have fire 'mouseleave' after entering the page sometime (
         // when crossing the scrollbar, I think)
