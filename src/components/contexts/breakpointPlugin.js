@@ -21,6 +21,7 @@ const doGetTheme = (getTheme) => {
  * @param {number} prevInfo.width - The <code>window.innerWidth</code> the last time the plugin was invoked.
  * @param {object} newInfo - The info object for this invocation..
  * @param {number} newInfo.width - The <code>window.innerWidth</code> for this invocation.
+ * @param getTheme
  * @returns {boolean} <code>true</code> if the width has changed and <code>false</code> otherwise.
  */
 const breakpointPlugin = (prevInfo, newInfo, getTheme) => {

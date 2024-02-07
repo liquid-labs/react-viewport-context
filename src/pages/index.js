@@ -5,8 +5,8 @@ import React from 'react'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext' /* eslint-disable-line node/no-missing-import */
 import Layout from '@theme/Layout' /* eslint-disable-line node/no-missing-import */
 /* eslint-disable-next-line node/no-missing-import */
-import { 
-  breakpointPlugin, 
+import {
+  breakpointPlugin,
   innerWidthPlugin,
   innerHeightPlugin,
   outerWidthPlugin,
@@ -15,7 +15,7 @@ import {
   screenYPlugin,
   scrollXPlugin,
   scrollYPlugin,
-  ViewportContext 
+  ViewportContext
 } from '../components/contexts'
 import { useViewportInfo } from '../components/hooks/useViewportInfo'
 
@@ -32,11 +32,11 @@ const testTheme = () => ({
   }
 })
 
-const plugins = [ 
-  breakpointPlugin, 
-  innerHeightPlugin, 
-  innerWidthPlugin, 
-  outerHeightPlugin, 
+const plugins = [
+  breakpointPlugin,
+  innerHeightPlugin,
+  innerWidthPlugin,
+  outerHeightPlugin,
   outerWidthPlugin,
   screenXPlugin,
   screenYPlugin,

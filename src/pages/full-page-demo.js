@@ -3,7 +3,6 @@
  */
 import React from 'react'
 
-
 import { breakpointPlugin } from '../components/contexts/breakpointPlugin'
 import {
   makeScreenPlugin,
@@ -30,13 +29,12 @@ const testTheme = () => ({
 
 const screenPlugins = Object.keys(VALID_SCREEN_ATTRIBUTES).map((attribute) => makeScreenPlugin(attribute))
 
-const visualViewportPlugins = Object.keys(VALID_VISUAL_VIEWPORT_ATTRIBUTES).map((attribute) => 
+const visualViewportPlugins = Object.keys(VALID_VISUAL_VIEWPORT_ATTRIBUTES).map((attribute) =>
   makeVisualViewportPlugin(attribute))
 
 const windowPlugins = Object.keys(VALID_WINDOW_ATTRIBUTES).map((attribute) => makeWindowPlugin(attribute))
 
 const plugins = [breakpointPlugin, ...screenPlugins, ...visualViewportPlugins, ...windowPlugins]
-
 
 const BreakpointDisplay = () => {
   const viewportInfo = useViewportInfo()
@@ -55,9 +53,12 @@ const ObjectDataDisplay = ({ target }) => {
   )
 }
 
+/**
+ *
+ */
 export default function Home () {
   return (
-    <main style={{paddingTop: '30vh', margin: '0 auto'}}>
+    <main style={{ paddingTop : '30vh', margin : '0 auto' }}>
       <ViewportContext getTheme={testTheme} plugins={plugins}>
         <BreakpointDisplay />
         <ObjectDataDisplay target="screen" />

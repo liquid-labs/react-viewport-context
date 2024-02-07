@@ -7,9 +7,9 @@ import PropTypes from 'prop-types'
 const ViewportReactContext = createContext()
 
 const INITIAL_STATE = {
-  screen: {},
-  visualViewport: {},
-  window: {}
+  screen         : {},
+  visualViewport : {},
+  window         : {}
 }
 
 const onEvent = ({ getTheme, plugins, viewInfo }) => {
@@ -48,19 +48,16 @@ const ViewportContext = ({ plugins = [], getTheme, pollInterval = 250, children 
       if (event === 'resize') {
         window.addEventListener('resize', listener)
         cleanups.push(() => window.removeEventListener('resize', listener))
-      }
-      else if (event === 'scroll') {
+      } else if (event === 'scroll') {
         window.addEventListener('scroll', listener)
         cleanups.push(() => window.removeEventListener('scroll', listener))
-      }
-      else if (event === 'deviceorientation') {
+      } else if (event === 'deviceorientation') {
         window.addEventListener('deviceorientation', listener)
         cleanups.push(() => window.removeEventListener('deviceorientation', listener))
-      }
-      else if (event === 'move') {
+      } else if (event === 'move') {
         const htmlNode = document.getElementsByTagName('html').item(0)
         let polling
-        
+
         const onLeave = (e) => { polling = setInterval(listener, pollInterval) }
         const onEnter = (e) => clearInterval(polling)
 
@@ -88,10 +85,10 @@ const ViewportContext = ({ plugins = [], getTheme, pollInterval = 250, children 
 
 if (process.env.NODE_ENV !== 'production') {
   ViewportContext.propTypes = {
-    children : PropTypes.node.isRequired,
-    plugins  : PropTypes.arrayOf(PropTypes.func),
+    children     : PropTypes.node.isRequired,
+    plugins      : PropTypes.arrayOf(PropTypes.func),
     pollInterval : PropTypes.number,
-    getTheme : PropTypes.func
+    getTheme     : PropTypes.func
   }
 }
 

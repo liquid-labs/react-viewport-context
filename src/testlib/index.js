@@ -90,7 +90,7 @@ const weirdTheme = {
 
 const ViewListener = ({ callback }) => {
   const viewInfo = useViewportInfo()
-  
+
   callback(viewInfo)
 
   return <div />

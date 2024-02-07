@@ -50,7 +50,7 @@ describe('ViewportContext', () => {
   })
   */
 
-  test("provides no info without any plugins", () => {
+  test('provides no info without any plugins', () => {
     window.innerWidth = 1200
     let viewInfo
     const callback = (info) => { viewInfo = info }
