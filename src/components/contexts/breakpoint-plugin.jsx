@@ -1,4 +1,3 @@
-/* globals window */
 /* eslint jsdoc/require-file-overview:0 */
 
 const doGetTheme = (getTheme) => {
@@ -18,10 +17,10 @@ const doGetTheme = (getTheme) => {
 /**
  * Plugin to track whether the <code>window.innerWidth</code> has changed or not.
  * @param {object} prevInfo - The info object last time the plugin was invoked.
- * @param {number} prevInfo.width - The <code>window.innerWidth</code> the last time the plugin was invoked.
+ * @param {number} prevInfo.breakpoint - The previous breakpoint setting.
  * @param {object} newInfo - The info object for this invocation..
- * @param {number} newInfo.width - The <code>window.innerWidth</code> for this invocation.
- * @param getTheme
+ * @param {number} newInfo.breakpoint - The new breakpoint setting.
+ * @param {Function} getTheme - A function to retrieve the current theme.
  * @returns {boolean} <code>true</code> if the width has changed and <code>false</code> otherwise.
  */
 const breakpointPlugin = (prevInfo, newInfo, getTheme) => {

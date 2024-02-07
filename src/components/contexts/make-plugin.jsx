@@ -1,3 +1,8 @@
+/**
+ * @file Defines functions to create plugins to add data to the <code>ViewportContext</code> results.
+ */
+import { breakpointPlugin } from './breakpoint-plugin' /* eslint-disable-line node/no-missing-import */
+
 const makePlugin = (obj, key, attribute, validAttributes) => {
   const pluginFunc = (prevInfo, newInfo) => {
     if (!(attribute in validAttributes)) {
@@ -68,7 +73,18 @@ const makeVisualViewportPlugin = (attribute) =>
   makePlugin(window.visualViewport, 'visualViewport', attribute, VALID_VISUAL_VIEWPORT_ATTRIBUTES)
 const makeWindowPlugin = (attribute) => makePlugin(window, 'window', attribute, VALID_WINDOW_ATTRIBUTES)
 
+const allScreenPlugins = () => Object.keys(VALID_SCREEN_ATTRIBUTES).map((attribute) => makeScreenPlugin(attribute))
+const allVisualViewportPlugins = () =>
+  Object.keys(VALID_VISUAL_VIEWPORT_ATTRIBUTES).map((attribute) => makeVisualViewportPlugin(attribute))
+const allWindowPlugins = () => Object.keys(VALID_WINDOW_ATTRIBUTES).map((attribute) => makeWindowPlugin(attribute))
+
+const allPlugins = () => [breakpointPlugin, ...allScreenPlugins(), ...allVisualViewportPlugins(), ...allWindowPlugins()]
+
 export {
+  allPlugins,
+  allScreenPlugins,
+  allVisualViewportPlugins,
+  allWindowPlugins,
   makeScreenPlugin,
   makeVisualViewportPlugin,
   makeWindowPlugin,

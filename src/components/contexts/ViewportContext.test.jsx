@@ -1,10 +1,8 @@
 /* global afterEach describe Event expect test */
 import React from 'react'
 
-import { ThemeProvider, useTheme } from '@mui/material/styles'
-
 import { ViewportContext } from './ViewportContext' /* eslint-disable-line node/no-missing-import */
-import { breakpointPlugin } from './breakpointPlugin'
+import { breakpointPlugin } from './breakpoint-plugin' /* eslint-disable-line node/no-missing-import */
 import { act, cleanup, render } from '@testing-library/react'
 import { ViewListener, defaultTheme } from '../../testlib'
 
@@ -23,7 +21,7 @@ const generateTestData = (theme) => {
 
 const defaultTestData = generateTestData(defaultTheme)
 
-const breakpointTestFor = (theme) => (breakpoint, boundary) => {
+const breakpointTestFor = () => (breakpoint, boundary) => {
   window.innerWidth = boundary
   let viewInfo
   const callback = (info) => { viewInfo = info }

@@ -2,16 +2,10 @@
  * @file Demo page
  */
 import React from 'react'
+import PropTypes from 'prop-types'
 
-import { breakpointPlugin } from '../components/contexts/breakpointPlugin'
-import {
-  makeScreenPlugin,
-  makeVisualViewportPlugin,
-  makeWindowPlugin,
-  VALID_SCREEN_ATTRIBUTES,
-  VALID_VISUAL_VIEWPORT_ATTRIBUTES,
-  VALID_WINDOW_ATTRIBUTES
-} from '../components/contexts/make-plugin'
+import { allPlugins } from '../components/contexts/make-plugin' /* eslint-disable-line node/no-missing-import */
+/* eslint-disable-next-line node/no-missing-import */
 import { ViewportContext } from '../components/contexts/ViewportContext'
 import { useViewportInfo } from '../components/hooks/useViewportInfo'
 
@@ -26,15 +20,6 @@ const testTheme = () => ({
     }
   }
 })
-
-const screenPlugins = Object.keys(VALID_SCREEN_ATTRIBUTES).map((attribute) => makeScreenPlugin(attribute))
-
-const visualViewportPlugins = Object.keys(VALID_VISUAL_VIEWPORT_ATTRIBUTES).map((attribute) =>
-  makeVisualViewportPlugin(attribute))
-
-const windowPlugins = Object.keys(VALID_WINDOW_ATTRIBUTES).map((attribute) => makeWindowPlugin(attribute))
-
-const plugins = [breakpointPlugin, ...screenPlugins, ...visualViewportPlugins, ...windowPlugins]
 
 const BreakpointDisplay = () => {
   const viewportInfo = useViewportInfo()
@@ -53,18 +38,21 @@ const ObjectDataDisplay = ({ target }) => {
   )
 }
 
-/**
- *
- */
-export default function Home () {
-  return (
-    <main style={{ paddingTop : '30vh', margin : '0 auto' }}>
-      <ViewportContext getTheme={testTheme} plugins={plugins}>
-        <BreakpointDisplay />
-        <ObjectDataDisplay target="screen" />
-        <ObjectDataDisplay target="visualViewport" />
-        <ObjectDataDisplay target="window" />
-      </ViewportContext>
-    </main>
-  )
+if (process.env.NODE_ENV !== 'production') {
+  ObjectDataDisplay.propTypes = {
+    target : PropTypes.string.isRequired
+  }
 }
+
+const AllDemo = () => (
+  <main style={{ paddingTop : '30vh', margin : '0 auto' }}>
+    <ViewportContext getTheme={testTheme} plugins={allPlugins()}>
+      <BreakpointDisplay />
+      <ObjectDataDisplay target="screen" />
+      <ObjectDataDisplay target="visualViewport" />
+      <ObjectDataDisplay target="window" />
+    </ViewportContext>
+  </main>
+)
+
+export default AllDemo
