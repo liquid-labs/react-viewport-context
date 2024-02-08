@@ -44,9 +44,9 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs : {
-          sidebarPath : false,
+          sidebarPath : './sidebar.js',
           editUrl :
-            'https://github.com/liquid-labs/liquid-labs.com/'
+            'https://github.com/liquid-labs/react-viewport-context/'
         },
         blog : {
           showReadingTime : true,
@@ -136,8 +136,13 @@ const config = {
                 to    : '/security-and-compliance'
               }
             ]
-          }
-
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'usageAndAPI',
+            position: 'left',
+            label: 'Usage & API',
+          },
         ]
       },
       footer : {

@@ -14,6 +14,8 @@
  * @param {number} relSpec.top - Top weighting.
  * @returns {object} An object with actual 'px' settings for <code>top</code>, <code>side</code>, and <code>
  *   bottom</code>.
+ * 
+ * @memberof react-viewport-context
  */
 const paddingSpec = (spacing, relSpec) => {
   return typeof spacing === 'number'

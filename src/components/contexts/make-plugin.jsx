@@ -3,6 +3,19 @@
  */
 import { breakpointPlugin } from './breakpoint-plugin' /* eslint-disable-line node/no-missing-import */
 
+/**
+ * Helper function used by the more specific {@link makeScreenPlugin}, {@link makeVisualViewportPlugin}, and
+ * {@link makeWindowPlugin}.
+ * 
+ * @param {object} obj - The data source object; either `screen`, `visualViewport', or `window`.
+ * @param {string} key - The key to access the sub-data object of the {@link ViewportContext} info object. This will 
+ *   match the `obj` (e.g., 'screen' for the `screen` object).
+ * @param {string} attribute - The attribute of the specified `obj` to extract.
+ * @prama {object} validAttributes - An object defining the valid attributes for the given `obj` type and the events 
+ *   associated with each attribute.
+ * @returns {function} A plugin func to retrieve the requested attributes.
+ * @private
+ */
 const makePlugin = (obj, key, attribute, validAttributes) => {
   const pluginFunc = (prevInfo, newInfo) => {
     if (!(attribute in validAttributes)) {
@@ -33,6 +46,11 @@ const makePlugin = (obj, key, attribute, validAttributes) => {
   return pluginFunc
 }
 
+/**
+ * Object defining the valid `screen` attributes and associated events that might cause a change in the value.
+ * 
+ * @memberof react-viewport-context
+ */
 const VALID_SCREEN_ATTRIBUTES = {
   angle       : { events : ['deviceorientation', 'move'] },
   availHeight : { events : ['deviceorientation', 'move'] },
@@ -44,6 +62,11 @@ const VALID_SCREEN_ATTRIBUTES = {
   width       : { events : ['deviceorientation', 'move'] }
 }
 
+/**
+ * Object defining the valid `visualViewport` attributes and associated events that might cause a change in the value.
+ * 
+ * @memberof react-viewport-context
+ */
 const VALID_VISUAL_VIEWPORT_ATTRIBUTES = {
   height     : { events : ['deviceorientation', 'resize'] },
   // TOOD: not totally sure about these next four; what events are necessary?
@@ -55,6 +78,11 @@ const VALID_VISUAL_VIEWPORT_ATTRIBUTES = {
   width      : { events : ['deviceorientation', 'resize'] }
 }
 
+/**
+ * Object defining the valid `window` attributes and associated events that might cause a change in the value.
+ * 
+ * @memberof react-viewport-context
+ */
 const VALID_WINDOW_ATTRIBUTES = {
   innerHeight : { events : ['deviceorientation', 'resize'] },
   innerWidth  : { events : ['deviceorientation', 'resize'] },

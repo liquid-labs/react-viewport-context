@@ -5,18 +5,8 @@ import React from 'react'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext' /* eslint-disable-line node/no-missing-import */
 import Layout from '@theme/Layout' /* eslint-disable-line node/no-missing-import */
 /* eslint-disable-next-line node/no-missing-import */
-import {
-  breakpointPlugin,
-  innerWidthPlugin,
-  innerHeightPlugin,
-  outerWidthPlugin,
-  outerHeightPlugin,
-  screenXPlugin,
-  screenYPlugin,
-  scrollXPlugin,
-  scrollYPlugin,
-  ViewportContext
-} from '../components/contexts'
+import { allPlugins } from '../components/contexts/make-plugin'
+import { ViewportContext } from '../components/contexts/ViewportContext'
 import { useViewportInfo } from '../components/hooks/useViewportInfo'
 
 const testTheme = () => ({
@@ -32,18 +22,6 @@ const testTheme = () => ({
   }
 })
 
-const plugins = [
-  breakpointPlugin,
-  innerHeightPlugin,
-  innerWidthPlugin,
-  outerHeightPlugin,
-  outerWidthPlugin,
-  screenXPlugin,
-  screenYPlugin,
-  scrollXPlugin,
-  scrollYPlugin
-]
-
 const ObjectDataDisplay = () => {
   const viewportInfo = useViewportInfo()
   return (
@@ -55,6 +33,8 @@ const ObjectDataDisplay = () => {
     </div>
   )
 }
+
+const plugins = allPlugins()
 
 export default function Home () {
   const { siteConfig } = useDocusaurusContext()

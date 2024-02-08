@@ -1,5 +1,9 @@
-/* eslint jsdoc/require-file-overview:0 */
-
+/**
+ * Retrieves the theme and verifies that it is structurally correct. See {@link breakpointPlugin} for the required 
+ * structure.
+ * 
+ * @private
+ */
 const doGetTheme = (getTheme) => {
   if (getTheme === undefined) {
     throw new Error("'getTheme' is required when 'breakpointPlugin' is present for 'ViewportContext'.")
@@ -14,22 +18,35 @@ const doGetTheme = (getTheme) => {
   return theme
 }
 
-/**
- * Plugin to track whether the <code>window.innerWidth</code> has changed or not.
+/** 
+ * Plugin to track whether the theme 'breakpoint' has changed or not. This method works in conjuction with a [Material 
+ *  UI](https://mui.com/material-ui/) theme or any theme that provides:
+ * ```javascript
+ * { 
+ *   breakpoints: {
+ *     values: {
+ *       key1: 0, // cuttoff in pixels above which the breakpoint is activated
+ *       key2: 100,
+ *     }
+ *   }
+ * }
+ * ```
+ * 
+ * The typical breakpoints are 'xs', 'sm', 'md', 'lg', 'xl', but in practice can be anything.
+ * 
  * @param {object} prevInfo - The info object last time the plugin was invoked.
- * @param {number} prevInfo.breakpoint - The previous breakpoint setting.
- * @param {object} newInfo - The info object for this invocation..
- * @param {number} newInfo.breakpoint - The new breakpoint setting.
+ * @param {object} newInfo - The info object, to be updated by the method, for this invocation.
  * @param {Function} getTheme - A function to retrieve the current theme.
  * @returns {boolean} <code>true</code> if the width has changed and <code>false</code> otherwise.
+ * 
+ * @member {plugin} breakpointPlugin
+ * @memberof react-viewport-context
  */
 const breakpointPlugin = (prevInfo, newInfo, getTheme) => {
   const viewWidth = window.innerWidth
   const { values } = doGetTheme(getTheme).breakpoints
   const newBreakpoint = Object.keys(values).reverse().find((breakpoint) =>
     viewWidth >= values[breakpoint])
-
-  console.log('innerWidth:', viewWidth, 'newBreakpoint:', newBreakpoint) // DEBUG
 
   if (newBreakpoint !== prevInfo.breakpoint) {
     newInfo.breakpoint = newBreakpoint
@@ -39,6 +56,7 @@ const breakpointPlugin = (prevInfo, newInfo, getTheme) => {
   return false
 }
 
+// add meta information used by ViewportContext to determine what events are necessary to watch.
 breakpointPlugin.target = null
 breakpointPlugin.attribute = 'breakpoint'
 breakpointPlugin.events = ['deviceorientation', 'resize']
