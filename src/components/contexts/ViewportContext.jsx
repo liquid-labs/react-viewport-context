@@ -22,7 +22,7 @@ const INITIAL_STATE = {
  * @param {function[]} obj.plugins - An array of plugin functions which determine what data is extracted (and what data 
  *   determines the update cycle).
  * 
- * @memberof react-viewport-context
+ * @member react-viewport-context
  */
 const ViewportContext = ({ getTheme, plugins = [], pollInterval = 250, children }) => {
   const [viewInfo, setViewInfo] = useState(INITIAL_STATE)
