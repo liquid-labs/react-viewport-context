@@ -43,7 +43,7 @@ Use the `ViewportContext` context provider to track and react to updates on `win
 - Components:
   - [`ViewportContext`](#ViewportContext): A context component that tracks information from the `window` and related  objects.
 - Functions:
-  - [`allPlugins()`](#allPlugins): Convenience method to track all data for `window`, 'screen`, and `visualViewport`.
+  - [`allPlugins()`](#allPlugins): Convenience method to track all data for `window`, `screen`, and `visualViewport`.
   - [`allScreenPlugins()`](#allScreenPlugins): Convenience method to create all `screen` related plugins.
   - [`allVisualViewportPlugins()`](#allVisualViewportPlugins): Convenience method to create all `visualViewport` related plugins.
   - [`allWindowPlugins()`](#allWindowPlugins): Convenience method to create all `screen` related plugins.

@@ -167,7 +167,7 @@ const allVisualViewportPlugins = () =>
 const allWindowPlugins = () => Object.keys(VALID_WINDOW_ATTRIBUTES).map((attribute) => makeWindowPlugin(attribute))
 
 /**
- * Convenience method to track all data for `window`, 'screen`, and `visualViewport`.
+ * Convenience method to track all data for `window`, `screen`, and `visualViewport`.
  * 
  * @returns {function[]} An array of {@link ViewportContext} plugins.
  * @see {@link allWindowPlugins} for an example.
