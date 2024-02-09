@@ -91,7 +91,10 @@ methods to generate plugins for specific data.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [attr.getTheme] | `function` |  | A function to retrieve the current theme. This is used by [module:react-viewport-context.breakpointPlugin](module:react-viewport-context.breakpointPlugin) and required if that (or another custom plugin utilizing the    theme) is used. || attr.plugins | `Array.<function()>` |  | An array of plugin functions which determine what data is extracted (and what    data determines the update cycle). || [attr.pollInterval] | `number` | `250` | The amount of time in ms to wait between polling for the window location    (see function description). || cont.children | `node` |  | The child elements passed in from the content of the component. |
+| [attr.getTheme] | `function` |  | A function to retrieve the current theme. This is used by [module:react-viewport-context.breakpointPlugin](module:react-viewport-context.breakpointPlugin) and required if that (or another custom plugin utilizing the    theme) is used. |
+| attr.plugins | `Array.<function()>` |  | An array of plugin functions which determine what data is extracted (and what    data determines the update cycle). |
+| [attr.pollInterval] | `number` | `250` | The amount of time in ms to wait between polling for the window location    (see function description). |
+| cont.children | `node` |  | The child elements passed in from the content of the component. |
 
 
 [**Source code**](./src/components/contexts/ViewportContext.jsx#L32)
@@ -162,7 +165,9 @@ example). Note, the typical breakpoints are 'xs', 'sm', 'md', 'lg', 'xl', but in
 
 | Param | Type | Description |
 | --- | --- | --- |
-| prevInfo | `object` | The info object last time the plugin was invoked. || newInfo | `object` | The info object, to be updated by the method, for this invocation. || getTheme | `function` | A function to retrieve the current theme. |
+| prevInfo | `object` | The info object last time the plugin was invoked. |
+| newInfo | `object` | The info object, to be updated by the method, for this invocation. |
+| getTheme | `function` | A function to retrieve the current theme. |
 
 **Returns**: `boolean` - `true` if the width has changed and `false` otherwise.
 
