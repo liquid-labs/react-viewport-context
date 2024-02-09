@@ -91,17 +91,17 @@ methods to generate plugins for specific data.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [attr.getTheme] | `function` |  | A function to retrieve the current theme. This is used by [module:react-viewport-context.breakpointPlugin](module:react-viewport-context.breakpointPlugin) and required if that (or another custom plugin utilizing the    theme) is used. || attr.plugins | `Array.&lt;function()&gt;` |  | An array of plugin functions which determine what data is extracted (and what    data determines the update cycle). || [attr.pollInterval] | `number` | `250` | The amount of time in ms to wait between polling for the window location    (see function description). || cont.children | `node` |  | The child elements passed in from the content of the component. |
+| [attr.getTheme] | `function` |  | A function to retrieve the current theme. This is used by [module:react-viewport-context.breakpointPlugin](module:react-viewport-context.breakpointPlugin) and required if that (or another custom plugin utilizing the    theme) is used. || attr.plugins | `Array.<function()>` |  | An array of plugin functions which determine what data is extracted (and what    data determines the update cycle). || [attr.pollInterval] | `number` | `250` | The amount of time in ms to wait between polling for the window location    (see function description). || cont.children | `node` |  | The child elements passed in from the content of the component. |
 
 
 [**Source code**](./src/components/contexts/ViewportContext.jsx#L32)
 
 <a id="allPlugins"></a>
-### `allPlugins()` ⇒ `Array.&lt;function()&gt;`
+### `allPlugins()` ⇒ `Array.<function()>`
 
 Convenience method to track all data for `window`, 'screen`, and `visualViewport`.
 
-**Returns**: `Array.&lt;function()&gt;` - An array of [ViewportContext](#ViewportContext) plugins.
+**Returns**: `Array.<function()>` - An array of [ViewportContext](#ViewportContext) plugins.
 
 
 **See**: [allWindowPlugins](#allWindowPlugins) for an example.  
@@ -109,11 +109,11 @@ Convenience method to track all data for `window`, 'screen`, and `visualViewport
 [**Source code**](./src/components/contexts/make-plugin.jsx#L175)
 
 <a id="allScreenPlugins"></a>
-### `allScreenPlugins()` ⇒ `Array.&lt;function()&gt;`
+### `allScreenPlugins()` ⇒ `Array.<function()>`
 
 Convenience method to create all `screen` related plugins.
 
-**Returns**: `Array.&lt;function()&gt;` - An array of [ViewportContext](#ViewportContext) plugins.
+**Returns**: `Array.<function()>` - An array of [ViewportContext](#ViewportContext) plugins.
 
 
 **See**: [allWindowPlugins](#allWindowPlugins) for an example.  
@@ -121,11 +121,11 @@ Convenience method to create all `screen` related plugins.
 [**Source code**](./src/components/contexts/make-plugin.jsx#L143)
 
 <a id="allVisualViewportPlugins"></a>
-### `allVisualViewportPlugins()` ⇒ `Array.&lt;function()&gt;`
+### `allVisualViewportPlugins()` ⇒ `Array.<function()>`
 
 Convenience method to create all `visualViewport` related plugins.
 
-**Returns**: `Array.&lt;function()&gt;` - An array of [ViewportContext](#ViewportContext) plugins.
+**Returns**: `Array.<function()>` - An array of [ViewportContext](#ViewportContext) plugins.
 
 
 **See**: [allWindowPlugins](#allWindowPlugins) for an example.  
@@ -133,11 +133,11 @@ Convenience method to create all `visualViewport` related plugins.
 [**Source code**](./src/components/contexts/make-plugin.jsx#L151)
 
 <a id="allWindowPlugins"></a>
-### `allWindowPlugins()` ⇒ `Array.&lt;function()&gt;`
+### `allWindowPlugins()` ⇒ `Array.<function()>`
 
 Convenience method to create all `screen` related plugins.
 
-**Returns**: `Array.&lt;function()&gt;` - An array of [ViewportContext](#ViewportContext) plugins.
+**Returns**: `Array.<function()>` - An array of [ViewportContext](#ViewportContext) plugins.
 
 **Example**  
 ```js
