@@ -99,7 +99,7 @@ methods to generate plugins for specific data.
 <a id="allPlugins"></a>
 ### `allPlugins()` ⇒ `Array.<function()>`
 
-Convenience method to track all data for `window`, 'screen`, and `visualViewport`.
+Convenience method to track all data for `window`, `screen`, and `visualViewport`.
 
 **Returns**: `Array.<function()>` - An array of [ViewportContext](#ViewportContext) plugins.
 
