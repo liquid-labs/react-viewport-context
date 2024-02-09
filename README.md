@@ -60,7 +60,7 @@ Object defining the valid `screen` attributes. Also defines associated events th
 of each attribute.
 
 
-[**Source code**](./src/components/contexts/make-plugin.jsx?L53)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L53)
 
 <a id="VALID_VISUAL_VIEWPORT_ATTRIBUTES"></a>
 ### `VALID_VISUAL_VIEWPORT_ATTRIBUTES`
@@ -69,7 +69,7 @@ Object defining the valid `visualViewport` attributes. Also defines associated e
 the value of each attribute.
 
 
-[**Source code**](./src/components/contexts/make-plugin.jsx?L68)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L68)
 
 <a id="VALID_WINDOW_ATTRIBUTES"></a>
 ### `VALID_WINDOW_ATTRIBUTES`
@@ -78,7 +78,7 @@ Object defining the valid `window` attributes. Also defines  associated events t
 value of each attribute.
 
 
-[**Source code**](./src/components/contexts/make-plugin.jsx?L83)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L83)
 
 <a id="ViewportContext"></a>
 ### `ViewportContext`
@@ -94,7 +94,7 @@ methods to generate plugins for specific data.
 | [attr.getTheme] | `function` |  | A function to retrieve the current theme. This is used by [module:react-viewport-context.breakpointPlugin](module:react-viewport-context.breakpointPlugin) and required if that (or another custom plugin utilizing the    theme) is used. || attr.plugins | `Array.&lt;function()&gt;` |  | An array of plugin functions which determine what data is extracted (and what    data determines the update cycle). || [attr.pollInterval] | `number` | `250` | The amount of time in ms to wait between polling for the window location    (see function description). || cont.children | `node` |  | The child elements passed in from the content of the component. |
 
 
-[**Source code**](./src/components/contexts/ViewportContext.jsx?L32)
+[**Source code**](./src/components/contexts/ViewportContext.jsx#L32)
 
 <a id="allPlugins"></a>
 ### `allPlugins()` ⇒ `Array.&lt;function()&gt;`
@@ -106,7 +106,7 @@ Convenience method to track all data for `window`, 'screen`, and `visualViewport
 
 **See**: [allWindowPlugins](#allWindowPlugins) for an example.  
 
-[**Source code**](./src/components/contexts/make-plugin.jsx?L175)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L175)
 
 <a id="allScreenPlugins"></a>
 ### `allScreenPlugins()` ⇒ `Array.&lt;function()&gt;`
@@ -118,7 +118,7 @@ Convenience method to create all `screen` related plugins.
 
 **See**: [allWindowPlugins](#allWindowPlugins) for an example.  
 
-[**Source code**](./src/components/contexts/make-plugin.jsx?L143)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L143)
 
 <a id="allVisualViewportPlugins"></a>
 ### `allVisualViewportPlugins()` ⇒ `Array.&lt;function()&gt;`
@@ -130,7 +130,7 @@ Convenience method to create all `visualViewport` related plugins.
 
 **See**: [allWindowPlugins](#allWindowPlugins) for an example.  
 
-[**Source code**](./src/components/contexts/make-plugin.jsx?L151)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L151)
 
 <a id="allWindowPlugins"></a>
 ### `allWindowPlugins()` ⇒ `Array.&lt;function()&gt;`
@@ -150,7 +150,7 @@ return (
 )
 ```
 
-[**Source code**](./src/components/contexts/make-plugin.jsx?L167)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L167)
 
 <a id="breakpointPlugin"></a>
 ### `breakpointPlugin(prevInfo, newInfo, getTheme)` ⇒ `boolean`
@@ -181,7 +181,7 @@ const newInfo = structuredClone(info)
 console.log(breakpointPlugin(info, newInfo, getTheme)) // prints: 'key2'
 ```
 
-[**Source code**](./src/components/contexts/breakpoint-plugin.jsx?L44)
+[**Source code**](./src/components/contexts/breakpoint-plugin.jsx#L44)
 
 <a id="makeScreenPlugin"></a>
 ### `makeScreenPlugin(attribute)` ⇒ `function`
@@ -202,7 +202,7 @@ Function to generate plugins to extract `screen` related data.
 - [VALID_SCREEN_ATTRIBUTES](#VALID_SCREEN_ATTRIBUTES) for valid attributes.
 - [makeWindowPlugin](#makeWindowPlugin) for an example.
 
-[**Source code**](./src/components/contexts/make-plugin.jsx?L105)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L105)
 
 <a id="makeVisualViewportPlugin"></a>
 ### `makeVisualViewportPlugin(attribute)` ⇒ `function`
@@ -223,7 +223,7 @@ Function to generate plugins to extract `visualViewport` related data.
 - [VALID_VISUAL_VIEWPORT_ATTRIBUTES](#VALID_VISUAL_VIEWPORT_ATTRIBUTES) for valid attributes.
 - [makeWindowPlugin](#makeWindowPlugin) for an example.
 
-[**Source code**](./src/components/contexts/make-plugin.jsx?L116)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L116)
 
 <a id="makeWindowPlugin"></a>
 ### `makeWindowPlugin(attribute)` ⇒ `function`
@@ -252,7 +252,7 @@ return (
 
 **See**: [VALID_WINDOW_ATTRIBUTES](#VALID_WINDOW_ATTRIBUTES) for valid attributes.  
 
-[**Source code**](./src/components/contexts/make-plugin.jsx?L135)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L135)
 
 <a id="useViewportInfo"></a>
 ### `useViewportInfo()` ⇒ `object`
@@ -264,5 +264,5 @@ tracked attributes are available on the corresponding property. E.g, the `window
 `window.innerHeight`, etc.`
 
 
-[**Source code**](./src/components/hooks/useViewportInfo.js?L14)
+[**Source code**](./src/components/hooks/useViewportInfo.js#L14)
 
