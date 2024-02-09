@@ -1,6 +1,6 @@
 /**
- * Retrieves the theme and verifies that it is structurally correct. See {@link breakpointPlugin} for the required 
- * structure.
+ * Retrieves the theme and verifies that it is structurally correct. See {@link 
+ * module:react-viewport-context.breakpointPlugin} for the required structure.
  * 
  * @private
  */
@@ -19,28 +19,27 @@ const doGetTheme = (getTheme) => {
 }
 
 /** 
- * Plugin to track whether the theme 'breakpoint' has changed or not. This method works in conjuction with a [Material 
- *  UI](https://mui.com/material-ui/) theme or any theme that provides:
- * ```javascript
- * { 
+ * Plugin to track whether the current theme 'breakpoint' and whether it has changed or not. This method works with 
+ * with [Material UI](https://mui.com/material-ui/) themes or any theme that provide a `breakpoint` definition (see 
+ * example). Note, the typical breakpoints are 'xs', 'sm', 'md', 'lg', 'xl', but in practice can be anything.
+ * 
+ * @example
+ * const getTheme = () => ({ 
  *   breakpoints: {
  *     values: {
  *       key1: 0, // cuttoff in pixels above which the breakpoint is activated
  *       key2: 100,
  *     }
  *   }
- * }
- * ```
- * 
- * The typical breakpoints are 'xs', 'sm', 'md', 'lg', 'xl', but in practice can be anything.
+ * })
+ * const info = { windew: { innerWidth: 100 }}
+ * const newInfo = structuredClone(info)
+ * console.log(breakpointPlugin(info, newInfo, getTheme)) // prints: 'key2'
  * 
  * @param {object} prevInfo - The info object last time the plugin was invoked.
  * @param {object} newInfo - The info object, to be updated by the method, for this invocation.
- * @param {Function} getTheme - A function to retrieve the current theme.
- * @returns {boolean} <code>true</code> if the width has changed and <code>false</code> otherwise.
- * 
- * @member {plugin} breakpointPlugin
- * @memberof react-viewport-context
+ * @param {function} getTheme - A function to retrieve the current theme.
+ * @returns {boolean} `true` if the width has changed and `false` otherwise.
  */
 const breakpointPlugin = (prevInfo, newInfo, getTheme) => {
   const viewWidth = window.innerWidth

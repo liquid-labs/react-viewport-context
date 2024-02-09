@@ -4,16 +4,15 @@
  */
 
 /**
- * Determines the actual pixel paddings given <code>spacing</code> and <code>relSpec</code>.
- * @param {string | Function} spacing - Either a number to be multiplied by each <code>resSpec</code> weighting or a
- *   function which does the same thing
- * @param {object} relSpec - An object representing the relative space (determined by <code>spacing</code>) to apply to
- *   the top, side, and bottom.
+ * Determines the actual pixel paddings given `spacing`` and `relSpec`.
+ * @param {string | Function} spacing - Either a number to be multiplied by each `resSpec`` weighting or afunction 
+ *   which does the same thing
+ * @param {object} relSpec - An object representing the relative space (determined by `spacing``) to apply to the top, 
+ *   side, and bottom.
  * @param {number} relSpec.bottom - Bottom weighting.
  * @param {number} relSpec.side - Side weighting.
  * @param {number} relSpec.top - Top weighting.
- * @returns {object} An object with actual 'px' settings for <code>top</code>, <code>side</code>, and <code>
- *   bottom</code>.
+ * @returns {object} An object with actual 'px' settings for `top`, `side`, and `bottom`.
  * 
  * @memberof react-viewport-context
  */

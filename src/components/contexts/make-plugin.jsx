@@ -1,5 +1,5 @@
 /**
- * @file Defines functions to create plugins to add data to the <code>ViewportContext</code> results.
+ * @file Defines functions to create plugins to add data to the `ViewportContext` results.
  */
 import { breakpointPlugin } from './breakpoint-plugin' /* eslint-disable-line node/no-missing-import */
 
@@ -48,8 +48,6 @@ const makePlugin = (obj, key, attribute, validAttributes) => {
 
 /**
  * Object defining the valid `screen` attributes and associated events that might cause a change in the value.
- * 
- * @memberof react-viewport-context
  */
 const VALID_SCREEN_ATTRIBUTES = {
   angle       : { events : ['deviceorientation', 'move'] },
@@ -64,8 +62,6 @@ const VALID_SCREEN_ATTRIBUTES = {
 
 /**
  * Object defining the valid `visualViewport` attributes and associated events that might cause a change in the value.
- * 
- * @memberof react-viewport-context
  */
 const VALID_VISUAL_VIEWPORT_ATTRIBUTES = {
   height     : { events : ['deviceorientation', 'resize'] },
@@ -80,8 +76,6 @@ const VALID_VISUAL_VIEWPORT_ATTRIBUTES = {
 
 /**
  * Object defining the valid `window` attributes and associated events that might cause a change in the value.
- * 
- * @memberof react-viewport-context
  */
 const VALID_WINDOW_ATTRIBUTES = {
   innerHeight : { events : ['deviceorientation', 'resize'] },
@@ -96,6 +90,11 @@ const VALID_WINDOW_ATTRIBUTES = {
   scrollY     : { events : ['deviceorientation', 'move', 'resize', 'scroll'] }
 }
 
+/**
+ * Function to generate plugins to extract and pass along `screen` related data.
+ * 
+ * @param {string} attribute - The `screen` attribute to track.
+ */
 const makeScreenPlugin = (attribute) => makePlugin(window.screen, 'screen', attribute, VALID_SCREEN_ATTRIBUTES)
 const makeVisualViewportPlugin = (attribute) =>
   makePlugin(window.visualViewport, 'visualViewport', attribute, VALID_VISUAL_VIEWPORT_ATTRIBUTES)

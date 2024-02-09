@@ -1,5 +1,4 @@
 /**
- * @file Defines [<code>ViewportContext</code>]{@link #ViewportContext}.
  * @author Zane Rocknebaugh <zane@liquid-labs.com>
  */
 import React, { createContext, useEffect, useState } from 'react'
@@ -14,15 +13,21 @@ const INITIAL_STATE = {
 }
 
 /**
+ * A context component that tracks information from the `window` and related  objects.
  * 
- * A context component that, depending on the supplied plugins, tracks information from the `window` and related 
- * objects.
+ * The exact information tracked is determanide by the plugins passed to the component. You can use the {@link 
+ * breakpointPlugin} directly or use {@link makeScreenPlugin} or one of the related  `makePluginX` or group plugin 
+ * methods to generate plugins for specific data.
  * 
- * @param {function} obj.getTheme - A function to retrieve the current theme. This is used by {@link breakpointPlugin}.
- * @param {function[]} obj.plugins - An array of plugin functions which determine what data is extracted (and what data 
- *   determines the update cycle).
- * 
- * @member react-viewport-context
+ * @param {function} [attr.getTheme] - A function to retrieve the current theme. This is used by {@link 
+ *   module:react-viewport-context.breakpointPlugin} and required if that (or another custom plugin utilizing the 
+ *   theme) is used.
+ * @param {function[]} attr.plugins - An array of plugin functions which determine what data is extracted (and what 
+ *   data determines the update cycle).
+ * @param {number} [attr.pollInterval = 250] - The amount of time in ms to wait between polling for the window location 
+ *   (see function description).
+ * @param {node} cont.children - The child elements passed in from the content of the component.
+ * @kind component
  */
 const ViewportContext = ({ getTheme, plugins = [], pollInterval = 250, children }) => {
   const [viewInfo, setViewInfo] = useState(INITIAL_STATE)
@@ -86,7 +91,7 @@ const ViewportContext = ({ getTheme, plugins = [], pollInterval = 250, children 
 
 ViewportContext.propTypes = {
   children     : PropTypes.node.isRequired,
-  plugins      : PropTypes.arrayOf(PropTypes.func),
+  plugins      : PropTypes.arrayOf(PropTypes.func).isRequired,
   pollInterval : PropTypes.number,
   getTheme     : PropTypes.func
 }
