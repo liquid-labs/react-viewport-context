@@ -88,6 +88,10 @@ A context component that tracks information from the `window` and related  objec
 The exact information tracked is determanide by the plugins passed to the component. You can use the [breakpointPlugin](#breakpointPlugin) directly or use [makeScreenPlugin](#makeScreenPlugin) or one of the related  `makePluginX` or group plugin 
 methods to generate plugins for specific data.
 
+The `pollInterval` is used when tracking `window.screenX`/`screenY` (or there aliases, `screenLeft` and 
+`screenTop`). Because there is no event that tells us when the browser window (as a whole) is dragged around, we 
+have to check it's position periodically.
+
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -97,7 +101,7 @@ methods to generate plugins for specific data.
 | cont.children | `node` |  | The child elements passed in from the content of the component. |
 
 
-[**Source code**](./src/components/contexts/ViewportContext.jsx#L32)
+[**Source code**](./src/components/contexts/ViewportContext.jsx#L36)
 
 <a id="allPlugins"></a>
 ### `allPlugins()` ⇒ `Array.<function()>`

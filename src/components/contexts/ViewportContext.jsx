@@ -19,6 +19,10 @@ const INITIAL_STATE = {
  * breakpointPlugin} directly or use {@link makeScreenPlugin} or one of the related  `makePluginX` or group plugin 
  * methods to generate plugins for specific data.
  * 
+ * The `pollInterval` is used when tracking `window.screenX`/`screenY` (or there aliases, `screenLeft` and 
+ * `screenTop`). Because there is no event that tells us when the browser window (as a whole) is dragged around, we 
+ * have to check it's position periodically. 
+ * 
  * @param {function} [attr.getTheme] - A function to retrieve the current theme. This is used by {@link 
  *   module:react-viewport-context.breakpointPlugin} and required if that (or another custom plugin utilizing the 
  *   theme) is used.
