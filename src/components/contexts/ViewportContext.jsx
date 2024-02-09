@@ -14,21 +14,20 @@ const INITIAL_STATE = {
 
 /**
  * A context component that tracks information from the `window` and related  objects.
- * 
- * The exact information tracked is determanide by the plugins passed to the component. You can use the {@link 
- * breakpointPlugin} directly or use {@link makeScreenPlugin} or one of the related  `makePluginX` or group plugin 
+ *
+ * The exact information tracked is determanide by the plugins passed to the component. You can use the {@link
+ * breakpointPlugin} directly or use {@link makeScreenPlugin} or one of the related  `makePluginX` or group plugin
  * methods to generate plugins for specific data.
- * 
- * The `pollInterval` is used when tracking `window.screenX`/`screenY` (or their aliases, `screenLeft` and 
- * `screenTop`). Because there is no event that tells us when the browser window (as a whole) is dragged around, we 
- * have to check it's position periodically. 
- * 
- * @param {function} [attr.getTheme] - A function to retrieve the current theme. This is used by {@link 
- *   module:react-viewport-context.breakpointPlugin} and required if that (or another custom plugin utilizing the 
+ *
+ * The `pollInterval` is used when tracking `window.screenX`/`screenY` (or their aliases, `screenLeft` and
+ * `screenTop`). Because there is no event that tells us when the browser window (as a whole) is dragged around, we
+ * have to check it's position periodically.
+ * @param {Function} [attr.getTheme] - A function to retrieve the current theme. This is used by {@link
+ *   module:react-viewport-context.breakpointPlugin} and required if that (or another custom plugin utilizing the
  *   theme) is used.
- * @param {function[]} attr.plugins - An array of plugin functions which determine what data is extracted (and what 
+ * @param {Function[]} attr.plugins - An array of plugin functions which determine what data is extracted (and what
  *   data determines the update cycle).
- * @param {number} [attr.pollInterval = 250] - The amount of time in ms to wait between polling for the window location 
+ * @param {number} [attr.pollInterval] - The amount of time in ms to wait between polling for the window location
  *   (see function description).
  * @param {node} cont.children - The child elements passed in from the content of the component.
  * @kind component
@@ -102,7 +101,10 @@ ViewportContext.propTypes = {
 
 /**
  * Helper function which processes the `plugins` and returns whether updates where made and the new context info object.
- * 
+ * @param root0
+ * @param root0.getTheme
+ * @param root0.plugins
+ * @param root0.viewInfo
  * @private
  */
 const onEvent = ({ getTheme, plugins, viewInfo }) => {

@@ -1,6 +1,0 @@
-{
-  "outDir": "./docs/api",
-  "sidebar": "./docs",
-  "jsdoc": "./jsdoc.config.js",
-  "bulma": false
-}

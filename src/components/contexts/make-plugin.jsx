@@ -6,14 +6,14 @@ import { breakpointPlugin } from './breakpoint-plugin' /* eslint-disable-line no
 /**
  * Helper function used by the more specific {@link makeScreenPlugin}, {@link makeVisualViewportPlugin}, and
  * {@link makeWindowPlugin}.
- * 
  * @param {object} obj - The data source object; either `screen`, `visualViewport', or `window`.
- * @param {string} key - The key to access the sub-data object of the {@link ViewportContext} info object. This will 
+ * @param {string} key - The key to access the sub-data object of the {@link ViewportContext} info object. This will
  *   match the `obj` (e.g., 'screen' for the `screen` object).
  * @param {string} attribute - The attribute of the specified `obj` to extract.
- * @prama {object} validAttributes - An object defining the valid attributes for the given `obj` type and the events 
+ * @param validAttributes
+ * @prama {object} validAttributes - An object defining the valid attributes for the given `obj` type and the events
  *   associated with each attribute.
- * @returns {function} A plugin func to retrieve the requested attributes.
+ * @returns {Function} A plugin func to retrieve the requested attributes.
  * @private
  */
 const makePlugin = (obj, key, attribute, validAttributes) => {
@@ -47,8 +47,8 @@ const makePlugin = (obj, key, attribute, validAttributes) => {
 }
 
 /**
- * Object defining the valid `screen` attributes. Also defines associated events that might cause a change in the value 
- * of each attribute.
+ * Object defining the valid `screen` attributes. Also defines associated events that might cause a change in the value
+ * of each attribute. Refer to source code for list of supported attributes.
  */
 const VALID_SCREEN_ATTRIBUTES = {
   angle       : { events : ['deviceorientation', 'move'] },
@@ -62,8 +62,8 @@ const VALID_SCREEN_ATTRIBUTES = {
 }
 
 /**
- * Object defining the valid `visualViewport` attributes. Also defines associated events that might cause a change in 
- * the value of each attribute.
+ * Object defining the valid `visualViewport` attributes. Also defines associated events that might cause a change in
+ * the value of each attribute. Refer to source code for list of supported attributes.
  */
 const VALID_VISUAL_VIEWPORT_ATTRIBUTES = {
   height     : { events : ['deviceorientation', 'resize'] },
@@ -77,8 +77,8 @@ const VALID_VISUAL_VIEWPORT_ATTRIBUTES = {
 }
 
 /**
- * Object defining the valid `window` attributes. Also defines  associated events that might cause a change in the 
- * value of each attribute.
+ * Object defining the valid `window` attributes. Also defines  associated events that might cause a change in the
+ * value of each attribute. Refer to source code for list of supported attributes.
  */
 const VALID_WINDOW_ATTRIBUTES = {
   innerHeight : { events : ['deviceorientation', 'resize'] },
@@ -95,9 +95,8 @@ const VALID_WINDOW_ATTRIBUTES = {
 
 /**
  * Function to generate plugins to extract `screen` related data.
- * 
  * @param {string} attribute - The `screen` attribute to track.
- * @returns {function} A {@link ViewportContext} plugin.
+ * @returns {Function} A {@link ViewportContext} plugin.
  * @throws Raises an error if attribute is invalid.
  * @see {@link VALID_SCREEN_ATTRIBUTES} for valid attributes.
  * @see {@link makeWindowPlugin} for an example.
@@ -106,9 +105,8 @@ const makeScreenPlugin = (attribute) => makePlugin(window.screen, 'screen', attr
 
 /**
  * Function to generate plugins to extract `visualViewport` related data.
- * 
  * @param {string} attribute - The `visualViewport` attribute to track.
- * @returns {function} A {@link ViewportContext} plugin.
+ * @returns {Function} A {@link ViewportContext} plugin.
  * @throws Raises an error if attribute is invalid.
  * @see {@link VALID_VISUAL_VIEWPORT_ATTRIBUTES} for valid attributes.
  * @see {@link makeWindowPlugin} for an example.
@@ -118,14 +116,13 @@ const makeVisualViewportPlugin = (attribute) =>
 
 /**
  * Function to generate plugins to extract `window` related data.
- * 
  * @param {string} attribute - The `window` attribute to track.
- * @returns {function} A {@link ViewportContext} plugin.
+ * @returns {Function} A {@link ViewportContext} plugin.
  * @throws Raises an error if attribute is invalid.
  * @see {@link VALID_WINDOW_ATTRIBUTES} for valid attributes.
  * @example
  * const innerHeightPlugin = makeWindowPlugin('innerHeight')
- * 
+ *
  * return (
  *   <ViewportContext plugins={[innerHeightPlugin]}>
  *     <DisplayInnerHeight />
@@ -136,16 +133,14 @@ const makeWindowPlugin = (attribute) => makePlugin(window, 'window', attribute, 
 
 /**
  * Convenience method to create all `screen` related plugins.
- * 
- * @returns {function[]} An array of {@link ViewportContext} plugins.
+ * @returns {Function[]} An array of {@link ViewportContext} plugins.
  * @see {@link allWindowPlugins} for an example.
  */
 const allScreenPlugins = () => Object.keys(VALID_SCREEN_ATTRIBUTES).map((attribute) => makeScreenPlugin(attribute))
 
 /**
  * Convenience method to create all `visualViewport` related plugins.
- * 
- * @returns {function[]} An array of {@link ViewportContext} plugins.
+ * @returns {Function[]} An array of {@link ViewportContext} plugins.
  * @see {@link allWindowPlugins} for an example.
  */
 const allVisualViewportPlugins = () =>
@@ -153,11 +148,10 @@ const allVisualViewportPlugins = () =>
 
 /**
  * Convenience method to create all `screen` related plugins.
- *
- * @returns {function[]} An array of {@link ViewportContext} plugins.
+ * @returns {Function[]} An array of {@link ViewportContext} plugins.
  * @example
  * const allWindowPlugins = allWindowPlugins()
- * 
+ *
  * return (
  *   <ViewportContext plugins={allWindowPlugins}>
  *     <DisplayAllWindowData />
@@ -168,8 +162,7 @@ const allWindowPlugins = () => Object.keys(VALID_WINDOW_ATTRIBUTES).map((attribu
 
 /**
  * Convenience method to track all data for `window`, `screen`, and `visualViewport`.
- * 
- * @returns {function[]} An array of {@link ViewportContext} plugins.
+ * @returns {Function[]} An array of {@link ViewportContext} plugins.
  * @see {@link allWindowPlugins} for an example.
  */
 const allPlugins = () => [breakpointPlugin, ...allScreenPlugins(), ...allVisualViewportPlugins(), ...allWindowPlugins()]
