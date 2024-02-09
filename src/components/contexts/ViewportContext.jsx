@@ -19,7 +19,7 @@ const INITIAL_STATE = {
  * breakpointPlugin} directly or use {@link makeScreenPlugin} or one of the related  `makePluginX` or group plugin 
  * methods to generate plugins for specific data.
  * 
- * The `pollInterval` is used when tracking `window.screenX`/`screenY` (or there aliases, `screenLeft` and 
+ * The `pollInterval` is used when tracking `window.screenX`/`screenY` (or their aliases, `screenLeft` and 
  * `screenTop`). Because there is no event that tells us when the browser window (as a whole) is dragged around, we 
  * have to check it's position periodically. 
  * 
