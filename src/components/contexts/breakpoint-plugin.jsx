@@ -1,7 +1,8 @@
 /**
  * Retrieves the theme and verifies that it is structurally correct. See {@link
  * module:react-viewport-context.breakpointPlugin} for the required structure.
- * @param getTheme
+ * @param {Function} getTheme - The function to retrieve the theme.
+ * @returns {object} The verified theme.
  * @private
  */
 const doGetTheme = (getTheme) => {

@@ -35,7 +35,7 @@
   "homepage": "https://github.com/Liquid-Labs/react-viewport-context#readme",
   "devDependencies": {
     "@liquid-labs/sdlc-resource-babel-and-rollup": "^1.0.0-alpha.7",
-    "@liquid-labs/sdlc-resource-eslint": "^1.0.0-alpha.7",
+    "@liquid-labs/sdlc-resource-eslint": "file:.yalc/@liquid-labs/sdlc-resource-eslint",
     "@liquid-labs/sdlc-resource-jest": "file:.yalc/@liquid-labs/sdlc-resource-jest",
     "@testing-library/react": "^14.2.1",
     "dmd-readable": "^1.2.4",

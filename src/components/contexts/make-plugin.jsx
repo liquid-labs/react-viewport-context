@@ -1,6 +1,4 @@
-/**
- * @file Defines functions to create plugins to add data to the `ViewportContext` results.
- */
+/* global ViewportContext */
 import { breakpointPlugin } from './breakpoint-plugin' /* eslint-disable-line node/no-missing-import */
 
 /**
@@ -10,8 +8,7 @@ import { breakpointPlugin } from './breakpoint-plugin' /* eslint-disable-line no
  * @param {string} key - The key to access the sub-data object of the {@link ViewportContext} info object. This will
  *   match the `obj` (e.g., 'screen' for the `screen` object).
  * @param {string} attribute - The attribute of the specified `obj` to extract.
- * @param validAttributes
- * @prama {object} validAttributes - An object defining the valid attributes for the given `obj` type and the events
+ * @param {object} validAttributes - An object defining the valid attributes for the given `obj` type and the events
  *   associated with each attribute.
  * @returns {Function} A plugin func to retrieve the requested attributes.
  * @private

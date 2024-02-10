@@ -1,3 +1,4 @@
+/* global breakpointPlugin makeScreenPlugin */
 /**
  * @author Zane Rocknebaugh <zane@liquid-labs.com>
  */
@@ -22,6 +23,7 @@ const INITIAL_STATE = {
  * The `pollInterval` is used when tracking `window.screenX`/`screenY` (or their aliases, `screenLeft` and
  * `screenTop`). Because there is no event that tells us when the browser window (as a whole) is dragged around, we
  * have to check it's position periodically.
+ * @param {object} attr - The atributes + children hash object.
  * @param {Function} [attr.getTheme] - A function to retrieve the current theme. This is used by {@link
  *   module:react-viewport-context.breakpointPlugin} and required if that (or another custom plugin utilizing the
  *   theme) is used.
@@ -29,8 +31,8 @@ const INITIAL_STATE = {
  *   data determines the update cycle).
  * @param {number} [attr.pollInterval] - The amount of time in ms to wait between polling for the window location
  *   (see function description).
- * @param {node} cont.children - The child elements passed in from the content of the component.
- * @kind component
+ * @param {object} attr.children - The child elements passed in from the content of the component.
+ * @returns {object} The rendered component.
  */
 const ViewportContext = ({ getTheme, plugins = [], pollInterval = 250, children }) => {
   const [viewInfo, setViewInfo] = useState(INITIAL_STATE)
@@ -101,10 +103,12 @@ ViewportContext.propTypes = {
 
 /**
  * Helper function which processes the `plugins` and returns whether updates where made and the new context info object.
- * @param root0
- * @param root0.getTheme
- * @param root0.plugins
- * @param root0.viewInfo
+ * @param {object} args - The arguments inpush object.
+ * @param {Function} args.getTheme - The method to retrieve the current theme.
+ * @param {Function[]} args.plugins - The plugins to activate.
+ * @param {object} args.viewInfo - The current data/state tracker.
+ * @returns {Array} Returns a `boolean` update indicator in position one and the new info/data state object in position
+ *  1.
  * @private
  */
 const onEvent = ({ getTheme, plugins, viewInfo }) => {
