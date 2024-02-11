@@ -17,8 +17,7 @@
     "lint-fix": "make lint-fix",
     "prepack": "make build",
     "preversion": "make qa",
-    "qa": "make qa",
-    "start": "docusaurus start"
+    "qa": "make qa"
   },
   "repository": {
     "type": "git",
