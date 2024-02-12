@@ -1,7 +1,7 @@
 import React from 'react' /* eslint-disable-line no-unused-vars */
 import PropTypes from 'prop-types'
 
-import { useViewportInfo } from '../components/hooks/useViewportInfo'
+import { useWindowInfo } from '../components/hooks/use-window-info'
 
 // following Material UI default theme 3.9.3
 const defaultTheme = {
@@ -89,7 +89,7 @@ const weirdTheme = {
 }
 
 const ViewListener = ({ callback }) => {
-  const viewInfo = useViewportInfo()
+  const viewInfo = useWindowInfo()
 
   callback(viewInfo)
 

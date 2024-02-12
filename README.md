@@ -1,24 +1,24 @@
-# react-view-context
+# react-window-context
 
 A React provider to track and update on changes to the window, screen, and/or visual viewport.
 
 ## Install
 
-    npm i @liquid-labs/react-view-context
+    npm i react-window-context
 
 ## Usage
 
-Use the `ViewportContext` context provider to track and react to updates on `window`, `screen`, and `visualViewport` objects. Exactly what is tracked is controlled by the plugins loaded, refere to the [API reference](#api-reference) for [`makeWindowPlugin()`](#makeWindowPlugin) and friends. All the non-component functions except [`useViewportInfo`](#useViewportInfo) are used to create plugins or plugin sets.
+Use the `WindowContext` context provider to track and react to updates on `window`, `screen`, and `visualViewport` objects. Exactly what is tracked is controlled by the plugins loaded see the [API reference](#api-reference) for [`makeWindowPlugin()`](#makeWindowPlugin) and friends. All the non-component functions except [`useWindowInfo`](#useWindowInfo) are used to create plugins or a set of plugins.
 
     import React from 'react'
 
-    import { allWindowPlugins, useViewportInfo, ViewportContext } from '@liquid-labs/react-viewport-context'
+    import { allWindowPlugins, useWindowInfo, WindowContext } from 'react-window-context'
 
     // This will track all attributes of the 'window' object (innerWidth, innerHeight, outerWidth, etc.)
     const plugins = allWindowPlugins()
 
     const WindowInfo = () => {
-      const windowInfo = useViewportInfo()
+      const windowInfo = useWindowInfo()
 
       return (
         <div style={style}>
@@ -28,9 +28,9 @@ Use the `ViewportContext` context provider to track and react to updates on `win
     }
 
     return (
-      <ViewportContext plugins={plugins}>
+      <WindowContext plugins={plugins}>
         <WindowInfo />
-      </ViewportContext>
+      </WindowContext>
     )
 
 ##  API Reference
@@ -48,8 +48,8 @@ Use the `ViewportContext` context provider to track and react to updates on `win
   - [`makeScreenPlugin()`](#makeScreenPlugin): Function to generate plugins to extract `screen` related data.
   - [`makeVisualViewportPlugin()`](#makeVisualViewportPlugin): Function to generate plugins to extract `visualViewport` related data.
   - [`makeWindowPlugin()`](#makeWindowPlugin): Function to generate plugins to extract `window` related data.
-  - [`useViewportInfo()`](#useViewportInfo): Retrivees the tracked `window`/`screen`/`visualViewport` data.
-  - [`ViewportContext()`](#ViewportContext): A context component that tracks information from the `window` and related  objects.
+  - [`useWindowInfo()`](#useWindowInfo): Retrivees the tracked `window`/`screen`/`visualViewport` data.
+  - [`WindowContext()`](#WindowContext): A context component that tracks information from the `window` and related  objects.
 
 <a id="VALID_SCREEN_ATTRIBUTES"></a>
 ### `VALID_SCREEN_ATTRIBUTES`
@@ -83,7 +83,7 @@ value of each attribute. Refer to source code for list of supported attributes.
 
 Convenience method to track all data for `window`, `screen`, and `visualViewport`.
 
-**Returns**: `Array.<function()>` - An array of [ViewportContext](#ViewportContext) plugins.
+**Returns**: `Array.<function()>` - An array of [WindowContext](#WindowContext) plugins.
 
 
 **See**: [allWindowPlugins](#allWindowPlugins) for an example.  
@@ -95,7 +95,7 @@ Convenience method to track all data for `window`, `screen`, and `visualViewport
 
 Convenience method to create all `screen` related plugins.
 
-**Returns**: `Array.<function()>` - An array of [ViewportContext](#ViewportContext) plugins.
+**Returns**: `Array.<function()>` - An array of [WindowContext](#WindowContext) plugins.
 
 
 **See**: [allWindowPlugins](#allWindowPlugins) for an example.  
@@ -107,7 +107,7 @@ Convenience method to create all `screen` related plugins.
 
 Convenience method to create all `visualViewport` related plugins.
 
-**Returns**: `Array.<function()>` - An array of [ViewportContext](#ViewportContext) plugins.
+**Returns**: `Array.<function()>` - An array of [WindowContext](#WindowContext) plugins.
 
 
 **See**: [allWindowPlugins](#allWindowPlugins) for an example.  
@@ -119,16 +119,16 @@ Convenience method to create all `visualViewport` related plugins.
 
 Convenience method to create all `screen` related plugins.
 
-**Returns**: `Array.<function()>` - An array of [ViewportContext](#ViewportContext) plugins.
+**Returns**: `Array.<function()>` - An array of [WindowContext](#WindowContext) plugins.
 
 **Example**  
 ```js
 const allWindowPlugins = allWindowPlugins()
 
 return (
-  <ViewportContext plugins={allWindowPlugins}>
+  <WindowContext plugins={allWindowPlugins}>
     <DisplayAllWindowData />
-  </ViewportContext>
+  </WindowContext>
 )
 ```
 
@@ -177,7 +177,7 @@ Function to generate plugins to extract `screen` related data.
 | --- | --- | --- |
 | attribute | `string` | The `screen` attribute to track. |
 
-**Returns**: `function` - A [ViewportContext](#ViewportContext) plugin.
+**Returns**: `function` - A [WindowContext](#WindowContext) plugin.
 
 **Throws**: Function to generate plugins to extract `screen` related data.
 
@@ -198,7 +198,7 @@ Function to generate plugins to extract `visualViewport` related data.
 | --- | --- | --- |
 | attribute | `string` | The `visualViewport` attribute to track. |
 
-**Returns**: `function` - A [ViewportContext](#ViewportContext) plugin.
+**Returns**: `function` - A [WindowContext](#WindowContext) plugin.
 
 **Throws**: Function to generate plugins to extract `visualViewport` related data.
 
@@ -219,7 +219,7 @@ Function to generate plugins to extract `window` related data.
 | --- | --- | --- |
 | attribute | `string` | The `window` attribute to track. |
 
-**Returns**: `function` - A [ViewportContext](#ViewportContext) plugin.
+**Returns**: `function` - A [WindowContext](#WindowContext) plugin.
 
 **Throws**: Function to generate plugins to extract `window` related data.
 
@@ -228,9 +228,9 @@ Function to generate plugins to extract `window` related data.
 const innerHeightPlugin = makeWindowPlugin('innerHeight')
 
 return (
-  <ViewportContext plugins={[innerHeightPlugin]}>
+  <WindowContext plugins={[innerHeightPlugin]}>
     <DisplayInnerHeight />
-  </ViewportContext>
+  </WindowContext>
 )
 ```
 
@@ -238,8 +238,8 @@ return (
 
 [**Source code**](./src/components/contexts/make-plugin.jsx#L129)
 
-<a id="useViewportInfo"></a>
-### `useViewportInfo()` ⇒ `object`
+<a id="useWindowInfo"></a>
+### `useWindowInfo()` ⇒ `object`
 
 Retrivees the tracked `window`/`screen`/`visualViewport` data.
 
@@ -248,10 +248,10 @@ tracked attributes are available on the corresponding property. E.g, the `window
 `window.innerHeight`, etc.`
 
 
-[**Source code**](./src/components/hooks/useViewportInfo.js#L13)
+[**Source code**](./src/components/hooks/use-window-info.js#L10)
 
-<a id="ViewportContext"></a>
-### `ViewportContext(attr)` ⇒ `object`
+<a id="WindowContext"></a>
+### `WindowContext(attr)` ⇒ `object`
 
 A context component that tracks information from the `window` and related  objects.
 
@@ -274,7 +274,7 @@ have to check it's position periodically.
 **Returns**: `object` - The rendered component.
 
 
-[**Source code**](./src/components/contexts/ViewportContext.jsx#L37)
+[**Source code**](./src/components/contexts/window-context.jsx#L37)
 
 
 ## Contributing

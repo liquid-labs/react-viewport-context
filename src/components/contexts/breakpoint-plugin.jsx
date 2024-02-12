@@ -1,20 +1,20 @@
 /**
  * Retrieves the theme and verifies that it is structurally correct. See {@link
- * module:react-viewport-context.breakpointPlugin} for the required structure.
+ * module:react-window-context.breakpointPlugin} for the required structure.
  * @param {Function} getTheme - The function to retrieve the theme.
  * @returns {object} The verified theme.
  * @private
  */
 const doGetTheme = (getTheme) => {
   if (getTheme === undefined) {
-    throw new Error("'getTheme' is required when 'breakpointPlugin' is present for 'ViewportContext'.")
+    throw new Error("'getTheme' is required when 'breakpointPlugin' is present for 'WindowContext'.")
   }
   const theme = getTheme()
   if (!theme) {
-    throw new Error("'ViewportContext' 'getTheme' did not return a theme.")
+    throw new Error("'WindowContext' 'getTheme' did not return a theme.")
   }
   if (theme.breakpoints?.values === undefined) {
-    throw new Error("Theme provided to 'ViewportContext' does not define required 'breakpoints.values'.")
+    throw new Error("Theme provided to 'WindowContext' does not define required 'breakpoints.values'.")
   }
   return theme
 }
@@ -54,7 +54,7 @@ const breakpointPlugin = (prevInfo, newInfo, getTheme) => {
   return false
 }
 
-// add meta information used by ViewportContext to determine what events are necessary to watch.
+// add meta information used by WindowContext to determine what events are necessary to watch.
 breakpointPlugin.target = null
 breakpointPlugin.attribute = 'breakpoint'
 breakpointPlugin.events = ['deviceorientation', 'resize']

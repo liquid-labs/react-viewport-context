@@ -1,11 +1,11 @@
-/* global ViewportContext */
+/* global WindowContext */
 import { breakpointPlugin } from './breakpoint-plugin' /* eslint-disable-line node/no-missing-import */
 
 /**
  * Helper function used by the more specific {@link makeScreenPlugin}, {@link makeVisualViewportPlugin}, and
  * {@link makeWindowPlugin}.
  * @param {object} obj - The data source object; either `screen`, `visualViewport', or `window`.
- * @param {string} key - The key to access the sub-data object of the {@link ViewportContext} info object. This will
+ * @param {string} key - The key to access the sub-data object of the {@link WindowContext} info object. This will
  *   match the `obj` (e.g., 'screen' for the `screen` object).
  * @param {string} attribute - The attribute of the specified `obj` to extract.
  * @param {object} validAttributes - An object defining the valid attributes for the given `obj` type and the events
@@ -93,7 +93,7 @@ const VALID_WINDOW_ATTRIBUTES = {
 /**
  * Function to generate plugins to extract `screen` related data.
  * @param {string} attribute - The `screen` attribute to track.
- * @returns {Function} A {@link ViewportContext} plugin.
+ * @returns {Function} A {@link WindowContext} plugin.
  * @throws Raises an error if attribute is invalid.
  * @see {@link VALID_SCREEN_ATTRIBUTES} for valid attributes.
  * @see {@link makeWindowPlugin} for an example.
@@ -103,7 +103,7 @@ const makeScreenPlugin = (attribute) => makePlugin(window.screen, 'screen', attr
 /**
  * Function to generate plugins to extract `visualViewport` related data.
  * @param {string} attribute - The `visualViewport` attribute to track.
- * @returns {Function} A {@link ViewportContext} plugin.
+ * @returns {Function} A {@link WindowContext} plugin.
  * @throws Raises an error if attribute is invalid.
  * @see {@link VALID_VISUAL_VIEWPORT_ATTRIBUTES} for valid attributes.
  * @see {@link makeWindowPlugin} for an example.
@@ -114,30 +114,30 @@ const makeVisualViewportPlugin = (attribute) =>
 /**
  * Function to generate plugins to extract `window` related data.
  * @param {string} attribute - The `window` attribute to track.
- * @returns {Function} A {@link ViewportContext} plugin.
+ * @returns {Function} A {@link WindowContext} plugin.
  * @throws Raises an error if attribute is invalid.
  * @see {@link VALID_WINDOW_ATTRIBUTES} for valid attributes.
  * @example
  * const innerHeightPlugin = makeWindowPlugin('innerHeight')
  *
  * return (
- *   <ViewportContext plugins={[innerHeightPlugin]}>
+ *   <WindowContext plugins={[innerHeightPlugin]}>
  *     <DisplayInnerHeight />
- *   </ViewportContext>
+ *   </WindowContext>
  * )
  */
 const makeWindowPlugin = (attribute) => makePlugin(window, 'window', attribute, VALID_WINDOW_ATTRIBUTES)
 
 /**
  * Convenience method to create all `screen` related plugins.
- * @returns {Function[]} An array of {@link ViewportContext} plugins.
+ * @returns {Function[]} An array of {@link WindowContext} plugins.
  * @see {@link allWindowPlugins} for an example.
  */
 const allScreenPlugins = () => Object.keys(VALID_SCREEN_ATTRIBUTES).map((attribute) => makeScreenPlugin(attribute))
 
 /**
  * Convenience method to create all `visualViewport` related plugins.
- * @returns {Function[]} An array of {@link ViewportContext} plugins.
+ * @returns {Function[]} An array of {@link WindowContext} plugins.
  * @see {@link allWindowPlugins} for an example.
  */
 const allVisualViewportPlugins = () =>
@@ -145,21 +145,21 @@ const allVisualViewportPlugins = () =>
 
 /**
  * Convenience method to create all `screen` related plugins.
- * @returns {Function[]} An array of {@link ViewportContext} plugins.
+ * @returns {Function[]} An array of {@link WindowContext} plugins.
  * @example
  * const allWindowPlugins = allWindowPlugins()
  *
  * return (
- *   <ViewportContext plugins={allWindowPlugins}>
+ *   <WindowContext plugins={allWindowPlugins}>
  *     <DisplayAllWindowData />
- *   </ViewportContext>
+ *   </WindowContext>
  * )
  */
 const allWindowPlugins = () => Object.keys(VALID_WINDOW_ATTRIBUTES).map((attribute) => makeWindowPlugin(attribute))
 
 /**
  * Convenience method to track all data for `window`, `screen`, and `visualViewport`.
- * @returns {Function[]} An array of {@link ViewportContext} plugins.
+ * @returns {Function[]} An array of {@link WindowContext} plugins.
  * @see {@link allWindowPlugins} for an example.
  */
 const allPlugins = () => [breakpointPlugin, ...allScreenPlugins(), ...allVisualViewportPlugins(), ...allWindowPlugins()]

@@ -1,5 +1,5 @@
 {
-  "name": "@liquid-labs/react-viewport-context",
+  "name": "react-window-context",
   "version": "1.0.0-prototype.4",
   "description": "A react Provider with hook to get viewport info and subscribe to changes.",
   "main": "dist/index.js",
@@ -20,8 +20,8 @@
     "qa": "make qa"
   },
   "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/Liquid-Labs/react-viewport-context.git"
+    "url": "git+ssh://git@github.com/Liquid-Labs/react-window-context.git",
+    "type": "git"
   },
   "keywords": [
     "react"
@@ -29,9 +29,9 @@
   "author": "Zane Rockenbaugh <zane@liquid-labs.com>",
   "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/Liquid-Labs/react-viewport-context/issues"
+    "url": "https://github.com/Liquid-Labs/react-window-context/issues"
   },
-  "homepage": "https://github.com/Liquid-Labs/react-viewport-context#readme",
+  "homepage": "https://github.com/Liquid-Labs/react-window-context#readme",
   "devDependencies": {
     "@liquid-labs/sdlc-resource-babel-and-rollup": "^1.0.0-alpha.7",
     "@liquid-labs/sdlc-resource-eslint": "^1.0.0-alpha.8",
@@ -55,5 +55,8 @@
     "jestConfig": {
       "testEnvironment": "jsdom"
     }
+  },
+  "_comply": {
+    "orgKey": "@liquid-labs"
   }
 }

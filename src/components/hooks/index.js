@@ -1,1 +1,1 @@
-export * from './useViewportInfo'
+export * from './use-window-info'
