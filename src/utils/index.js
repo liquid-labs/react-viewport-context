@@ -1,1 +1,0 @@
-export { mainPaddingStyles } from './mainPadding'

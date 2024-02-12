@@ -1,14 +1,15 @@
 /* global afterEach describe Event expect test */
 import React from 'react'
 
-import { ThemeProvider, useTheme } from '@mui/material/styles'
-
 import { ViewportContext } from './ViewportContext' /* eslint-disable-line node/no-missing-import */
+import { breakpointPlugin } from './breakpoint-plugin' /* eslint-disable-line node/no-missing-import */
 import { act, cleanup, render } from '@testing-library/react'
 import { ViewListener, defaultTheme } from '../../testlib'
 
+const getDefaultTheme = () => defaultTheme
+
 const generateTestData = (theme) => {
-  const breakpoints = theme.breakpoints.keys
+  const breakpoints = Object.keys(theme.breakpoints.values)
   const boundaryTests = Object.entries(theme.breakpoints.values)
   const subBoundaryTests = boundaryTests.map(([, boundary], i) =>
     i === 0 ? null : [breakpoints[i - 1], boundary - 1]).filter(e => e)
@@ -20,16 +21,14 @@ const generateTestData = (theme) => {
 
 const defaultTestData = generateTestData(defaultTheme)
 
-const breakpointTestFor = (theme) => (breakpoint, boundary) => {
+const breakpointTestFor = () => (breakpoint, boundary) => {
   window.innerWidth = boundary
   let viewInfo
   const callback = (info) => { viewInfo = info }
   render(
-    <ThemeProvider theme={theme}>
-      <ViewportContext getTheme={useTheme}>
-        <ViewListener callback={callback} />
-      </ViewportContext>
-    </ThemeProvider>
+    <ViewportContext plugins={[breakpointPlugin]} getTheme={getDefaultTheme}>
+      <ViewListener callback={callback} />
+    </ViewportContext>
   )
   expect(viewInfo.breakpoint).toBe(breakpoint)
 }
@@ -49,18 +48,20 @@ describe('ViewportContext', () => {
   })
   */
 
-  test("does not provide 'x' by default", () => {
+  test('provides no info without any plugins', () => {
     window.innerWidth = 1200
     let viewInfo
     const callback = (info) => { viewInfo = info }
     render(
-      <ThemeProvider theme={defaultTheme}>
-        <ViewportContext getTheme={useTheme}>
-          <ViewListener callback={callback} />
-        </ViewportContext>
-      </ThemeProvider>
+      <ViewportContext getTheme={getDefaultTheme}>
+        <ViewListener callback={callback} />
+      </ViewportContext>
     )
-    expect(viewInfo.width).toBeUndefined()
+    const viewInfoKeys = Object.keys(viewInfo).sort()
+    expect(viewInfoKeys).toEqual(['screen', 'visualViewport', 'window'])
+    for (const key of viewInfoKeys) {
+      expect(Object.keys(viewInfo[key])).toHaveLength(0)
+    }
   })
 
   test('does not re-render when size changes, but breakpoint does not', () => {
@@ -69,11 +70,9 @@ describe('ViewportContext', () => {
     const callback = () => { renderCount += 1 }
 
     render(
-      <ThemeProvider theme={defaultTheme}>
-        <ViewportContext getTheme={useTheme}>
-          <ViewListener callback={callback} />
-        </ViewportContext>
-      </ThemeProvider>
+      <ViewportContext plugins={[breakpointPlugin]} getTheme={getDefaultTheme}>
+        <ViewListener callback={callback} />
+      </ViewportContext>
     )
     expect(renderCount).toBe(1)
     act(() => {
@@ -92,11 +91,9 @@ describe('ViewportContext', () => {
       viewInfo = info
     }
     render(
-      <ThemeProvider theme={defaultTheme}>
-        <ViewportContext getTheme={useTheme}>
-          <ViewListener callback={callback} />
-        </ViewportContext>
-      </ThemeProvider>
+      <ViewportContext plugins={[breakpointPlugin]} getTheme={getDefaultTheme}>
+        <ViewListener callback={callback} />
+      </ViewportContext>
     )
     expect(renderCount).toBe(1)
     act(() => {
@@ -132,11 +129,9 @@ describe('ViewportContext', () => {
     window.innerWidth = 1200
     const callback = () => {}
     const { unmount } = render(
-      <ThemeProvider theme={defaultTheme}>
-        <ViewportContext getTheme={useTheme}>
-          <ViewListener callback={callback} />
-        </ViewportContext>
-      </ThemeProvider>
+      <ViewportContext plugins={[breakpointPlugin]} getTheme={getDefaultTheme}>
+        <ViewListener callback={callback} />
+      </ViewportContext>
     )
     expect(currListeners.resize.length).toBe(1)
 

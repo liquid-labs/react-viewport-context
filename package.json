@@ -17,8 +17,7 @@
     "lint-fix": "make lint-fix",
     "prepack": "make build",
     "preversion": "make qa",
-    "qa": "make qa",
-    "start": "docusaurus start"
+    "qa": "make qa"
   },
   "repository": {
     "type": "git",
@@ -28,23 +27,20 @@
     "react"
   ],
   "author": "Zane Rockenbaugh <zane@liquid-labs.com>",
-  "license": "ISC",
+  "license": "Apache 2.0",
   "bugs": {
     "url": "https://github.com/Liquid-Labs/react-viewport-context/issues"
   },
   "homepage": "https://github.com/Liquid-Labs/react-viewport-context#readme",
   "devDependencies": {
-    "@docusaurus/core": "^3.1.1",
-    "@docusaurus/module-type-aliases": "^3.1.1",
-    "@docusaurus/preset-classic": "^3.1.1",
-    "@docusaurus/types": "^3.1.1",
-    "@emotion/styled": "^11.11.0",
     "@liquid-labs/sdlc-resource-babel-and-rollup": "^1.0.0-alpha.7",
-    "@liquid-labs/sdlc-resource-eslint": "^1.0.0-alpha.7",
-    "@liquid-labs/sdlc-resource-jest": "^1.0.0-alpha.5",
-    "@mui/material": "^5.15.7",
+    "@liquid-labs/sdlc-resource-eslint": "^1.0.0-alpha.8",
+    "@liquid-labs/sdlc-resource-jest": "^1.0.0-alpha.7",
     "@testing-library/react": "^14.2.1",
+    "dmd-readable": "^1.2.4",
+    "dmd-readme-api": "^1.0.0-beta.1",
     "jest-environment-jsdom": "^29.7.0",
+    "jsdoc-to-markdown": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

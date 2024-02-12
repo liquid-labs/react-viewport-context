@@ -6,7 +6,6 @@ import { useViewportInfo } from '../components/hooks/useViewportInfo'
 // following Material UI default theme 3.9.3
 const defaultTheme = {
   breakpoints : {
-    keys   : ['xs', 'sm', 'md', 'lg', 'xl'],
     values : {
       xs : 0,
       sm : 600,
@@ -50,7 +49,6 @@ const defaultTheme = {
 
 const weirdTheme = {
   breakpoints : {
-    keys   : ['foo', 'bar', 'baz'],
     values : {
       foo : 0,
       bar : 82,
@@ -92,6 +90,7 @@ const weirdTheme = {
 
 const ViewListener = ({ callback }) => {
   const viewInfo = useViewportInfo()
+
   callback(viewInfo)
 
   return <div />
