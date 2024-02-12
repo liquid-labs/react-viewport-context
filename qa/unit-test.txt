@@ -1,0 +1,60 @@
+Test git rev: cad2b565f4ce003cebad9ef0d999fe16613d2bd1
+  console.error
+    Warning: Failed prop type: The prop `plugins` is marked as required in `ViewportContext`, but its value is `undefined`.
+        at getTheme (/Users/zane/playground/liquid-labs/react-viewport-context/src/components/contexts/ViewportContext.jsx:37:28)
+
+      54 |     const callback = (info) => { viewInfo = info }
+      55 |     render(
+    > 56 |       <ViewportContext getTheme={getDefaultTheme}>
+         |       ^
+      57 |         <ViewListener callback={callback} />
+      58 |       </ViewportContext>
+      59 |     )
+
+      at printWarning (../node_modules/react/cjs/react.development.js:209:30)
+      at error (../node_modules/react/cjs/react.development.js:183:7)
+      at checkPropTypes (../node_modules/react/cjs/react.development.js:2074:11)
+      at validatePropTypes (../node_modules/react/cjs/react.development.js:2275:7)
+      at Object.createElementWithValidation [as createElement] (../node_modules/react/cjs/react.development.js:2379:5)
+      at Object.createElement (../src/components/contexts/ViewportContext.test.jsx:56:7)
+
+(node:90602) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS components/contexts/ViewportContext.test.js
+  ViewportContext
+    ✓ provides no info without any plugins (19 ms)
+    ✓ does not re-render when size changes, but breakpoint does not
+    ✓ re-renders when size changes breakpoint (1 ms)
+    ✓ listeners cleaned up after unmount() (507 ms)
+    using default theme
+      ✓ selects 'xs' at boundary 599 (10 ms)
+      ✓ selects 'sm' at boundary 959 (3 ms)
+      ✓ selects 'md' at boundary 1279 (2 ms)
+      ✓ selects 'lg' at boundary 1919 (1 ms)
+      ✓ selects 'xs' at boundary 0 (2 ms)
+      ✓ selects 'sm' at boundary 600 (1 ms)
+      ✓ selects 'md' at boundary 960
+      ✓ selects 'lg' at boundary 1280
+      ✓ selects 'xl' at boundary 1920 (2 ms)
+      ✓ selects 'xs' at boundary 1 (1 ms)
+      ✓ selects 'sm' at boundary 601
+      ✓ selects 'md' at boundary 961 (1 ms)
+      ✓ selects 'lg' at boundary 1281
+      ✓ selects 'xl' at boundary 1921
+
+------------------------|---------|----------|---------|---------|-------------------
+File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+------------------------|---------|----------|---------|---------|-------------------
+All files               |   53.54 |     46.8 |   48.38 |   55.66 |                   
+ contexts               |   51.63 |     46.8 |   46.66 |   54.36 |                   
+  ViewportContext.jsx   |   74.57 |    85.71 |   73.33 |   75.51 | 63-64,68-83       
+  breakpoint-plugin.jsx |   86.36 |       50 |     100 |   86.36 | 10,14,17          
+  make-plugin.jsx       |       0 |        0 |       0 |       0 | 2-165             
+ hooks                  |     100 |      100 |     100 |     100 |                   
+  useViewportInfo.js    |     100 |      100 |     100 |     100 |                   
+------------------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 passed, 1 total
+Tests:       18 passed, 18 total
+Snapshots:   0 total
+Time:        1.02 s
+Ran all test suites.
