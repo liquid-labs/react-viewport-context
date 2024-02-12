@@ -54,7 +54,9 @@
   "_sdlc": {
     "jestConfig": {
       "testEnvironment": "jsdom"
-    },
+    }
+  },
+  "_comply": {
     "orgKey": "@liquid-labs"
   }
 }
