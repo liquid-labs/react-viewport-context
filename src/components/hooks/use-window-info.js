@@ -1,8 +1,5 @@
-/**
- * @file Defines the viewport context hook.
- */
 import { useContext } from 'react'
-import { ViewportReactContext } from '../contexts/ViewportContext' /* eslint-disable-line node/no-missing-import */
+import { WindowReactContext } from '../contexts/window-context' /* eslint-disable-line node/no-missing-import */
 
 /**
  * Retrivees the tracked `window`/`screen`/`visualViewport` data.
@@ -10,6 +7,6 @@ import { ViewportReactContext } from '../contexts/ViewportContext' /* eslint-dis
  * tracked attributes are available on the corresponding property. E.g, the `window`'s inner height is availablee on
  * `window.innerHeight`, etc.`
  */
-const useViewportInfo = () => useContext(ViewportReactContext)
+const useWindowInfo = () => useContext(WindowReactContext)
 
-export { useViewportInfo }
+export { useWindowInfo }

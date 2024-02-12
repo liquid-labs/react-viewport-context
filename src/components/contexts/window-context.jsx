@@ -5,7 +5,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-const ViewportReactContext = createContext()
+const WindowReactContext = createContext()
 
 const INITIAL_STATE = {
   screen         : {},
@@ -34,7 +34,7 @@ const INITIAL_STATE = {
  * @param {object} attr.children - The child elements passed in from the content of the component.
  * @returns {object} The rendered component.
  */
-const ViewportContext = ({ getTheme, plugins = [], pollInterval = 250, children }) => {
+const WindowContext = ({ getTheme, plugins = [], pollInterval = 250, children }) => {
   const [viewInfo, setViewInfo] = useState(INITIAL_STATE)
   if (viewInfo === INITIAL_STATE) {
     const [update, newInfo] = onEvent({ getTheme, plugins, viewInfo })
@@ -89,12 +89,12 @@ const ViewportContext = ({ getTheme, plugins = [], pollInterval = 250, children 
     }
   }, [plugins, pollInterval])
 
-  return <ViewportReactContext.Provider value={viewInfo}>
+  return <WindowReactContext.Provider value={viewInfo}>
     {children}
-  </ViewportReactContext.Provider>
+  </WindowReactContext.Provider>
 }
 
-ViewportContext.propTypes = {
+WindowContext.propTypes = {
   children     : PropTypes.node.isRequired,
   plugins      : PropTypes.arrayOf(PropTypes.func).isRequired,
   pollInterval : PropTypes.number,
@@ -121,4 +121,4 @@ const onEvent = ({ getTheme, plugins, viewInfo }) => {
   return [update, newInfo]
 }
 
-export { ViewportContext, ViewportReactContext }
+export { WindowContext, WindowReactContext }

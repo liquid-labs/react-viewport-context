@@ -1,10 +1,11 @@
 /* global afterEach describe Event expect test */
 import React from 'react'
 
-import { ViewportContext } from './ViewportContext' /* eslint-disable-line node/no-missing-import */
-import { breakpointPlugin } from './breakpoint-plugin' /* eslint-disable-line node/no-missing-import */
 import { act, cleanup, render } from '@testing-library/react'
-import { ViewListener, defaultTheme } from '../../testlib'
+
+import { WindowContext } from '../window-context' /* eslint-disable-line node/no-missing-import */
+import { breakpointPlugin } from '../breakpoint-plugin' /* eslint-disable-line node/no-missing-import */
+import { ViewListener, defaultTheme } from '../../../testlib'
 
 const getDefaultTheme = () => defaultTheme
 
@@ -26,14 +27,14 @@ const breakpointTestFor = () => (breakpoint, boundary) => {
   let viewInfo
   const callback = (info) => { viewInfo = info }
   render(
-    <ViewportContext plugins={[breakpointPlugin]} getTheme={getDefaultTheme}>
+    <WindowContext plugins={[breakpointPlugin]} getTheme={getDefaultTheme}>
       <ViewListener callback={callback} />
-    </ViewportContext>
+    </WindowContext>
   )
   expect(viewInfo.breakpoint).toBe(breakpoint)
 }
 
-describe('ViewportContext', () => {
+describe('WindowContext', () => {
   afterEach(cleanup)
 
   describe('using default theme', () => {
@@ -53,9 +54,9 @@ describe('ViewportContext', () => {
     let viewInfo
     const callback = (info) => { viewInfo = info }
     render(
-      <ViewportContext getTheme={getDefaultTheme}>
+      <WindowContext getTheme={getDefaultTheme}>
         <ViewListener callback={callback} />
-      </ViewportContext>
+      </WindowContext>
     )
     const viewInfoKeys = Object.keys(viewInfo).sort()
     expect(viewInfoKeys).toEqual(['screen', 'visualViewport', 'window'])
@@ -70,9 +71,9 @@ describe('ViewportContext', () => {
     const callback = () => { renderCount += 1 }
 
     render(
-      <ViewportContext plugins={[breakpointPlugin]} getTheme={getDefaultTheme}>
+      <WindowContext plugins={[breakpointPlugin]} getTheme={getDefaultTheme}>
         <ViewListener callback={callback} />
-      </ViewportContext>
+      </WindowContext>
     )
     expect(renderCount).toBe(1)
     act(() => {
@@ -91,9 +92,9 @@ describe('ViewportContext', () => {
       viewInfo = info
     }
     render(
-      <ViewportContext plugins={[breakpointPlugin]} getTheme={getDefaultTheme}>
+      <WindowContext plugins={[breakpointPlugin]} getTheme={getDefaultTheme}>
         <ViewListener callback={callback} />
-      </ViewportContext>
+      </WindowContext>
     )
     expect(renderCount).toBe(1)
     act(() => {
@@ -129,9 +130,9 @@ describe('ViewportContext', () => {
     window.innerWidth = 1200
     const callback = () => {}
     const { unmount } = render(
-      <ViewportContext plugins={[breakpointPlugin]} getTheme={getDefaultTheme}>
+      <WindowContext plugins={[breakpointPlugin]} getTheme={getDefaultTheme}>
         <ViewListener callback={callback} />
-      </ViewportContext>
+      </WindowContext>
     )
     expect(currListeners.resize.length).toBe(1)
 
