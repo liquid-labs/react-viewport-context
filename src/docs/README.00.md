@@ -1,4 +1,5 @@
 # react-window-context
+[![coverage: 95%](./.readme-assets/coverage.svg)](https://github.com/Liquid-Labs/react-window-context/pulls?q=is%3Apr+is%3Aclosed)
 
 A React provider to track and update on changes to the window, screen, and/or visual viewport.
 

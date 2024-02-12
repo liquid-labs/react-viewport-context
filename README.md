@@ -1,4 +1,5 @@
 # react-window-context
+[![coverage: 95%](./.readme-assets/coverage.svg)](https://github.com/Liquid-Labs/react-window-context/pulls?q=is%3Apr+is%3Aclosed)
 
 A React provider to track and update on changes to the window, screen, and/or visual viewport.
 
@@ -58,7 +59,7 @@ Object defining the valid `screen` attributes. Also defines associated events th
 of each attribute. Refer to source code for list of supported attributes.
 
 
-[**Source code**](./src/components/contexts/make-plugin.jsx#L50)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L56)
 
 <a id="VALID_VISUAL_VIEWPORT_ATTRIBUTES"></a>
 ### `VALID_VISUAL_VIEWPORT_ATTRIBUTES`
@@ -67,7 +68,7 @@ Object defining the valid `visualViewport` attributes. Also defines associated e
 the value of each attribute. Refer to source code for list of supported attributes.
 
 
-[**Source code**](./src/components/contexts/make-plugin.jsx#L65)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L71)
 
 <a id="VALID_WINDOW_ATTRIBUTES"></a>
 ### `VALID_WINDOW_ATTRIBUTES`
@@ -76,7 +77,7 @@ Object defining the valid `window` attributes. Also defines  associated events t
 value of each attribute. Refer to source code for list of supported attributes.
 
 
-[**Source code**](./src/components/contexts/make-plugin.jsx#L80)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L86)
 
 <a id="allPlugins"></a>
 ### `allPlugins()` ⇒ `Array.<function()>`
@@ -88,7 +89,7 @@ Convenience method to track all data for `window`, `screen`, and `visualViewport
 
 **See**: [allWindowPlugins](#allWindowPlugins) for an example.  
 
-[**Source code**](./src/components/contexts/make-plugin.jsx#L165)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L169)
 
 <a id="allScreenPlugins"></a>
 ### `allScreenPlugins()` ⇒ `Array.<function()>`
@@ -100,7 +101,7 @@ Convenience method to create all `screen` related plugins.
 
 **See**: [allWindowPlugins](#allWindowPlugins) for an example.  
 
-[**Source code**](./src/components/contexts/make-plugin.jsx#L136)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L140)
 
 <a id="allVisualViewportPlugins"></a>
 ### `allVisualViewportPlugins()` ⇒ `Array.<function()>`
@@ -112,7 +113,7 @@ Convenience method to create all `visualViewport` related plugins.
 
 **See**: [allWindowPlugins](#allWindowPlugins) for an example.  
 
-[**Source code**](./src/components/contexts/make-plugin.jsx#L143)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L147)
 
 <a id="allWindowPlugins"></a>
 ### `allWindowPlugins()` ⇒ `Array.<function()>`
@@ -132,7 +133,7 @@ return (
 )
 ```
 
-[**Source code**](./src/components/contexts/make-plugin.jsx#L158)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L162)
 
 <a id="breakpointPlugin"></a>
 ### `breakpointPlugin(prevInfo, newInfo, getTheme)` ⇒ `boolean`
@@ -186,7 +187,7 @@ Function to generate plugins to extract `screen` related data.
 - [VALID_SCREEN_ATTRIBUTES](#VALID_SCREEN_ATTRIBUTES) for valid attributes.
 - [makeWindowPlugin](#makeWindowPlugin) for an example.
 
-[**Source code**](./src/components/contexts/make-plugin.jsx#L101)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L105)
 
 <a id="makeVisualViewportPlugin"></a>
 ### `makeVisualViewportPlugin(attribute)` ⇒ `function`
@@ -207,7 +208,7 @@ Function to generate plugins to extract `visualViewport` related data.
 - [VALID_VISUAL_VIEWPORT_ATTRIBUTES](#VALID_VISUAL_VIEWPORT_ATTRIBUTES) for valid attributes.
 - [makeWindowPlugin](#makeWindowPlugin) for an example.
 
-[**Source code**](./src/components/contexts/make-plugin.jsx#L111)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L115)
 
 <a id="makeWindowPlugin"></a>
 ### `makeWindowPlugin(attribute)` ⇒ `function`
@@ -236,7 +237,7 @@ return (
 
 **See**: [VALID_WINDOW_ATTRIBUTES](#VALID_WINDOW_ATTRIBUTES) for valid attributes.  
 
-[**Source code**](./src/components/contexts/make-plugin.jsx#L129)
+[**Source code**](./src/components/contexts/make-plugin.jsx#L133)
 
 <a id="useWindowInfo"></a>
 ### `useWindowInfo()` ⇒ `object`
