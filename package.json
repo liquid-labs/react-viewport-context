@@ -1,6 +1,6 @@
 {
   "name": "react-window-context",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-beta.0",
   "description": "A react Provider with hook to get viewport info and subscribe to changes.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
