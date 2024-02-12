@@ -3,6 +3,12 @@
 
 A React provider to track and update on changes to the window, screen, and/or visual viewport.
 
+- [Install](#install)
+- [Usage](#usage)
+- [API Reference](#api-reference)
+- [Contributing](#contributing)
+- [Support](#support)
+
 ## Install
 
     npm i react-window-context
@@ -35,6 +41,7 @@ Use the `WindowContext` context provider to track and react to updates on `windo
     )
 
 ##  API Reference
+_API generated with [dmd-readme-api](https://www.npmjs.com/package/dmd-readme-api)._
 
 - Constants:
   - [`VALID_SCREEN_ATTRIBUTES`](#VALID_SCREEN_ATTRIBUTES): Object defining the valid `screen` attributes.
