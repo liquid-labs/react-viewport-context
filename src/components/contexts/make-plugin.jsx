@@ -14,11 +14,17 @@ import { breakpointPlugin } from './breakpoint-plugin' /* eslint-disable-line no
  * @private
  */
 const makePlugin = (obj, key, attribute, validAttributes) => {
-  const pluginFunc = (prevInfo, newInfo) => {
-    if (!(attribute in validAttributes)) {
-      throw new Error(`No such attribute '${attribute}' to extract from '${key}'.`)
-    }
+  const canonicalAttribute = attribute === 'screenLeft'
+    ? 'screenX'
+    : attribute === 'screenTop'
+      ? 'screenY'
+      : attribute
 
+  if (!(canonicalAttribute in validAttributes)) {
+    throw new Error(`No such attribute '${attribute}' to extract from '${key}'.`)
+  }
+
+  const pluginFunc = (prevInfo, newInfo) => {
     const value = attribute === 'screenX' || attribute === 'screenLeft'
       ? obj.screenX || obj.screenLeft
       : attribute === 'screenY' || attribute === 'screenTop'
@@ -82,12 +88,10 @@ const VALID_WINDOW_ATTRIBUTES = {
   innerWidth  : { events : ['deviceorientation', 'resize'] },
   outerHeight : { events : ['deviceorientation', 'resize'] },
   outerWidth  : { events : ['deviceorientation', 'resize'] },
-  screenLeft  : { events : ['deviceorientation', 'move', 'resize'] },
-  screenTop   : { events : ['deviceorientation', 'move', 'resize'] },
   screenX     : { events : ['deviceorientation', 'move', 'resize'] },
   screenY     : { events : ['deviceorientation', 'move', 'resize'] },
-  scrollX     : { events : ['deviceorientation', 'move', 'resize', 'scroll'] },
-  scrollY     : { events : ['deviceorientation', 'move', 'resize', 'scroll'] }
+  scrollX     : { events : ['deviceorientation', 'resize', 'scroll'] },
+  scrollY     : { events : ['deviceorientation', 'resize', 'scroll'] }
 }
 
 /**

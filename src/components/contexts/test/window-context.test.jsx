@@ -4,7 +4,9 @@ import React from 'react'
 import { act, cleanup, render } from '@testing-library/react'
 
 import { WindowContext } from '../window-context' /* eslint-disable-line node/no-missing-import */
-import { breakpointPlugin } from '../breakpoint-plugin' /* eslint-disable-line node/no-missing-import */
+/* eslint-disable-next-line node/no-missing-import */
+import { breakpointPlugin } from '../breakpoint-plugin'
+import { makeWindowPlugin } from '../make-plugin' /* eslint-disable-line node/no-missing-import */
 import { ViewListener, defaultTheme } from '../../../testlib'
 
 const getDefaultTheme = () => defaultTheme
@@ -65,7 +67,7 @@ describe('WindowContext', () => {
     }
   })
 
-  test('does not re-render when size changes, but breakpoint does not', () => {
+  test('does not re-render when size changes, but breakpoint does not using breakpointPlugin', () => {
     window.innerWidth = 1200
     let renderCount = 0
     const callback = () => { renderCount += 1 }
@@ -83,7 +85,7 @@ describe('WindowContext', () => {
     expect(renderCount).toBe(1)
   })
 
-  test('re-renders when size changes breakpoint', () => {
+  test('re-renders when size changes breakpoint using breakpointPlugin', () => {
     window.innerWidth = 1200
     let renderCount = 0
     let viewInfo
@@ -102,6 +104,30 @@ describe('WindowContext', () => {
       window.dispatchEvent(new Event('resize'))
     })
     expect(viewInfo.breakpoint).toBe('sm')
+    expect(renderCount).toBe(2)
+  })
+
+  test("polls for changes when tracking 'screenX'", async () => {
+    window.screenX = 0
+    let renderCount = 0
+    let viewInfo
+    const callback = (info) => {
+      renderCount += 1
+      viewInfo = info
+    }
+    render(
+      <WindowContext plugins={[makeWindowPlugin('screenX')]}>
+        <ViewListener callback={callback} />
+      </WindowContext>
+    )
+    expect(renderCount).toBe(1)
+    act(() => {
+      window.screenX = 100
+      const htmlNode = document.getElementsByTagName('html').item(0)
+      htmlNode.dispatchEvent(new Event('mouseleave'))
+    })
+    await new Promise(resolve => setTimeout(resolve, 250 * 2))
+    expect(viewInfo.window.screenX).toBe(100)
     expect(renderCount).toBe(2)
   })
 
