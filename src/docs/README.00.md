@@ -3,6 +3,12 @@
 
 A React provider to track and update on changes to the window, screen, and/or visual viewport.
 
+- [Install](#install)
+- [Usage](#usage)
+- [API Reference](#api-reference)
+- [Contributing](#contributing)
+- [Support](#support)
+
 ## Install
 
     npm i react-window-context
