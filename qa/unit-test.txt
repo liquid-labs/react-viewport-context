@@ -1,0 +1,72 @@
+Test git rev: ebb6a843bb0881dceed469f1903a7efbed8bfcb4
+(node:36105) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS components/contexts/test/window-context.test.js
+  ● Console
+
+    console.error
+      Warning: Failed prop type: The prop `plugins` is marked as required in `WindowContext`, but its value is `undefined`.
+          at getTheme (/Users/zane/playground/react-window-context/src/components/contexts/window-context.jsx:37:26)
+
+      57 |     const callback = (info) => { viewInfo = info }
+      58 |     render(
+    > 59 |       <WindowContext getTheme={getDefaultTheme}>
+         |       ^
+      60 |         <ViewListener callback={callback} />
+      61 |       </WindowContext>
+      62 |     )
+
+      at printWarning (../node_modules/react/cjs/react.development.js:209:30)
+      at error (../node_modules/react/cjs/react.development.js:183:7)
+      at checkPropTypes (../node_modules/react/cjs/react.development.js:2074:11)
+      at validatePropTypes (../node_modules/react/cjs/react.development.js:2275:7)
+      at Object.createElementWithValidation [as createElement] (../node_modules/react/cjs/react.development.js:2379:5)
+      at Object.createElement (../src/components/contexts/test/window-context.test.jsx:59:7)
+
+    console.error
+      Warning: An update to WindowContext inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+          at getTheme (/Users/zane/playground/react-window-context/src/components/contexts/window-context.jsx:37:26)
+
+      45 |     const listener = () => {
+      46 |       const [update, newInfo] = onEvent({ getTheme, plugins, viewInfo })
+    > 47 |       if (update) setViewInfo(newInfo)
+         |                   ^
+      48 |     }
+      49 |
+      50 |     const watchEvents = plugins.reduce((acc, { events }) => {
+
+      at printWarning (../node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (../node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at warnIfUpdatesNotWrappedWithActDEV (../node_modules/react-dom/cjs/react-dom.development.js:27589:9)
+      at scheduleUpdateOnFiber (../node_modules/react-dom/cjs/react-dom.development.js:25508:5)
+      at dispatchSetState (../node_modules/react-dom/cjs/react-dom.development.js:17527:7)
+      at setViewInfo (../src/components/contexts/window-context.jsx:47:19)
+      at Timeout.task [as _onTimeout] (../node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+
+PASS components/contexts/test/make-plugin.test.js
+------------------------|---------|----------|---------|---------|-------------------
+File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+------------------------|---------|----------|---------|---------|-------------------
+All files               |   94.53 |    76.47 |   93.54 |   95.32 |                   
+ contexts               |    94.3 |    76.47 |   93.33 |   95.19 |                   
+  breakpoint-plugin.jsx |   86.36 |       50 |     100 |   86.36 | 10,14,17          
+  make-plugin.jsx       |     100 |    68.18 |     100 |     100 | 17-19,30-34       
+  window-context.jsx    |   93.22 |    95.23 |   86.66 |   95.91 | 63-64             
+ hooks                  |     100 |      100 |     100 |     100 |                   
+  use-window-info.js    |     100 |      100 |     100 |     100 |                   
+------------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 2 passed, 2 total
+Tests:       41 passed, 41 total
+Snapshots:   0 total
+Time:        1.498 s, estimated 2 s
+Ran all test suites.
