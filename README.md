@@ -5,6 +5,7 @@ A React provider to track and update on changes to the window, screen, and/or vi
 
 - [Install](#install)
 - [Usage](#usage)
+- [Demo](#demo)
 - [API Reference](#api-reference)
 - [Contributing](#contributing)
 - [Support](#support)
@@ -39,6 +40,10 @@ Use the `WindowContext` context provider to track and react to updates on `windo
         <WindowInfo />
       </WindowContext>
     )
+
+## Demo
+
+- [Basic window info](https://codepen.io/Zane-Rockenbaugh/pen/RwdqqaJ) (on CodePen)
 
 ##  API Reference
 _API generated with [dmd-readme-api](https://www.npmjs.com/package/dmd-readme-api)._
