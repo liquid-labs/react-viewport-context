@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/Liquid-Labs/react-window-context#readme",
   "devDependencies": {
-    "@liquid-labs/sdlc-resource-babel-and-rollup": "^1.0.0-alpha.7",
+    "@liquid-labs/sdlc-resource-babel-and-rollup": "^1.0.0-alpha.8",
     "@liquid-labs/sdlc-resource-eslint": "^1.0.0-alpha.8",
     "@liquid-labs/sdlc-resource-jest": "^1.0.0-alpha.7",
     "@testing-library/react": "^14.2.1",
